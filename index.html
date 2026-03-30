@@ -1379,9 +1379,12 @@ function togglePay(chk) {
 }
 
 /* ===========================
-   인쇄 모드별 독립 출력
+   인쇄 모드별 독립 출력 + A4 꽉 채우기
 =========================== */
+let _printMode = '';
+
 function printMode(mode) {
+  _printMode = mode;
   document.body.setAttribute('data-print', mode);
   if (mode === 'presale') {
     const hasPay = $('chk-pay') && $('chk-pay').checked;
@@ -1390,7 +1393,42 @@ function printMode(mode) {
   window.print();
 }
 
+/* @media print CSS 적용 직후 높이 측정 → 스케일 자동 조정 */
+(function () {
+  const mq = window.matchMedia('print');
+
+  function onPrintChange(e) {
+    if (!e.matches || !_printMode) return;
+    const pane = document.querySelector('#mode-' + _printMode + ' .est-pane');
+    if (!pane) return;
+
+    /* 기존 스케일 초기화 후 reflow */
+    pane.style.transform = '';
+    pane.style.width     = '';
+    void pane.offsetHeight;
+
+    const contentH = pane.scrollHeight;
+    /* A4 @page margin:10mm → 가용 높이 277mm × (96px/25.4) ≈ 1047px */
+    const a4H = Math.round(277 * 96 / 25.4);
+
+    if (contentH > 0 && Math.abs(contentH - a4H) > 10) {
+      const scale = (a4H / contentH) * 0.994; /* 0.6% 여유 */
+      pane.style.transformOrigin = 'top left';
+      pane.style.transform       = 'scale(' + scale.toFixed(4) + ')';
+      pane.style.width           = (100 / scale).toFixed(2) + '%';
+    }
+  }
+
+  if (mq.addEventListener) mq.addEventListener('change', onPrintChange);
+  else                      mq.addListener(onPrintChange);
+})();
+
 window.addEventListener('afterprint', function () {
+  if (_printMode) {
+    const pane = document.querySelector('#mode-' + _printMode + ' .est-pane');
+    if (pane) { pane.style.transform = ''; pane.style.width = ''; }
+  }
+  _printMode = '';
   document.body.removeAttribute('data-print');
   document.body.removeAttribute('data-presale-pay');
 });
