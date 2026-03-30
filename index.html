@@ -184,28 +184,6 @@
     }
     .btn-print:hover { background: #0f1e45; }
 
-    /* ===== 평면도 탭 ===== */
-    .fptab-bar {
-      display: flex;
-      border-bottom: 1px solid var(--border);
-      background: #f0f3fa;
-      padding: 0 20px;
-    }
-    .fptab-btn {
-      background: none; border: none;
-      border-bottom: 2px solid transparent;
-      padding: 9px 18px;
-      font-size: 12px; font-weight: 600;
-      font-family: 'Noto Sans KR', sans-serif;
-      color: #a0aec0;
-      cursor: pointer;
-      transition: color 0.15s, border-color 0.15s;
-      margin-bottom: -1px;
-      letter-spacing: 0.5px;
-    }
-    .fptab-btn:hover { color: var(--navy-mid); }
-    .fptab-btn.active { color: var(--navy); border-bottom-color: var(--navy); }
-
     /* ===== ESTIMATE PANE ===== */
     .est-pane { padding: 28px; }
 
@@ -308,145 +286,95 @@
       letter-spacing: 3px; padding: 7px 16px; border-color: #253b7a;
     }
 
-    /* ===== 평면도 섹션 ===== */
-    .fp-section {
-      max-width: 700px; margin: 20px auto 0;
-      border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
-    }
-    .fp-head {
-      background: var(--navy); color: white;
-      padding: 10px 18px; font-size: 13px; font-weight: 700; letter-spacing: 2.5px;
-    }
-    .fp-body {
-      padding: 28px 20px; background: #f5f7fc;
-      text-align: center; min-height: 200px;
-      display: flex; align-items: center; justify-content: center;
-      color: #a0aec0; font-size: 13px; flex-direction: column; gap: 8px;
-    }
-    .fp-body svg { opacity: 0.3; }
-
     /* ===== PRINT ===== */
+
+    /* ── 공통 print 기본 ── */
     @media print {
-      /* A4 여백 10mm, 브라우저 기본 머리글/바닥글 영역 제거 */
-      @page {
-        size: A4 portrait;
-        margin: 10mm;
-      }
+      @page { size: A4 portrait; margin: 10mm; }
 
-      /* ── 화면 전용 요소 숨김 ── */
-      .site-header,
-      .mode-nav,
-      .input-card,
-      .out-bar,
-      .fptab-bar,
-      .no-print { display: none !important; }
-      .amt-hint { display: none !important; }
-
+      .site-header, .mode-nav, .input-card, .out-bar,
+      .no-print, .amt-hint { display: none !important; }
       .est-banner .sub { display: none !important; }
 
-      /* ── 기본 레이아웃 ── */
-      html, body {
-        width: 100%;
-        height: auto;
-        margin: 0;
-        padding: 0;
-        background: white;
-        /* 전체 폰트 85% 수준으로 축소 */
-        font-size: 85%;
-      }
-      body {
-        display: block;
-      }
-      .container {
-        width: 100%;
-        max-width: 100%;
-        padding: 0;
-        /* 페이지 넘김 방지 */
-        page-break-inside: avoid;
-      }
+      /* 현재 인쇄 모드가 아닌 섹션 숨김 */
+      body[data-print="sale"]    #mode-presale { display: none !important; }
+      body[data-print="presale"] #mode-sale    { display: none !important; }
+
+      html, body { width: 100%; margin: 0; padding: 0; background: white; }
+      body { display: block; }
+      .container { width: 100%; max-width: 100%; padding: 0; }
       .card { box-shadow: none; border-radius: 0; }
       .est-pane { padding: 0; }
       .est-doc {
-        max-width: 100%;
-        border: none;
-        font-size: 11.5px;   /* 베이스 폰트 강제 고정 */
+        max-width: 100%; width: 100%; margin: 0; border: none;
         page-break-inside: avoid;
       }
-
-      /* ── 배너 ── */
-      .est-banner { padding: 10px 16px 9px; }
-      .est-banner h2 { font-size: 15px; letter-spacing: 4px; }
-
-      /* ── 표 셀 padding 축소 및 정렬 개선 ── */
-      .est-tbl th,
-      .est-tbl td { padding: 3px 8px; font-size: 11px; }
-      .est-tbl thead th { font-size: 10px; }
-      .est-tbl .sec td  { padding: 4px 10px; font-size: 9.5px; letter-spacing: 2px; }
-      .est-tbl .lbl { width: 28%; }
-      .est-tbl colgroup col:nth-child(1) { width: 28%; }
-      .est-tbl colgroup col:nth-child(2) { width: 36%; }
-      .est-tbl colgroup col:nth-child(3) { width: 36%; }
       .est-tbl .c-loan, .est-tbl .c-no { text-align: right; }
       .est-tbl .c-both { text-align: right; }
       .est-tbl .dash { text-align: center; }
 
-      /* ── 강조 행 숫자 크기 축소 ── */
-      .est-tbl .emph-row .emph-num { font-size: 13px; }
+      * { -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important; color-adjust: exact !important; }
+    }
 
-      /* ── 수익률 행 ── */
-      .est-tbl .yld td   { padding: 6px 8px; }
-      .est-tbl .yld .lbl { font-size: 12px; }
+    /* ── 매매 견적서 (약 19행 → A4 1장 꽉 채움) ── */
+    @media print {
+      body[data-print="sale"] .est-banner { padding: 15px 20px 13px; }
+      body[data-print="sale"] .est-banner h2 { font-size: 18px; letter-spacing: 5px; }
+      body[data-print="sale"] .est-tbl th,
+      body[data-print="sale"] .est-tbl td  { padding: 11px 14px; font-size: 13.5px; }
+      body[data-print="sale"] .est-tbl thead th { font-size: 12px; }
+      body[data-print="sale"] .est-tbl .sec td  { padding: 9px 14px; font-size: 11px; letter-spacing: 2.5px; }
+      body[data-print="sale"] .est-tbl .lbl     { width: 28%; }
+      body[data-print="sale"] .est-tbl .emph-row .emph-num { font-size: 17px; }
+      body[data-print="sale"] .est-tbl .yld td  { padding: 12px 14px; }
+      body[data-print="sale"] .est-tbl .yld .lbl { font-size: 15px; }
+      body[data-print="sale"] .ytrack { width: 82px; height: 8px; }
+      body[data-print="sale"] .ynum   { font-size: 22px; min-width: 70px; }
+      body[data-print="sale"] .est-foot { padding: 11px 20px; }
+      body[data-print="sale"] .est-foot .fc { font-size: 15px; }
+      body[data-print="sale"] .est-foot .fp { font-size: 12px; }
+    }
 
-      /* ── 게이지바 높이 축소 ── */
-      .ytrack { width: 60px; height: 6px; }
-      .ynum   { font-size: 16px; min-width: 54px; }
+    /* ── 분양 납부일정표 미포함 (약 23행 → A4 1장) ── */
+    @media print {
+      body[data-print="presale"][data-presale-pay="no"] .est-banner { padding: 12px 18px 10px; }
+      body[data-print="presale"][data-presale-pay="no"] .est-banner h2 { font-size: 16px; letter-spacing: 4.5px; }
+      body[data-print="presale"][data-presale-pay="no"] .est-tbl th,
+      body[data-print="presale"][data-presale-pay="no"] .est-tbl td  { padding: 8px 12px; font-size: 12.5px; }
+      body[data-print="presale"][data-presale-pay="no"] .est-tbl thead th { font-size: 11.5px; }
+      body[data-print="presale"][data-presale-pay="no"] .est-tbl .sec td  { padding: 7px 12px; font-size: 10.5px; letter-spacing: 2px; }
+      body[data-print="presale"][data-presale-pay="no"] .est-tbl .emph-row .emph-num { font-size: 15px; }
+      body[data-print="presale"][data-presale-pay="no"] .est-tbl .yld td  { padding: 9px 12px; }
+      body[data-print="presale"][data-presale-pay="no"] .est-tbl .yld .lbl { font-size: 13.5px; }
+      body[data-print="presale"][data-presale-pay="no"] .ytrack { width: 74px; height: 7px; }
+      body[data-print="presale"][data-presale-pay="no"] .ynum   { font-size: 19px; min-width: 64px; }
+      body[data-print="presale"][data-presale-pay="no"] .est-foot { padding: 9px 18px; }
+      body[data-print="presale"][data-presale-pay="no"] .est-foot .fc { font-size: 14px; }
+      body[data-print="presale"][data-presale-pay="no"] .est-foot .fp { font-size: 11px; }
+    }
 
-      /* ── 납부일정표 ── */
-      .pay-tbl th,
-      .pay-tbl td { padding: 3px 8px; font-size: 10.5px; }
-      .pay-tbl .p-sum .p-num { font-size: 11px; }
-      .pay-sec-head td { padding: 4px 10px; font-size: 9.5px; letter-spacing: 2px; }
-
-      /* ── 푸터 ── */
-      .est-foot { padding: 7px 14px; }
-      .est-foot .fc { font-size: 13px; }
-      .est-foot .fp { font-size: 10px; }
-
-      /* ── 평면도 섹션: 1장 내 자동 축소 ── */
-      #fp-area { margin-top: 10px; page-break-before: avoid; }
-      .fp-section { border-radius: 0; }
-      .fp-head { padding: 6px 12px; font-size: 11px; }
-      .fp-body {
-        min-height: unset;
-        max-height: 160mm;
-        overflow: hidden;
-        padding: 8px;
-        justify-content: center;
-      }
-      .fp-body img {
-        max-width: 100%;
-        max-height: 150mm;
-        width: auto;
-        height: auto;
-        object-fit: contain;
-      }
-      #fp-upload-label { display: none !important; }
-      #fp-reset-btn { display: none !important; }
-
-      /* ── 페이지 넘김 제어 ── */
-      .est-doc,
-      .est-tbl,
-      .pay-tbl,
-      .fp-section {
-        page-break-inside: avoid;
-      }
-
-      /* ── 배경색 강제 출력 ── */
-      * {
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
-        color-adjust: exact !important;
-      }
+    /* ── 분양 납부일정표 포함 (약 31행 → A4 1장, 소형 폰트) ── */
+    @media print {
+      body[data-print="presale"][data-presale-pay="yes"] .est-banner { padding: 9px 16px 8px; }
+      body[data-print="presale"][data-presale-pay="yes"] .est-banner h2 { font-size: 14px; letter-spacing: 4px; }
+      body[data-print="presale"][data-presale-pay="yes"] .est-tbl th,
+      body[data-print="presale"][data-presale-pay="yes"] .est-tbl td  { padding: 5px 10px; font-size: 11px; }
+      body[data-print="presale"][data-presale-pay="yes"] .est-tbl thead th { font-size: 10px; }
+      body[data-print="presale"][data-presale-pay="yes"] .est-tbl .sec td  { padding: 4px 10px; font-size: 9.5px; letter-spacing: 2px; }
+      body[data-print="presale"][data-presale-pay="yes"] .est-tbl .lbl     { width: 27%; }
+      body[data-print="presale"][data-presale-pay="yes"] .est-tbl .emph-row .emph-num { font-size: 13px; }
+      body[data-print="presale"][data-presale-pay="yes"] .est-tbl .yld td  { padding: 5px 10px; }
+      body[data-print="presale"][data-presale-pay="yes"] .est-tbl .yld .lbl { font-size: 12px; }
+      body[data-print="presale"][data-presale-pay="yes"] .ytrack { width: 60px; height: 6px; }
+      body[data-print="presale"][data-presale-pay="yes"] .ynum   { font-size: 15px; min-width: 52px; }
+      body[data-print="presale"][data-presale-pay="yes"] .pay-tbl th,
+      body[data-print="presale"][data-presale-pay="yes"] .pay-tbl td       { padding: 5px 10px; font-size: 10.5px; }
+      body[data-print="presale"][data-presale-pay="yes"] .pay-tbl .p-sum .p-num { font-size: 11px; }
+      body[data-print="presale"][data-presale-pay="yes"] .pay-sec-head td  { padding: 4px 10px; font-size: 9.5px; letter-spacing: 2px; }
+      body[data-print="presale"][data-presale-pay="yes"] .est-foot { padding: 6px 14px; }
+      body[data-print="presale"][data-presale-pay="yes"] .est-foot .fc { font-size: 13px; }
+      body[data-print="presale"][data-presale-pay="yes"] .est-foot .fp { font-size: 10.5px; }
     }
   </style>
 </head>
@@ -557,7 +485,7 @@
         <span class="out-bar-title">견 적 서</span>
         <div class="out-bar-actions">
           <span class="print-tip">💡 Chrome 인쇄 → <strong>머리글/바닥글 해제</strong> 권장</span>
-          <button class="btn-print" onclick="window.print()">
+          <button class="btn-print" onclick="printMode('sale')">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
                  stroke-linecap="round" stroke-linejoin="round">
               <polyline points="6 9 6 2 18 2 18 9"/>
@@ -782,7 +710,7 @@
         <span class="out-bar-title">분 양 견 적 서</span>
         <div class="out-bar-actions">
           <span class="print-tip">💡 Chrome 인쇄 → <strong>머리글/바닥글 해제</strong> 권장</span>
-          <button class="btn-print" onclick="window.print()">
+          <button class="btn-print" onclick="printMode('presale')">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
                  stroke-linecap="round" stroke-linejoin="round">
               <polyline points="6 9 6 2 18 2 18 9"/>
@@ -792,12 +720,6 @@
             인쇄하기
           </button>
         </div>
-      </div>
-
-      <!-- 평면도 탭 -->
-      <div class="fptab-bar no-print">
-        <button class="fptab-btn active" onclick="switchFpTab('none', this)">📄&nbsp; 평면도 없음</button>
-        <button class="fptab-btn"        onclick="switchFpTab('show', this)">🗺️&nbsp; 평면도 있음</button>
       </div>
 
       <div class="est-pane">
@@ -814,25 +736,6 @@
         </div>
         <div id="res-presale" style="display:none;"></div>
 
-        <!-- 평면도 영역 -->
-        <div id="fp-area" style="display:none;">
-          <div class="fp-section">
-            <div class="fp-head">▪ &nbsp; 평 &nbsp; 면 &nbsp; 도</div>
-            <div class="fp-body" id="fp-body-inner">
-              <label id="fp-upload-label" style="cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:10px;">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#90b8f8" stroke-width="1.2">
-                  <rect x="3" y="3" width="18" height="18" rx="2"/>
-                  <path d="M3 9h18M3 15h18M9 3v18M15 3v18"/>
-                </svg>
-                <span style="color:#a0aec0; font-size:13px;">클릭하여 평면도 이미지 선택</span>
-                <span style="color:#c8d3e8; font-size:11px;">JPG, PNG 지원</span>
-                <input type="file" id="fp-file-input" accept="image/*" style="display:none;" onchange="loadFloorPlan(this)">
-              </label>
-              <img id="fp-img" style="display:none; max-width:100%; max-height:300px; object-fit:contain;" alt="평면도">
-              <button id="fp-reset-btn" onclick="resetFloorPlan()" style="display:none; margin-top:8px; background:none; border:1px solid #dde3f0; border-radius:6px; padding:5px 14px; font-size:11px; color:#7a8aab; cursor:pointer;">이미지 변경</button>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -929,15 +832,6 @@ function switchMode(mode) {
     $('header-title').textContent = '수익률 상가 분양 견적서';
     $('header-sub').textContent   = 'COMMERCIAL REAL ESTATE PRESALE ESTIMATE';
   }
-}
-
-/* ===========================
-   평면도 탭 전환
-=========================== */
-function switchFpTab(type, btn) {
-  document.querySelectorAll('.fptab-btn').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
-  $('fp-area').style.display = type === 'show' ? 'block' : 'none';
 }
 
 /* ===========================
@@ -1485,29 +1379,21 @@ function togglePay(chk) {
 }
 
 /* ===========================
-   평면도 이미지 로드
+   인쇄 모드별 독립 출력
 =========================== */
-function loadFloorPlan(input) {
-  const file = input.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    const img = $('fp-img');
-    img.src = e.target.result;
-    img.style.display = 'block';
-    $('fp-upload-label').style.display = 'none';
-    $('fp-reset-btn').style.display = 'inline-block';
-  };
-  reader.readAsDataURL(file);
+function printMode(mode) {
+  document.body.setAttribute('data-print', mode);
+  if (mode === 'presale') {
+    const hasPay = $('chk-pay') && $('chk-pay').checked;
+    document.body.setAttribute('data-presale-pay', hasPay ? 'yes' : 'no');
+  }
+  window.print();
 }
 
-function resetFloorPlan() {
-  $('fp-img').style.display = 'none';
-  $('fp-img').src = '';
-  $('fp-upload-label').style.display = 'flex';
-  $('fp-reset-btn').style.display = 'none';
-  $('fp-file-input').value = '';
-}
+window.addEventListener('afterprint', function () {
+  document.body.removeAttribute('data-print');
+  document.body.removeAttribute('data-presale-pay');
+});
 </script>
 
 </body>
