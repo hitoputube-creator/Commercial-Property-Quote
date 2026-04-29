@@ -36,10 +36,6 @@
 
     /* ===== HEADER ===== */
     .site-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 18px 32px;
       border-bottom: 1px solid var(--line);
       background: rgba(16,27,52,.85);
       backdrop-filter: blur(8px);
@@ -47,29 +43,41 @@
       top: 0;
       z-index: 100;
     }
+    .header-inner {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
     .h-logo { display: flex; align-items: center; gap: 14px; }
     .logo-mark {
       width: 44px; height: 44px;
       border: 1px solid var(--line);
       border-radius: 12px;
-      display: grid; place-items: center;
+      display: flex; align-items: center; justify-content: center;
       color: var(--gold2); font-weight: 900; font-size: 13px;
       background: rgba(214,173,53,.12);
       flex-shrink: 0;
     }
-    .h-text { display: flex; flex-direction: column; justify-content: center; gap: 3px; }
-    .h-title { font-size: 20px; font-weight: 800; letter-spacing: -0.5px; color: var(--text); line-height: 1.2; }
-    .h-sub   { font-size: 11px; color: var(--muted); letter-spacing: 2px; line-height: 1; }
-    .h-right { text-align: right; display: flex; flex-direction: column; justify-content: center; gap: 3px; }
-    .h-right strong { color: var(--gold2); font-size: 15px; font-weight: 800; line-height: 1.2; }
+    .h-text { display: flex; flex-direction: column; gap: 4px; }
+    .h-title { font-size: 20px; font-weight: 800; letter-spacing: -0.5px; color: var(--text); line-height: 1; margin: 0; }
+    .h-sub   { font-size: 11px; color: var(--muted); letter-spacing: 2.5px; line-height: 1; margin: 0; }
+    .h-right { text-align: right; display: flex; flex-direction: column; gap: 4px; }
+    .h-right strong { color: var(--gold2); font-size: 15px; font-weight: 800; line-height: 1; margin: 0; }
     .h-right span   { color: var(--muted); font-size: 12px; line-height: 1; }
 
     /* ===== MODE NAV ===== */
     .mode-nav {
-      display: flex;
-      padding: 0 32px;
       border-bottom: 1px solid rgba(214,173,53,.15);
       background: rgba(11,22,48,.6);
+    }
+    .nav-inner {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
     }
     .mode-btn {
       background: none; border: none;
@@ -315,7 +323,7 @@
     /* ===== 반응형 ===== */
     @media(max-width:900px){
       .input-grid{ grid-template-columns: repeat(3,1fr); }
-      .site-header{ flex-direction:column; align-items:flex-start; gap:10px; }
+      .header-inner{ flex-direction:column; align-items:flex-start; gap:10px; }
     }
     @media(max-width:560px){
       .input-grid{ grid-template-columns: repeat(2,1fr); }
@@ -382,6 +390,7 @@
 
 <!-- HEADER -->
 <header class="site-header">
+<div class="header-inner">
   <div class="h-logo">
     <div class="logo-mark">HT</div>
     <div class="h-text">
@@ -393,12 +402,15 @@
     <strong>하이탑부동산</strong>
     <span>T. 031.949.8969</span>
   </div>
+</div>
 </header>
 
 <!-- MODE NAV -->
 <nav class="mode-nav no-print">
+<div class="nav-inner">
   <button class="mode-btn active" onclick="switchMode('sale')">상가매매견적서</button>
   <button class="mode-btn"        onclick="switchMode('presale')">상가분양견적서</button>
+</div>
 </nav>
 
 <div class="container">
