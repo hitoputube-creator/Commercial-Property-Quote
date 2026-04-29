@@ -4,387 +4,388 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>상가 견적서 | 하이탑부동산</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
   <style>
-    /* ===== CSS 변수 (Navy 테마) ===== */
+    /* ===== 대시보드 동일 테마 ===== */
     :root {
-      --navy:      #1a2b5e;
-      --navy-mid:  #1565c0;
-      --navy-lite: #e8f0fe;
-      --navy-bg:   #f0f4ff;
-      --accent:    #4285f4;
-      --red:       #e53935;
-      --red-lite:  #ffebee;
-      --border:    #dde3f0;
-      --text:      #1a2b5e;
-      --text-mid:  #3d4e7a;
-      --bg:        #edf0f8;
+      --bg:     #071024;
+      --panel:  #101b34;
+      --panel2: #16264d;
+      --panel3: #0b1630;
+      --gold:   #d6ad35;
+      --gold2:  #ffd75a;
+      --text:   #f8fafc;
+      --muted:  #aab7d4;
+      --line:   rgba(214,173,53,.42);
+      --soft:   rgba(214,173,53,.18);
+      --danger: #ff7a7a;
+      --blue:   #4285f4;
+      --border: rgba(214,173,53,.28);
     }
 
-    /* ===== RESET ===== */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-    /* ===== BASE ===== */
+    html, body { height: 100%; }
     body {
-      font-family: 'Noto Sans KR', sans-serif;
-      background: var(--bg);
+      font-family: 'Pretendard', 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+      background: linear-gradient(180deg, #101b34, #071024 45%, #050914);
       color: var(--text);
-      line-height: 1.5;
       min-height: 100vh;
+      line-height: 1.5;
     }
 
-    /* ===== SITE HEADER ===== */
+    /* ===== HEADER ===== */
     .site-header {
-      background: var(--navy);
-      color: white;
-      padding: 18px 40px;
-      border-bottom: 4px solid var(--accent);
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding: 18px 32px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(16,27,52,.85);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
-    .site-header .h-left h1 { font-size: 22px; font-weight: 700; letter-spacing: 3px; }
-    .site-header .h-left p  { color: #90b8f8; font-size: 10px; letter-spacing: 2.5px; margin-top: 3px; }
-    .site-header .h-right   { text-align: right; line-height: 1.6; }
-    .site-header .h-right strong { display: block; color: rgba(255,255,255,0.9); font-size: 14px; font-weight: 700; letter-spacing: 1px; }
-    .site-header .h-right span  { color: rgba(255,255,255,0.45); font-size: 12px; }
+    .h-logo { display: flex; align-items: center; gap: 14px; }
+    .logo-mark {
+      width: 42px; height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      display: grid; place-items: center;
+      color: var(--gold2); font-weight: 900; font-size: 13px;
+      background: rgba(214,173,53,.12);
+    }
+    .h-title { font-size: 20px; font-weight: 800; letter-spacing: -0.5px; color: var(--text); }
+    .h-sub   { font-size: 12px; color: var(--muted); margin-top: 2px; letter-spacing: 1.5px; }
+    .h-right { text-align: right; }
+    .h-right strong { display: block; color: var(--gold2); font-size: 14px; font-weight: 700; }
+    .h-right span   { color: var(--muted); font-size: 11px; }
 
     /* ===== MODE NAV ===== */
     .mode-nav {
-      background: white;
-      border-bottom: 2px solid var(--border);
       display: flex;
-      padding: 0 40px;
+      padding: 0 32px;
+      border-bottom: 1px solid rgba(214,173,53,.15);
+      background: rgba(11,22,48,.6);
     }
     .mode-btn {
-      background: none;
-      border: none;
-      border-bottom: 3px solid transparent;
-      padding: 14px 26px;
-      font-size: 14px;
-      font-weight: 700;
-      font-family: 'Noto Sans KR', sans-serif;
-      color: #a0aec0;
-      cursor: pointer;
-      letter-spacing: 1px;
-      transition: color 0.15s, border-color 0.15s;
-      margin-bottom: -2px;
+      background: none; border: none;
+      border-bottom: 2px solid transparent;
+      padding: 13px 22px;
+      font-size: 15px; font-weight: 700;
+      font-family: 'Pretendard', 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+      color: var(--muted);
+      cursor: pointer; letter-spacing: 0.5px;
+      transition: color .15s, border-color .15s;
+      margin-bottom: -1px;
     }
-    .mode-btn:hover { color: var(--navy-mid); }
-    .mode-btn.active { color: var(--navy); border-bottom-color: var(--accent); }
+    .mode-btn:hover  { color: var(--gold2); }
+    .mode-btn.active { color: var(--gold2); border-bottom-color: var(--gold2); }
 
     /* ===== CONTAINER ===== */
-    .container { max-width: 940px; margin: 0 auto; padding: 30px 24px 52px; }
-
-    /* ===== CARD ===== */
-    .card { background: white; border-radius: 10px; box-shadow: 0 2px 20px rgba(26,43,94,0.1); overflow: hidden; }
+    .container { max-width: 980px; margin: 0 auto; padding: 28px 24px 52px; }
 
     /* ===== INPUT CARD ===== */
-    .input-card { border-top: 3px solid var(--navy); margin-bottom: 24px; }
-    .input-card-head { padding: 18px 28px 0; display: flex; align-items: center; gap: 8px; }
-    .input-card-head h2 { font-size: 14px; font-weight: 700; color: var(--navy); }
-    .badge { background: var(--navy); color: white; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 20px; letter-spacing: 0.5px; }
-    .input-body { padding: 14px 28px 26px; }
-    .input-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px 18px; }
-    .ig { display: flex; flex-direction: column; gap: 5px; }
-    .ig label { font-size: 10.5px; font-weight: 700; color: #7a8aab; letter-spacing: 0.3px; text-transform: uppercase; }
+    .input-card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: linear-gradient(145deg, var(--panel2), var(--panel3));
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+    .input-card-head {
+      display: flex; align-items: center; gap: 10px;
+      padding: 16px 24px;
+      border-bottom: 1px solid rgba(214,173,53,.15);
+      background: rgba(214,173,53,.06);
+    }
+    .input-card-head h2 { font-size: 15px; font-weight: 800; color: var(--gold2); letter-spacing: .3px; }
+    .badge {
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      color: #111827; font-size: 9px; font-weight: 900;
+      padding: 2px 8px; border-radius: 20px; letter-spacing: 1px;
+    }
+    .input-body { padding: 20px 24px 24px; }
+
+    /* ===== INPUT GRID ===== */
+    .input-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px 18px; }
+    .ig { display: flex; flex-direction: column; gap: 6px; }
+    .ig label {
+      font-size: 12px; font-weight: 700; color: var(--muted);
+      letter-spacing: .5px; text-transform: uppercase;
+    }
     .iw { position: relative; }
     .iw input {
-      width: 100%; border: 1.5px solid var(--border); border-radius: 7px;
-      padding: 9px 36px 9px 12px; font-size: 14px;
-      font-family: 'Noto Sans KR', sans-serif; color: var(--navy);
-      background: #f7f9ff; outline: none;
-      transition: border-color 0.15s, box-shadow 0.15s;
-    }
-    .iw input:focus { border-color: var(--accent); background: white; box-shadow: 0 0 0 3px rgba(66,133,244,0.13); }
-    .iw .unit { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 11px; color: #b0bcda; font-weight: 600; pointer-events: none; }
-    .btn-row { grid-column: 1 / -1; margin-top: 4px; }
-    .btn-calc {
       width: 100%;
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
-      color: white; border: none; border-radius: 8px; padding: 13px;
-      font-size: 15px; font-weight: 700; font-family: 'Noto Sans KR', sans-serif;
-      cursor: pointer; letter-spacing: 3px;
-      transition: opacity 0.2s, transform 0.1s, box-shadow 0.2s;
+      background: rgba(7,16,36,.6);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 11px 38px 11px 14px;
+      font-size: 15px;
+      font-family: 'Pretendard', 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+      color: var(--text);
+      outline: none;
+      transition: border-color .15s, box-shadow .15s, background .15s;
     }
-    .btn-calc:hover { opacity: 0.92; transform: translateY(-1px); box-shadow: 0 5px 20px rgba(26,43,94,0.32); }
-    .btn-calc:active { transform: translateY(0); box-shadow: none; }
+    .iw input:focus {
+      border-color: var(--gold2);
+      background: rgba(7,16,36,.9);
+      box-shadow: 0 0 0 3px rgba(214,173,53,.15);
+    }
+    .iw input::placeholder { color: #3d4e6a; }
+    .iw .unit {
+      position: absolute; right: 11px; top: 50%; transform: translateY(-50%);
+      font-size: 12px; color: var(--gold); font-weight: 700; pointer-events: none;
+    }
 
-    /* ===== INPUT SECTION LABEL ===== */
     .input-sec-lbl {
       grid-column: 1 / -1;
-      font-size: 11px; font-weight: 700; color: var(--accent);
+      font-size: 12px; font-weight: 800; color: var(--gold2);
       letter-spacing: 2.5px;
       padding: 10px 0 6px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 2px;
+      border-bottom: 1px solid rgba(214,173,53,.2);
     }
-
-    /* ===== 금액 힌트 표시 ===== */
     .amt-hint {
-      font-size: 11.5px;
-      font-weight: 700;
-      color: var(--accent);
-      margin-top: 3px;
-      min-height: 16px;
-      letter-spacing: 0.3px;
-      transition: opacity 0.2s;
+      font-size: 12px; font-weight: 700; color: var(--gold);
+      margin-top: 2px; min-height: 15px; letter-spacing: .2px;
     }
     .amt-hint:empty { min-height: 0; }
 
-    /* ===== CALC DISPLAY (읽기전용 자동계산 필드) ===== */
     .calc-display {
-      background: var(--navy-lite);
-      border: 1.5px solid #b8cef8;
-      border-radius: 7px;
-      padding: 9px 12px;
-      font-size: 13.5px;
-      font-weight: 700;
-      color: var(--navy);
-      min-height: 38px;
-      display: flex;
-      align-items: center;
+      background: rgba(214,173,53,.08);
+      border: 1px solid rgba(214,173,53,.3);
+      border-radius: 9px;
+      padding: 10px 13px;
+      font-size: 14px; font-weight: 700; color: var(--gold2);
+      min-height: 40px; display: flex; align-items: center;
     }
 
-    /* ===== RADIO GROUP ===== */
-    .radio-group { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; padding: 6px 0; }
+    .radio-group { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; padding: 5px 0; }
     .radio-group label {
       display: flex; align-items: center; gap: 5px;
-      font-size: 13px; font-weight: 500; color: var(--navy);
+      font-size: 14px; font-weight: 500; color: var(--text);
       cursor: pointer; white-space: nowrap;
     }
-    .radio-group input[type=radio] { accent-color: var(--navy); cursor: pointer; }
+    .radio-group input[type=radio] { accent-color: var(--gold2); cursor: pointer; }
 
-    /* ===== MID ROW (중도금 동적 영역) ===== */
     .mid-row {
       grid-column: 1 / -1;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px 18px;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px 18px;
     }
 
-    /* ===== OUTPUT CARD TOP BAR ===== */
+    .btn-row { grid-column: 1 / -1; margin-top: 6px; }
+    .btn-calc {
+      width: 100%;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      color: #111827; border: none; border-radius: 10px;
+      padding: 15px;
+      font-size: 16px; font-weight: 900;
+      font-family: 'Pretendard', 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+      cursor: pointer; letter-spacing: 3px;
+      transition: filter .2s, transform .1s, box-shadow .2s;
+    }
+    .btn-calc:hover { filter: brightness(1.08); transform: translateY(-1px); box-shadow: 0 6px 24px rgba(214,173,53,.35); }
+    .btn-calc:active { transform: translateY(0); }
+
+    /* ===== OUTPUT CARD ===== */
+    .out-card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: linear-gradient(145deg, var(--panel2), var(--panel3));
+      overflow: hidden;
+    }
     .out-bar {
       display: flex; align-items: center;
-      padding: 12px 20px;
-      border-bottom: 1px solid #e4eaf5;
-      background: #f5f7fc;
+      padding: 13px 22px;
+      border-bottom: 1px solid rgba(214,173,53,.15);
+      background: rgba(214,173,53,.06);
     }
-    .out-bar-title { font-size: 13px; font-weight: 700; color: var(--navy); }
+    .out-bar-title { font-size: 14px; font-weight: 800; color: var(--gold2); letter-spacing: .5px; }
     .out-bar-actions { margin-left: auto; display: flex; align-items: center; gap: 10px; }
-    .print-tip { font-size: 11px; color: #a0aec0; display: flex; align-items: center; gap: 3px; }
-    .print-tip strong { color: #718096; font-weight: 600; }
+    .print-tip { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 3px; }
+    .print-tip strong { color: var(--gold); font-weight: 700; }
     .btn-print {
-      background: var(--navy); color: white; border: none;
-      border-radius: 6px; padding: 7px 16px; font-size: 12px; font-weight: 700;
-      font-family: 'Noto Sans KR', sans-serif;
-      cursor: pointer; display: flex; align-items: center; gap: 5px;
-      letter-spacing: 0.5px; transition: background 0.15s;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      color: #111827; border: none;
+      border-radius: 8px; padding: 8px 18px;
+      font-size: 13px; font-weight: 900;
+      font-family: 'Pretendard', 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+      cursor: pointer; display: flex; align-items: center; gap: 6px;
+      letter-spacing: .5px;
+      transition: filter .15s, transform .1s;
     }
-    .btn-print:hover { background: #0f1e45; }
+    .btn-print:hover { filter: brightness(1.08); transform: translateY(-1px); }
 
-    /* ===== ESTIMATE PANE ===== */
     .est-pane { padding: 28px; }
 
-    /* ===== PLACEHOLDER ===== */
+    /* placeholder */
     .ph { text-align: center; padding: 60px 20px; }
     .ph-icon {
-      width: 52px; height: 52px; border-radius: 50%;
-      background: var(--navy-lite);
+      width: 54px; height: 54px; border-radius: 50%;
+      background: rgba(214,173,53,.1);
+      border: 1px solid var(--border);
       display: flex; align-items: center; justify-content: center;
       margin: 0 auto 14px;
     }
-    .ph p { font-size: 14px; color: #a0aec0; font-weight: 500; }
-    .ph strong { color: var(--navy-mid); }
+    .ph p { font-size: 14px; color: var(--muted); font-weight: 500; }
+    .ph strong { color: var(--gold2); }
 
-    /* ===== ESTIMATE DOCUMENT ===== */
-    .est-doc { max-width: 700px; margin: 0 auto; border: 1px solid var(--border); font-size: 13.5px; }
-
-    /* Banner */
+    /* ===== 견적서 문서 (출력용) ===== */
+    /* 화면에서는 밝은 white 문서 유지 (인쇄 품질) */
+    .est-doc {
+      max-width: 700px; margin: 0 auto;
+      border: 1px solid #dde3f0; font-size: 13.5px;
+      background: #fff; color: #1a2b5e;
+    }
     .est-banner {
-      background: var(--navy); color: white;
+      background: #1a2b5e; color: white;
       text-align: center; padding: 20px 24px 17px; position: relative;
     }
     .est-banner::after {
       content: ''; display: block; height: 4px;
-      background: linear-gradient(90deg, var(--accent), var(--navy-mid));
+      background: linear-gradient(90deg, var(--gold), var(--gold2));
       position: absolute; bottom: 0; left: 0; right: 0;
     }
-    .est-banner h2 { font-size: 20px; font-weight: 700; letter-spacing: 5px; }
-    .est-banner .sub { color: #90b8f8; font-size: 9.5px; letter-spacing: 3px; margin-top: 4px; font-weight: 400; }
+    .est-banner h2 { font-size: 20px; font-weight: 700; letter-spacing: 5px; color: white; }
+    .est-banner .sub { color: var(--gold); font-size: 9.5px; letter-spacing: 3px; margin-top: 4px; }
 
-    /* Table */
     .est-tbl { width: 100%; border-collapse: collapse; }
-    .est-tbl th, .est-tbl td { border: 1px solid var(--border); padding: 9px 14px; }
+    .est-tbl th, .est-tbl td { border: 1px solid #dde3f0; padding: 9px 14px; }
     .est-tbl thead th {
-      background: var(--navy); color: white;
-      font-size: 11.5px; font-weight: 600;
+      background: #1a2b5e; color: var(--gold2);
+      font-size: 11.5px; font-weight: 700;
       text-align: center; letter-spacing: 1px; border-color: #253b7a;
     }
-    .est-tbl .lbl { background: #f4f7fc; font-weight: 600; color: var(--text-mid); width: 30%; }
-    .est-tbl .c-both { text-align: center; color: var(--text); }
-    .est-tbl .c-loan { text-align: right; color: var(--navy-mid); font-weight: 600; }
-    .est-tbl .c-no   { text-align: right; color: var(--navy); font-weight: 600; }
+    .est-tbl .lbl { background: #f4f7fc; font-weight: 600; color: #3d4e7a; width: 30%; }
+    .est-tbl .c-both { text-align: center; }
+    .est-tbl .c-loan { text-align: right; color: #1565c0; font-weight: 600; }
+    .est-tbl .c-no   { text-align: right; color: #1a2b5e; font-weight: 600; }
     .est-tbl .dash   { text-align: center; color: #c8d3e8; }
-
-    /* Section divider */
     .est-tbl .sec td {
-      background: var(--navy); color: var(--accent);
+      background: #1a2b5e; color: var(--gold2);
       font-size: 11px; font-weight: 700;
       letter-spacing: 3px; padding: 7px 16px; border-color: #253b7a;
     }
-
-    /* Alt rows */
     .est-tbl .alt td { background: #fafbff; }
+    .est-tbl .emph-row .lbl { background: #e8f0fe; border-left: 3px solid var(--gold); color: #1a2b5e; }
+    .est-tbl .emph-row .emph-num { background: #e8f0fe; font-size: 17px; font-weight: 900; color: #1a2b5e; }
+    .est-tbl .inv td { background: #f0f4ff; }
+    .est-tbl .yld td { padding: 13px 14px; background: #f8f5e6; }
+    .est-tbl .yld .lbl { font-size: 15px; font-weight: 800; background: #f8f5e6; border-left: 3px solid var(--gold); color: #1a2b5e; }
 
-    /* ★ 강조 행 */
-    .est-tbl .emph-row .lbl { background: var(--navy-lite); border-left: 3px solid var(--accent); color: var(--navy); }
-    .est-tbl .emph-row .emph-num { background: var(--navy-lite); font-size: 17px; font-weight: 900; color: var(--navy); letter-spacing: -0.5px; }
-
-    /* 투자분석 행 */
-    .est-tbl .inv td { background: var(--navy-bg); }
-
-    /* ★ 수익률 행 */
-    .est-tbl .yld td   { padding: 13px 14px; background: #f0f4ff; }
-    .est-tbl .yld .lbl { font-size: 15px; font-weight: 800; background: #f0f4ff; border-left: 3px solid var(--navy); color: var(--navy); }
-
-    /* Yield display */
     .yc { display: flex; align-items: center; gap: 10px; justify-content: flex-end; }
     .ynum { font-size: 24px; font-weight: 900; line-height: 1; min-width: 76px; text-align: right; }
-    .ynum.loan-o { color: var(--navy); }
-    .ynum.loan-x { color: var(--red); }
+    .ynum.loan-o { color: #1a2b5e; }
+    .ynum.loan-x { color: #e53935; }
     .ytrack { width: 90px; height: 9px; background: #dde3f0; border-radius: 5px; overflow: hidden; flex-shrink: 0; }
-    .yfill { height: 100%; border-radius: 5px; transition: width 0.85s cubic-bezier(0.22, 1, 0.36, 1); }
-    .yfill.r1 { background: linear-gradient(90deg, var(--navy), var(--navy-mid)); }
+    .yfill { height: 100%; border-radius: 5px; transition: width .85s cubic-bezier(.22,1,.36,1); }
+    .yfill.r1 { background: linear-gradient(90deg, var(--gold), var(--gold2)); }
     .yfill.r2 { background: linear-gradient(90deg, #b71c1c, #e53935); }
 
-    /* Footer */
-    .est-foot { border: 1px solid var(--border); border-top: 2px solid var(--border); background: #f5f7fc; text-align: center; padding: 14px 20px; }
-    .est-foot .fc { color: var(--navy); font-size: 16px; font-weight: 700; letter-spacing: 3px; }
-    .est-foot .fp { color: #7a8aab; font-size: 12px; margin-top: 2px; letter-spacing: 1px; }
+    .est-foot {
+      border: 1px solid #dde3f0; border-top: 2px solid var(--gold);
+      background: #1a2b5e; text-align: center; padding: 14px 20px;
+    }
+    .est-foot .fc { color: var(--gold2); font-size: 16px; font-weight: 700; letter-spacing: 3px; }
+    .est-foot .fp { color: rgba(255,255,255,.5); font-size: 12px; margin-top: 2px; }
 
-    /* ===== 납부일정표 ===== */
     .pay-tbl { width: 100%; border-collapse: collapse; }
     .pay-tbl th {
-      background: var(--navy); color: white;
+      background: #1a2b5e; color: var(--gold2);
       padding: 9px 12px; text-align: center;
-      font-size: 11.5px; font-weight: 600; letter-spacing: 0.5px;
+      font-size: 11.5px; font-weight: 700; letter-spacing: .5px;
       border: 1px solid #253b7a;
     }
-    .pay-tbl td { border: 1px solid var(--border); padding: 9px 12px; }
-    .pay-tbl .p-lbl { background: #f4f7fc; font-weight: 600; color: var(--text-mid); }
-    .pay-tbl .p-num { text-align: right; color: var(--navy); font-weight: 600; }
-    .pay-tbl .p-pct { text-align: center; color: var(--navy-mid); font-weight: 600; }
-    .pay-tbl .p-dash { text-align: center; color: #c8d3e8; }
-    .pay-tbl .p-sum td { background: var(--navy-bg); font-weight: 700; }
-    .pay-tbl .p-sum .p-lbl { background: var(--navy-bg); color: var(--navy); font-size: 13.5px; }
-    .pay-tbl .p-sum .p-num { font-size: 14px; color: var(--navy); }
+    .pay-tbl td { border: 1px solid #dde3f0; padding: 9px 12px; }
+    .pay-tbl .p-lbl { background: #f4f7fc; font-weight: 600; color: #3d4e7a; }
+    .pay-tbl .p-num { text-align: right; color: #1a2b5e; font-weight: 600; }
+    .pay-tbl .p-pct { text-align: center; color: #1565c0; font-weight: 600; }
+    .pay-tbl .p-sum td { background: #f8f5e6; font-weight: 700; }
+    .pay-tbl .p-sum .p-lbl { background: #f8f5e6; color: #1a2b5e; font-size: 13.5px; }
+    .pay-tbl .p-sum .p-num { font-size: 14px; color: #1a2b5e; }
     .pay-sec-head td {
-      background: var(--navy); color: var(--accent);
+      background: #1a2b5e; color: var(--gold2);
       font-size: 11px; font-weight: 700;
       letter-spacing: 3px; padding: 7px 16px; border-color: #253b7a;
+    }
+
+    /* ===== 반응형 ===== */
+    @media(max-width:900px){
+      .input-grid{ grid-template-columns: repeat(3,1fr); }
+      .site-header{ flex-direction:column; align-items:flex-start; gap:10px; }
+    }
+    @media(max-width:560px){
+      .input-grid{ grid-template-columns: repeat(2,1fr); }
+      .container{ padding: 18px 14px 40px; }
     }
 
     /* ===== PRINT ===== */
-
-    /* ── 공통 print 기본 ── */
     @media print {
-      @page { size: A4 portrait; margin: 10mm; }
+      @page { size: A4 portrait; margin: 8mm 10mm; }
 
       .site-header, .mode-nav, .input-card, .out-bar,
       .no-print, .amt-hint { display: none !important; }
       .est-banner .sub { display: none !important; }
 
-      /* 현재 인쇄 모드가 아닌 섹션 숨김 */
       body[data-print="sale"]    #mode-presale { display: none !important; }
       body[data-print="presale"] #mode-sale    { display: none !important; }
 
-      html, body { width: 100%; margin: 0; padding: 0; background: white; }
-      body { display: block; }
-      .container { width: 100%; max-width: 100%; padding: 0; }
-      .card { box-shadow: none; border-radius: 0; }
-      .est-pane { padding: 0; }
-      .est-doc {
-        max-width: 100%; width: 100%; margin: 0; border: none;
-        page-break-inside: avoid;
-      }
-      .est-tbl .c-loan, .est-tbl .c-no { text-align: right; }
-      .est-tbl .c-both { text-align: right; }
-      .est-tbl .dash { text-align: center; }
+      html, body { width:100%; margin:0; padding:0; background:white; }
+      body { display:block; }
+      .container { width:100%; max-width:100%; padding:0; }
+      .out-card { box-shadow:none; border-radius:0; border:none; background:white; }
+      .est-pane { padding:0; }
+      .est-doc { max-width:100%; width:100%; margin:0; border:none; page-break-inside:avoid; break-inside:avoid; }
 
-      * { -webkit-print-color-adjust: exact !important;
-          print-color-adjust: exact !important; color-adjust: exact !important; }
+      * { -webkit-print-color-adjust:exact !important;
+          print-color-adjust:exact !important; color-adjust:exact !important; }
     }
 
-    /* ── 매매 견적서 (약 19행 → A4 1장 꽉 채움) ── */
     @media print {
-      body[data-print="sale"] .est-banner { padding: 15px 20px 13px; }
-      body[data-print="sale"] .est-banner h2 { font-size: 18px; letter-spacing: 5px; }
+      body[data-print="sale"] .est-pane { zoom: 0.88; }
+      body[data-print="sale"] .est-banner { padding:14px 20px 12px; }
+      body[data-print="sale"] .est-banner h2 { font-size:18px; }
       body[data-print="sale"] .est-tbl th,
-      body[data-print="sale"] .est-tbl td  { padding: 11px 14px; font-size: 13.5px; }
-      body[data-print="sale"] .est-tbl thead th { font-size: 12px; }
-      body[data-print="sale"] .est-tbl .sec td  { padding: 9px 14px; font-size: 11px; letter-spacing: 2.5px; }
-      body[data-print="sale"] .est-tbl .lbl     { width: 28%; }
-      body[data-print="sale"] .est-tbl .emph-row .emph-num { font-size: 17px; }
-      body[data-print="sale"] .est-tbl .yld td  { padding: 12px 14px; }
-      body[data-print="sale"] .est-tbl .yld .lbl { font-size: 15px; }
-      body[data-print="sale"] .ytrack { width: 82px; height: 8px; }
-      body[data-print="sale"] .ynum   { font-size: 22px; min-width: 70px; }
-      body[data-print="sale"] .est-foot { padding: 11px 20px; }
-      body[data-print="sale"] .est-foot .fc { font-size: 15px; }
-      body[data-print="sale"] .est-foot .fp { font-size: 12px; }
+      body[data-print="sale"] .est-tbl td { padding:9px 13px; font-size:13px; }
+      body[data-print="sale"] .est-tbl .yld td { padding:11px 13px; }
+      body[data-print="sale"] .ynum { font-size:20px; }
+      body[data-print="sale"] .est-foot { padding:10px 20px; }
     }
-
-    /* ── 분양 납부일정표 미포함 (약 23행 → A4 1장) ── */
     @media print {
-      body[data-print="presale"][data-presale-pay="no"] .est-banner { padding: 12px 18px 10px; }
-      body[data-print="presale"][data-presale-pay="no"] .est-banner h2 { font-size: 16px; letter-spacing: 4.5px; }
+      body[data-print="presale"][data-presale-pay="no"] .est-pane { zoom: 0.84; }
       body[data-print="presale"][data-presale-pay="no"] .est-tbl th,
-      body[data-print="presale"][data-presale-pay="no"] .est-tbl td  { padding: 8px 12px; font-size: 12.5px; }
-      body[data-print="presale"][data-presale-pay="no"] .est-tbl thead th { font-size: 11.5px; }
-      body[data-print="presale"][data-presale-pay="no"] .est-tbl .sec td  { padding: 7px 12px; font-size: 10.5px; letter-spacing: 2px; }
-      body[data-print="presale"][data-presale-pay="no"] .est-tbl .emph-row .emph-num { font-size: 15px; }
-      body[data-print="presale"][data-presale-pay="no"] .est-tbl .yld td  { padding: 9px 12px; }
-      body[data-print="presale"][data-presale-pay="no"] .est-tbl .yld .lbl { font-size: 13.5px; }
-      body[data-print="presale"][data-presale-pay="no"] .ytrack { width: 74px; height: 7px; }
-      body[data-print="presale"][data-presale-pay="no"] .ynum   { font-size: 19px; min-width: 64px; }
-      body[data-print="presale"][data-presale-pay="no"] .est-foot { padding: 9px 18px; }
-      body[data-print="presale"][data-presale-pay="no"] .est-foot .fc { font-size: 14px; }
-      body[data-print="presale"][data-presale-pay="no"] .est-foot .fp { font-size: 11px; }
+      body[data-print="presale"][data-presale-pay="no"] .est-tbl td { padding:7px 11px; font-size:12px; }
+      body[data-print="presale"][data-presale-pay="no"] .est-tbl .yld td { padding:8px 11px; }
+      body[data-print="presale"][data-presale-pay="no"] .ynum { font-size:18px; }
+      body[data-print="presale"][data-presale-pay="no"] .est-foot { padding:8px 18px; }
     }
-
-    /* ── 분양 납부일정표 포함 (약 31행 → A4 1장, 소형 폰트) ── */
     @media print {
-      body[data-print="presale"][data-presale-pay="yes"] .est-banner { padding: 9px 16px 8px; }
-      body[data-print="presale"][data-presale-pay="yes"] .est-banner h2 { font-size: 14px; letter-spacing: 4px; }
+      body[data-print="presale"][data-presale-pay="yes"] .est-pane { zoom: 0.74; }
       body[data-print="presale"][data-presale-pay="yes"] .est-tbl th,
-      body[data-print="presale"][data-presale-pay="yes"] .est-tbl td  { padding: 5px 10px; font-size: 11px; }
-      body[data-print="presale"][data-presale-pay="yes"] .est-tbl thead th { font-size: 10px; }
-      body[data-print="presale"][data-presale-pay="yes"] .est-tbl .sec td  { padding: 4px 10px; font-size: 9.5px; letter-spacing: 2px; }
-      body[data-print="presale"][data-presale-pay="yes"] .est-tbl .lbl     { width: 27%; }
-      body[data-print="presale"][data-presale-pay="yes"] .est-tbl .emph-row .emph-num { font-size: 13px; }
-      body[data-print="presale"][data-presale-pay="yes"] .est-tbl .yld td  { padding: 5px 10px; }
-      body[data-print="presale"][data-presale-pay="yes"] .est-tbl .yld .lbl { font-size: 12px; }
-      body[data-print="presale"][data-presale-pay="yes"] .ytrack { width: 60px; height: 6px; }
-      body[data-print="presale"][data-presale-pay="yes"] .ynum   { font-size: 15px; min-width: 52px; }
+      body[data-print="presale"][data-presale-pay="yes"] .est-tbl td { padding:5px 10px; font-size:11px; }
+      body[data-print="presale"][data-presale-pay="yes"] .est-tbl .sec td { padding:4px 10px; font-size:9.5px; }
+      body[data-print="presale"][data-presale-pay="yes"] .est-tbl .emph-row .emph-num { font-size:13px; }
+      body[data-print="presale"][data-presale-pay="yes"] .est-tbl .yld td { padding:5px 10px; }
+      body[data-print="presale"][data-presale-pay="yes"] .ynum { font-size:15px; min-width:50px; }
+      body[data-print="presale"][data-presale-pay="yes"] .ytrack { width:58px; height:6px; }
       body[data-print="presale"][data-presale-pay="yes"] .pay-tbl th,
-      body[data-print="presale"][data-presale-pay="yes"] .pay-tbl td       { padding: 5px 10px; font-size: 10.5px; }
-      body[data-print="presale"][data-presale-pay="yes"] .pay-tbl .p-sum .p-num { font-size: 11px; }
-      body[data-print="presale"][data-presale-pay="yes"] .pay-sec-head td  { padding: 4px 10px; font-size: 9.5px; letter-spacing: 2px; }
-      body[data-print="presale"][data-presale-pay="yes"] .est-foot { padding: 6px 14px; }
-      body[data-print="presale"][data-presale-pay="yes"] .est-foot .fc { font-size: 13px; }
-      body[data-print="presale"][data-presale-pay="yes"] .est-foot .fp { font-size: 10.5px; }
+      body[data-print="presale"][data-presale-pay="yes"] .pay-tbl td { padding:5px 10px; font-size:10.5px; }
+      body[data-print="presale"][data-presale-pay="yes"] .pay-sec-head td { padding:4px 10px; font-size:9.5px; }
+      body[data-print="presale"][data-presale-pay="yes"] .est-foot { padding:6px 14px; }
     }
   </style>
 </head>
 <body>
 
-<!-- ===== SITE HEADER ===== -->
+<!-- HEADER -->
 <header class="site-header">
-  <div class="h-left">
-    <h1 id="header-title">수익률 상가 매매 견적서</h1>
-    <p id="header-sub">COMMERCIAL REAL ESTATE YIELD ESTIMATE</p>
+  <div class="h-logo">
+    <div class="logo-mark">HT</div>
+    <div>
+      <div class="h-title" id="header-title">수익률 상가 매매 견적서</div>
+      <div class="h-sub" id="header-sub">COMMERCIAL REAL ESTATE YIELD ESTIMATE</div>
+    </div>
   </div>
   <div class="h-right">
     <strong>하이탑부동산</strong>
@@ -392,7 +393,7 @@
   </div>
 </header>
 
-<!-- ===== MODE NAV ===== -->
+<!-- MODE NAV -->
 <nav class="mode-nav no-print">
   <button class="mode-btn active" onclick="switchMode('sale')">상가매매견적서</button>
   <button class="mode-btn"        onclick="switchMode('presale')">상가분양견적서</button>
@@ -400,20 +401,15 @@
 
 <div class="container">
 
-  <!-- ══════════════════════════════════════
-       상가매매견적서
-  ══════════════════════════════════════ -->
+  <!-- ══════════ 매매 ══════════ -->
   <div id="mode-sale">
-
-    <!-- INPUT CARD -->
-    <div class="card input-card no-print">
+    <div class="input-card no-print">
       <div class="input-card-head">
         <h2>매물 정보 입력</h2>
         <span class="badge">INPUT</span>
       </div>
       <div class="input-body">
         <div class="input-grid">
-
           <div class="ig">
             <label>업종</label>
             <div class="iw"><input type="text" id="i-biz" placeholder="예: 카페, 음식점"></div>
@@ -470,24 +466,20 @@
             </div>
             <div class="amt-hint" id="h-i-rent"></div>
           </div>
-
           <div class="btn-row">
             <button class="btn-calc" onclick="calculateSale()">계 산 하 기</button>
           </div>
-
         </div>
       </div>
     </div>
 
-    <!-- OUTPUT CARD -->
-    <div class="card">
+    <div class="out-card">
       <div class="out-bar no-print">
-        <span class="out-bar-title">견 적 서</span>
+        <span class="out-bar-title">📄 &nbsp; 견 적 서</span>
         <div class="out-bar-actions">
-          <span class="print-tip">💡 Chrome 인쇄 → <strong>머리글/바닥글 해제</strong> 권장</span>
+          <span class="print-tip">💡 인쇄 → <strong>머리글/바닥글 해제</strong> 권장</span>
           <button class="btn-print" onclick="printMode('sale')">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
-                 stroke-linecap="round" stroke-linejoin="round">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="6 9 6 2 18 2 18 9"/>
               <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
               <rect x="6" y="14" width="12" height="8"/>
@@ -496,11 +488,10 @@
           </button>
         </div>
       </div>
-
       <div class="est-pane">
         <div id="ph-sale" class="ph">
           <div class="ph-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#90b8f8" stroke-width="1.5">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d6ad35" stroke-width="1.5">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
               <polyline points="14 2 14 8 20 8"/>
               <line x1="16" y1="13" x2="8" y2="13"/>
@@ -512,17 +503,11 @@
         <div id="res-sale" style="display:none;"></div>
       </div>
     </div>
+  </div>
 
-  </div><!-- /mode-sale -->
-
-
-  <!-- ══════════════════════════════════════
-       상가분양견적서
-  ══════════════════════════════════════ -->
+  <!-- ══════════ 분양 ══════════ -->
   <div id="mode-presale" style="display:none;">
-
-    <!-- INPUT CARD -->
-    <div class="card input-card no-print">
+    <div class="input-card no-print">
       <div class="input-card-head">
         <h2>분양 정보 입력</h2>
         <span class="badge">INPUT</span>
@@ -530,7 +515,6 @@
       <div class="input-body">
         <div class="input-grid">
 
-          <!-- ▪ 섹션1: 물건정보 -->
           <div class="input-sec-lbl">▪ &nbsp; 물 건 정 보</div>
 
           <div class="ig">
@@ -555,7 +539,6 @@
               <span class="unit">평</span>
             </div>
           </div>
-
           <div class="ig">
             <label>원분양가</label>
             <div class="iw">
@@ -566,11 +549,11 @@
           </div>
           <div class="ig">
             <label>
-              <input type="checkbox" id="chk-disc" onchange="toggleDisc(this)" style="accent-color:var(--navy);margin-right:5px;">
-              할인율 <span style="font-size:10px;color:#a0aec0;">(선택)</span>
+              <input type="checkbox" id="chk-disc" onchange="toggleDisc(this)" style="accent-color:var(--gold2);margin-right:5px;">
+              할인율 <span style="font-size:10px;color:var(--muted);">(선택)</span>
             </label>
             <div class="iw">
-              <input type="number" id="p-disc" value="0" min="0" max="100" step="0.1" disabled style="background:#f0f0f0;color:#aaa;">
+              <input type="number" id="p-disc" value="0" min="0" max="100" step="0.1" disabled style="opacity:.4;">
               <span class="unit">%</span>
             </div>
           </div>
@@ -581,17 +564,17 @@
           <div class="ig">
             <label>부가세
               <span style="margin-left:8px;">
-                <label style="font-size:11px;font-weight:600;color:var(--accent);cursor:pointer;">
+                <label style="font-size:11px;font-weight:700;color:var(--gold);cursor:pointer;">
                   <input type="radio" name="p-vat-mode" value="pct" checked onchange="switchVatMode('pct')"> % 입력
                 </label>
                 &nbsp;
-                <label style="font-size:11px;font-weight:600;color:var(--accent);cursor:pointer;">
+                <label style="font-size:11px;font-weight:700;color:var(--gold);cursor:pointer;">
                   <input type="radio" name="p-vat-mode" value="amt" onchange="switchVatMode('amt')"> 금액 입력
                 </label>
               </span>
             </label>
             <div id="vat-pct-wrap" class="iw">
-              <input type="number" id="p-vat-pct" value="0" min="0" max="100" step="0.1" placeholder="0">
+              <input type="number" id="p-vat-pct" value="0" min="0" max="100" step="0.1">
               <span class="unit">%</span>
             </div>
             <div id="vat-amt-wrap" class="iw" style="display:none;">
@@ -600,7 +583,6 @@
             </div>
             <div class="amt-hint" id="h-p-vat-amt"></div>
           </div>
-
           <div class="ig">
             <label>총공급금액 (자동)</label>
             <div class="calc-display" id="p-total-disp">-</div>
@@ -626,7 +608,6 @@
             <div class="amt-hint" id="h-p-rent"></div>
           </div>
 
-          <!-- ▪ 섹션2: 수익분석 -->
           <div class="input-sec-lbl">▪ &nbsp; 수 익 분 석</div>
 
           <div class="ig">
@@ -643,20 +624,18 @@
               <span class="unit">%</span>
             </div>
           </div>
-          <!-- spacer -->
-          <div class="ig" style="grid-column: span 2;"></div>
+          <div class="ig" style="grid-column:span 2;"></div>
 
-          <!-- ▪ 섹션3: 납부일정표 -->
           <div class="input-sec-lbl" style="display:flex;align-items:center;gap:10px;">
             <label style="display:flex;align-items:center;gap:6px;cursor:pointer;">
-              <input type="checkbox" id="chk-pay" checked onchange="togglePay(this)" style="accent-color:var(--navy);">
+              <input type="checkbox" id="chk-pay" checked onchange="togglePay(this)" style="accent-color:var(--gold2);">
               ▪ &nbsp; 납 부 일 정 표
             </label>
-            <span style="font-size:10px;color:#a0aec0;font-weight:400;letter-spacing:0;">(체크 해제시 프린트 미출력)</span>
+            <span style="font-size:10px;color:var(--muted);font-weight:400;">(체크 해제시 프린트 미출력)</span>
           </div>
 
-          <div id="pay-inputs-wrap" style="grid-column:1/-1; display:grid; grid-template-columns:repeat(4,1fr); gap:12px 18px;">
-            <div class="ig" style="grid-column: span 2;">
+          <div id="pay-inputs-wrap" style="grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr);gap:14px 18px;">
+            <div class="ig" style="grid-column:span 2;">
               <label>계산 기준</label>
               <div class="radio-group">
                 <label><input type="radio" name="p-basis" value="ori" checked> 원분양가 기준</label>
@@ -677,7 +656,6 @@
                 <label><input type="radio" name="p-mid-cnt" value="2"> 2회</label>
               </div>
             </div>
-            <!-- 중도금 비율 (동적) -->
             <div class="mid-row" id="mid-inputs" style="grid-column:1/-1;">
               <div class="ig">
                 <label>중도금 비율</label>
@@ -699,20 +677,17 @@
           <div class="btn-row">
             <button class="btn-calc" onclick="calculatePresale()">계 산 하 기</button>
           </div>
-
         </div>
       </div>
     </div>
 
-    <!-- OUTPUT CARD -->
-    <div class="card">
+    <div class="out-card">
       <div class="out-bar no-print">
-        <span class="out-bar-title">분 양 견 적 서</span>
+        <span class="out-bar-title">📄 &nbsp; 분 양 견 적 서</span>
         <div class="out-bar-actions">
-          <span class="print-tip">💡 Chrome 인쇄 → <strong>머리글/바닥글 해제</strong> 권장</span>
+          <span class="print-tip">💡 인쇄 → <strong>머리글/바닥글 해제</strong> 권장</span>
           <button class="btn-print" onclick="printMode('presale')">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
-                 stroke-linecap="round" stroke-linejoin="round">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="6 9 6 2 18 2 18 9"/>
               <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
               <rect x="6" y="14" width="12" height="8"/>
@@ -721,11 +696,10 @@
           </button>
         </div>
       </div>
-
       <div class="est-pane">
         <div id="ph-presale" class="ph">
           <div class="ph-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#90b8f8" stroke-width="1.5">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d6ad35" stroke-width="1.5">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
               <polyline points="14 2 14 8 20 8"/>
               <line x1="16" y1="13" x2="8" y2="13"/>
@@ -735,704 +709,264 @@
           <p>분양 정보를 입력하고 <strong>계산하기</strong>를 눌러주세요</p>
         </div>
         <div id="res-presale" style="display:none;"></div>
-
       </div>
     </div>
-
-  </div><!-- /mode-presale -->
+  </div>
 
 </div><!-- /container -->
 
 <script>
 'use strict';
-
-/* ===========================
-   공통 유틸
-=========================== */
 const $    = id => document.getElementById(id);
-const fmt  = n => (isNaN(n) || n === null) ? '-' : Math.round(n).toLocaleString('ko-KR');
-const fmtD = n => (isNaN(n) || n === null) ? '-' : n.toFixed(2);
-const rawN = id => parseFloat($(id).value.replace(/,/g, '')) || 0;
+const fmt  = n => (isNaN(n)||n===null)?'-':Math.round(n).toLocaleString('ko-KR');
+const fmtD = n => (isNaN(n)||n===null)?'-':n.toFixed(2);
+const rawN = id => parseFloat($(id).value.replace(/,/g,''))||0;
 
-/* ===========================
-   한국어 금액 변환 (억/만 단위)
-=========================== */
-function toKorAmt(n) {
-  if (!n || isNaN(n) || n <= 0) return '';
-  const uk  = Math.floor(n / 100000000);       // 억
-  const man = Math.floor((n % 100000000) / 10000); // 만
-  const rem = Math.floor(n % 10000);            // 원 단위
-
-  let parts = [];
-  if (uk  > 0) parts.push(uk.toLocaleString('ko-KR') + '억');
-  if (man > 0) parts.push(man.toLocaleString('ko-KR') + '만');
-  if (rem > 0 && uk === 0) parts.push(rem.toLocaleString('ko-KR'));
-  return parts.join(' ') + ' 원';
+function toKorAmt(n){
+  if(!n||isNaN(n)||n<=0)return'';
+  const uk=Math.floor(n/100000000),man=Math.floor((n%100000000)/10000),rem=Math.floor(n%10000);
+  let p=[];
+  if(uk>0)p.push(uk.toLocaleString('ko-KR')+'억');
+  if(man>0)p.push(man.toLocaleString('ko-KR')+'만');
+  if(rem>0&&uk===0)p.push(rem.toLocaleString('ko-KR'));
+  return p.join(' ')+' 원';
 }
+function updateHint(id,hid){const el=$(hid);if(el)el.textContent=toKorAmt(parseFloat($(id).value.replace(/,/g,''))||0);}
 
-/* ===========================
-   힌트 업데이트
-=========================== */
-function updateHint(inputId, hintId) {
-  const val = parseFloat($(inputId).value.replace(/,/g, '')) || 0;
-  const hint = $(hintId);
-  if (hint) hint.textContent = toKorAmt(val);
-}
-
-/* ===========================
-   금액 자동 콤마 - 매매
-=========================== */
-['i-price', 'i-deposit', 'i-rent'].forEach(id => {
-  $(id).addEventListener('input', function () {
-    const v = this.value.replace(/\D/g, '');
-    this.value = v ? Number(v).toLocaleString('ko-KR') : '';
-    updateHint(id, 'h-' + id);
+['i-price','i-deposit','i-rent'].forEach(id=>{
+  $(id).addEventListener('input',function(){
+    const v=this.value.replace(/\D/g,'');
+    this.value=v?Number(v).toLocaleString('ko-KR'):'';
+    updateHint(id,'h-'+id);
   });
 });
-
-/* ===========================
-   금액 자동 콤마 - 분양 (부가세 금액 포함)
-=========================== */
-['p-oprice', 'p-deposit', 'p-rent', 'p-vat-amt'].forEach(id => {
-  const el = document.getElementById(id);
-  if (el) el.addEventListener('input', function () {
-    const v = this.value.replace(/\D/g, '');
-    this.value = v ? Number(v).toLocaleString('ko-KR') : '';
-    updateHint(id, 'h-' + id);
+['p-oprice','p-deposit','p-rent','p-vat-amt'].forEach(id=>{
+  const el=document.getElementById(id);
+  if(el)el.addEventListener('input',function(){
+    const v=this.value.replace(/\D/g,'');
+    this.value=v?Number(v).toLocaleString('ko-KR'):'';
+    updateHint(id,'h-'+id);
     updatePresaleCalc();
   });
 });
 
-/* ===========================
-   Enter 키
-=========================== */
-document.addEventListener('keydown', e => {
-  if (e.key === 'Enter') {
-    if (currentMode === 'sale') calculateSale();
-    else calculatePresale();
-  }
+document.addEventListener('keydown',e=>{
+  if(e.key==='Enter'){if(currentMode==='sale')calculateSale();else calculatePresale();}
 });
 
-/* ===========================
-   모드 전환
-=========================== */
-let currentMode = 'sale';
-
-function switchMode(mode) {
-  currentMode = mode;
-  $('mode-sale').style.display    = mode === 'sale'    ? '' : 'none';
-  $('mode-presale').style.display = mode === 'presale' ? '' : 'none';
-  document.querySelectorAll('.mode-btn').forEach((btn, i) => {
-    btn.classList.toggle('active', (i === 0 && mode === 'sale') || (i === 1 && mode === 'presale'));
+let currentMode='sale';
+function switchMode(mode){
+  currentMode=mode;
+  $('mode-sale').style.display=mode==='sale'?'':'none';
+  $('mode-presale').style.display=mode==='presale'?'':'none';
+  document.querySelectorAll('.mode-btn').forEach((b,i)=>{
+    b.classList.toggle('active',(i===0&&mode==='sale')||(i===1&&mode==='presale'));
   });
-  if (mode === 'sale') {
-    $('header-title').textContent = '수익률 상가 매매 견적서';
-    $('header-sub').textContent   = 'COMMERCIAL REAL ESTATE YIELD ESTIMATE';
-  } else {
-    $('header-title').textContent = '수익률 상가 분양 견적서';
-    $('header-sub').textContent   = 'COMMERCIAL REAL ESTATE PRESALE ESTIMATE';
-  }
+  $('header-title').textContent=mode==='sale'?'수익률 상가 매매 견적서':'수익률 상가 분양 견적서';
+  $('header-sub').textContent=mode==='sale'?'COMMERCIAL REAL ESTATE YIELD ESTIMATE':'COMMERCIAL REAL ESTATE PRESALE ESTIMATE';
 }
 
-/* ===========================
-   분양 - 실시간 자동계산 표시
-   (할인가 / 총공급금액 / 취등록세)
-=========================== */
-function updatePresaleCalc() {
-  const oprice = rawN('p-oprice');
-  const disc   = parseFloat($('p-disc').value) || 0;
-
-  // 부가세 계산 - 모드에 따라 다르게
-  const vatMode = document.querySelector('input[name="p-vat-mode"]:checked');
-  const mode = vatMode ? vatMode.value : 'pct';
-  let vatPct = 0;
-  let vatAmt = 0;
-
-  const dprice = oprice * (1 - disc / 100);
-
-  if (mode === 'pct') {
-    vatPct = parseFloat($('p-vat-pct').value) || 0;
-    vatAmt = dprice * vatPct / 100;
-  } else {
-    vatAmt = rawN('p-vat-amt');
-    vatPct = dprice > 0 ? vatAmt / dprice * 100 : 0;
-  }
-
-  const total  = dprice + vatAmt;
-  const acqtax = total * 0.046;
-
-  $('p-dprice-disp').textContent  = oprice > 0 ? fmt(dprice) + ' 원' : '-';
-  $('p-total-disp').textContent   = oprice > 0 ? fmt(total)  + ' 원' : '-';
-  $('p-acqtax-disp').textContent  = oprice > 0 ? fmt(acqtax) + ' 원' : '-';
+function updatePresaleCalc(){
+  const op=rawN('p-oprice'),disc=parseFloat($('p-disc').value)||0;
+  const m=document.querySelector('input[name="p-vat-mode"]:checked');
+  const mode=m?m.value:'pct';
+  let va=0;
+  const dp=op*(1-disc/100);
+  if(mode==='pct'){const vp=parseFloat($('p-vat-pct').value)||0;va=dp*vp/100;}
+  else va=rawN('p-vat-amt');
+  const tot=dp+va,acq=tot*0.046;
+  $('p-dprice-disp').textContent=op>0?fmt(dp)+' 원':'-';
+  $('p-total-disp').textContent=op>0?fmt(tot)+' 원':'-';
+  $('p-acqtax-disp').textContent=op>0?fmt(acq)+' 원':'-';
 }
-
-// 자동계산 트리거 등록
-$('p-oprice').addEventListener('input', updatePresaleCalc);
-$('p-disc').addEventListener('input', updatePresaleCalc);
-$('p-vat-pct').addEventListener('input', updatePresaleCalc);
-document.querySelectorAll('input[name="p-vat-mode"]').forEach(r =>
-  r.addEventListener('change', updatePresaleCalc)
-);
-
-/* ===========================
-   중도금 횟수 변경
-=========================== */
-document.querySelectorAll('input[name="p-mid-cnt"]').forEach(r => {
-  r.addEventListener('change', function () {
-    $('mid2-wrap').style.display = this.value === '2' ? '' : 'none';
-  });
+$('p-oprice').addEventListener('input',updatePresaleCalc);
+$('p-disc').addEventListener('input',updatePresaleCalc);
+$('p-vat-pct').addEventListener('input',updatePresaleCalc);
+document.querySelectorAll('input[name="p-vat-mode"]').forEach(r=>r.addEventListener('change',updatePresaleCalc));
+document.querySelectorAll('input[name="p-mid-cnt"]').forEach(r=>{
+  r.addEventListener('change',function(){$('mid2-wrap').style.display=this.value==='2'?'':'none';});
 });
 
-/* ══════════════════════════════════════════
-   상가매매견적서 계산
-══════════════════════════════════════════ */
-function calculateSale() {
-  const biz    = $('i-biz').value.trim() || '-';
-  const supply = parseFloat($('i-supply').value) || 0;
-  const priv   = parseFloat($('i-priv').value)   || 0;
-  const price  = rawN('i-price');
-  const lratio = parseFloat($('i-lratio').value) || 0;
-  const rate   = parseFloat($('i-rate').value)   || 0;
-  const dep    = rawN('i-deposit');
-  const rent   = rawN('i-rent');
-
-  const acqtax = price * 0.046;
-  const loan   = price * lratio / 100;
-  const intA   = loan * rate / 100;
-  const intM   = intA / 12;
-  const invL   = price - loan - dep;
-  const invN   = price - dep;
-  const pmL    = rent - intM;
-  const pmN    = rent;
-  const paL    = pmL * 12;
-  const paN    = pmN * 12;
-  const yL     = invL > 0 ? paL / invL * 100 : 0;
-  const yN     = invN > 0 ? paN / invN * 100 : 0;
-
-  renderSale({ biz, supply, priv, price, acqtax, lratio, rate,
-               loan, intA, intM, dep, rent,
-               invL, invN, pmL, pmN, paL, paN, yL, yN });
+function calculateSale(){
+  const biz=$('i-biz').value.trim()||'-',supply=parseFloat($('i-supply').value)||0,
+    priv=parseFloat($('i-priv').value)||0,price=rawN('i-price'),
+    lratio=parseFloat($('i-lratio').value)||0,rate=parseFloat($('i-rate').value)||0,
+    dep=rawN('i-deposit'),rent=rawN('i-rent');
+  const acqtax=price*0.046,loan=price*lratio/100,intA=loan*rate/100,intM=intA/12,
+    invL=price-loan-dep,invN=price-dep,pmL=rent-intM,pmN=rent,
+    paL=pmL*12,paN=pmN*12,
+    yL=invL>0?paL/invL*100:0,yN=invN>0?paN/invN*100:0;
+  renderSale({biz,supply,priv,price,acqtax,lratio,rate,loan,intA,intM,dep,rent,invL,invN,pmL,pmN,paL,paN,yL,yN});
 }
 
-/* ══════════════════════════════════════════
-   상가매매견적서 렌더링
-══════════════════════════════════════════ */
-function renderSale(d) {
-  const bL = Math.min(Math.max(d.yL, 0), 20) / 20 * 100;
-  const bN = Math.min(Math.max(d.yN, 0), 20) / 20 * 100;
-
-  const html = `
-  <div class="est-doc">
+function renderSale(d){
+  const bL=Math.min(Math.max(d.yL,0),20)/20*100,bN=Math.min(Math.max(d.yN,0),20)/20*100;
+  const html=`<div class="est-doc">
     <div class="est-banner">
       <h2>수 익 률 &nbsp; 상 가 &nbsp; 매 매 &nbsp; 견 적 서</h2>
-      <div class="sub">C O M M E R C I A L &nbsp; R E A L &nbsp; E S T A T E &nbsp; Y I E L D &nbsp; E S T I M A T E</div>
+      <div class="sub">COMMERCIAL REAL ESTATE YIELD ESTIMATE</div>
     </div>
-
     <table class="est-tbl">
-      <colgroup>
-        <col style="width:30%">
-        <col style="width:35%">
-        <col style="width:35%">
-      </colgroup>
-      <thead>
-        <tr>
-          <th>항목</th>
-          <th>대출 (O)</th>
-          <th>대출 (X)</th>
-        </tr>
-      </thead>
+      <colgroup><col style="width:30%"><col style="width:35%"><col style="width:35%"></colgroup>
+      <thead><tr><th>항목</th><th>대출 (O)</th><th>대출 (X)</th></tr></thead>
       <tbody>
-        <tr>
-          <td class="lbl">업종</td>
-          <td class="c-both" colspan="2" style="font-weight:700;">${d.biz}</td>
-        </tr>
-        <tr class="alt">
-          <td class="lbl">공급면적</td>
-          <td class="c-both" colspan="2">${d.supply > 0 ? d.supply.toLocaleString('ko-KR') + ' 평' : '-'}</td>
-        </tr>
-        <tr>
-          <td class="lbl">전용면적</td>
-          <td class="c-both" colspan="2">${d.priv > 0 ? d.priv.toLocaleString('ko-KR') + ' 평' : '-'}</td>
-        </tr>
-
+        <tr><td class="lbl">업종</td><td class="c-both" colspan="2" style="font-weight:700;">${d.biz}</td></tr>
+        <tr class="alt"><td class="lbl">공급면적</td><td class="c-both" colspan="2">${d.supply>0?d.supply.toLocaleString('ko-KR')+' 평':'-'}</td></tr>
+        <tr><td class="lbl">전용면적</td><td class="c-both" colspan="2">${d.priv>0?d.priv.toLocaleString('ko-KR')+' 평':'-'}</td></tr>
         <tr class="sec"><td colspan="3">▪ &nbsp; 매 &nbsp; 매 &nbsp; 조 &nbsp; 건</td></tr>
-
-        <tr class="emph-row">
-          <td class="lbl">매매가격</td>
-          <td class="c-both emph-num" colspan="2">${fmt(d.price)} 원</td>
-        </tr>
-        <tr class="alt">
-          <td class="lbl">취득세 (4.6%)</td>
-          <td class="c-both" colspan="2"
-            style="text-align:right; color:var(--navy-mid); font-weight:600;">${fmt(d.acqtax)} 원</td>
-        </tr>
-        <tr>
-          <td class="lbl">대출금액</td>
-          <td class="c-loan">${fmt(d.loan)} 원</td>
-          <td class="dash">-</td>
-        </tr>
-        <tr class="alt">
-          <td class="lbl">대출비율</td>
-          <td class="c-loan">${d.lratio} %</td>
-          <td class="dash">-</td>
-        </tr>
-        <tr>
-          <td class="lbl">이율</td>
-          <td class="c-loan">${d.rate} %</td>
-          <td class="dash">-</td>
-        </tr>
-        <tr class="alt">
-          <td class="lbl">이자 (연)</td>
-          <td class="c-loan">${fmt(d.intA)} 원</td>
-          <td class="dash">-</td>
-        </tr>
-        <tr>
-          <td class="lbl">월이자</td>
-          <td class="c-loan">${fmt(d.intM)} 원</td>
-          <td class="dash">-</td>
-        </tr>
-
-        <tr class="emph-row">
-          <td class="lbl">보증금</td>
-          <td class="c-both emph-num" colspan="2">${fmt(d.dep)} 원</td>
-        </tr>
-        <tr class="emph-row alt">
-          <td class="lbl">월임대료</td>
-          <td class="c-both emph-num" colspan="2">${fmt(d.rent)} 원</td>
-        </tr>
-
+        <tr class="emph-row"><td class="lbl">매매가격</td><td class="c-both emph-num" colspan="2">${fmt(d.price)} 원</td></tr>
+        <tr class="alt"><td class="lbl">취득세 (4.6%)</td><td class="c-both" colspan="2" style="text-align:right;color:#1565c0;font-weight:600;">${fmt(d.acqtax)} 원</td></tr>
+        <tr><td class="lbl">대출금액</td><td class="c-loan">${fmt(d.loan)} 원</td><td class="dash">-</td></tr>
+        <tr class="alt"><td class="lbl">대출비율</td><td class="c-loan">${d.lratio} %</td><td class="dash">-</td></tr>
+        <tr><td class="lbl">이율</td><td class="c-loan">${d.rate} %</td><td class="dash">-</td></tr>
+        <tr class="alt"><td class="lbl">이자 (연)</td><td class="c-loan">${fmt(d.intA)} 원</td><td class="dash">-</td></tr>
+        <tr><td class="lbl">월이자</td><td class="c-loan">${fmt(d.intM)} 원</td><td class="dash">-</td></tr>
+        <tr class="emph-row"><td class="lbl">보증금</td><td class="c-both emph-num" colspan="2">${fmt(d.dep)} 원</td></tr>
+        <tr class="emph-row alt"><td class="lbl">월임대료</td><td class="c-both emph-num" colspan="2">${fmt(d.rent)} 원</td></tr>
         <tr class="sec"><td colspan="3">▪ &nbsp; 수 &nbsp; 익 &nbsp; 분 &nbsp; 석</td></tr>
-
-        <tr class="inv">
-          <td class="lbl">실투자금</td>
-          <td class="c-loan">${fmt(d.invL)} 원</td>
-          <td class="c-no">${fmt(d.invN)} 원</td>
-        </tr>
-        <tr class="inv">
-          <td class="lbl">월수익금</td>
-          <td class="c-loan">${fmt(d.pmL)} 원</td>
-          <td class="c-no">${fmt(d.pmN)} 원</td>
-        </tr>
-        <tr class="inv">
-          <td class="lbl">년수익금</td>
-          <td class="c-loan">${fmt(d.paL)} 원</td>
-          <td class="c-no">${fmt(d.paN)} 원</td>
-        </tr>
-
+        <tr class="inv"><td class="lbl">실투자금</td><td class="c-loan">${fmt(d.invL)} 원</td><td class="c-no">${fmt(d.invN)} 원</td></tr>
+        <tr class="inv"><td class="lbl">월수익금</td><td class="c-loan">${fmt(d.pmL)} 원</td><td class="c-no">${fmt(d.pmN)} 원</td></tr>
+        <tr class="inv"><td class="lbl">년수익금</td><td class="c-loan">${fmt(d.paL)} 원</td><td class="c-no">${fmt(d.paN)} 원</td></tr>
         <tr class="yld">
           <td class="lbl">수 익 률</td>
-          <td>
-            <div class="yc">
-              <div class="ytrack"><div class="yfill r1" style="width:${bL}%"></div></div>
-              <span class="ynum loan-o">${fmtD(d.yL)}%</span>
-            </div>
-          </td>
-          <td>
-            <div class="yc">
-              <div class="ytrack"><div class="yfill r2" style="width:${bN}%"></div></div>
-              <span class="ynum loan-x">${fmtD(d.yN)}%</span>
-            </div>
-          </td>
+          <td><div class="yc"><div class="ytrack"><div class="yfill r1" style="width:${bL}%"></div></div><span class="ynum loan-o">${fmtD(d.yL)}%</span></div></td>
+          <td><div class="yc"><div class="ytrack"><div class="yfill r2" style="width:${bN}%"></div></div><span class="ynum loan-x">${fmtD(d.yN)}%</span></div></td>
         </tr>
       </tbody>
     </table>
-
-    <div class="est-foot">
-      <div class="fc">하 이 탑 부 동 산</div>
-      <div class="fp">T. 031.949.8969</div>
-    </div>
+    <div class="est-foot"><div class="fc">하 이 탑 부 동 산</div><div class="fp">T. 031.949.8969</div></div>
   </div>`;
-
-  $('ph-sale').style.display = 'none';
-  const r = $('res-sale');
-  r.innerHTML = html;
-  r.style.display = 'block';
+  $('ph-sale').style.display='none';
+  const r=$('res-sale');r.innerHTML=html;r.style.display='block';
 }
 
-/* ══════════════════════════════════════════
-   상가분양견적서 계산
-══════════════════════════════════════════ */
-function calculatePresale() {
-  const loc    = $('p-loc').value.trim()  || '-';
-  const room   = $('p-room').value.trim() || '-';
-  const supply = parseFloat($('p-supply').value) || 0;
-  const priv   = parseFloat($('p-priv').value)   || 0;
-  const oprice = rawN('p-oprice');
-  const disc   = parseFloat($('p-disc').value)   || 0;
-
-  const vatMode = document.querySelector('input[name="p-vat-mode"]:checked');
-  const mode = vatMode ? vatMode.value : 'pct';
-  let vatPct = 0;
-  let vatAmt = 0;
-  const dprice  = oprice * (1 - disc / 100);
-  if (mode === 'pct') {
-    vatPct = parseFloat($('p-vat-pct').value) || 0;
-    vatAmt = dprice * vatPct / 100;
-  } else {
-    vatAmt = rawN('p-vat-amt');
-    vatPct = dprice > 0 ? vatAmt / dprice * 100 : 0;
-  }
-  const dep    = rawN('p-deposit');
-  const rent   = rawN('p-rent');
-  const lratio = parseFloat($('p-lratio').value) || 0;
-  const rate   = parseFloat($('p-rate').value)   || 0;
-
-  const basisEl  = document.querySelector('input[name="p-basis"]:checked');
-  const basis    = basisEl ? basisEl.value : 'ori';
-  const midCntEl = document.querySelector('input[name="p-mid-cnt"]:checked');
-  const midCnt   = midCntEl ? parseInt(midCntEl.value) : 1;
-
-  const dnPct   = parseFloat($('p-dn-pct').value)   || 0;
-  const mid1Pct = parseFloat($('p-mid1-pct').value) || 0;
-  const mid2Pct = midCnt === 2 ? (parseFloat($('p-mid2-pct').value) || 0) : 0;
-
-  /* ---- 핵심 계산 ---- */
-  const total   = dprice + vatAmt;
-  const acqtax  = total * 0.046;
-
-  const loan = total * lratio / 100;
-  const intA = loan * rate / 100;
-  const intM = intA / 12;
-
-  const invL = total - loan - dep;
-  const invN = total - dep;
-  const pmL  = rent - intM;
-  const pmN  = rent;
-  const paL  = pmL * 12;
-  const paN  = pmN * 12;
-  const yL   = invL > 0 ? paL / invL * 100 : 0;
-  const yN   = invN > 0 ? paN / invN * 100 : 0;
-
-  /* ---- 납부일정 기준 ---- */
-  const basisPrice = basis === 'ori' ? oprice : dprice;
-  const basisVat   = basisPrice * vatPct / 100;
-  const balPct     = Math.max(0, 100 - dnPct - mid1Pct - mid2Pct);
-
-  const showDisc = $('chk-disc') ? $('chk-disc').checked : false;
-  const showPay = $('chk-pay') ? $('chk-pay').checked : true;
-
-  renderPresale({
-    loc, room, supply, priv,
-    oprice, disc, dprice, vatPct, vatAmt, total, acqtax,
-    dep, rent, lratio, rate,
-    loan, intA, intM,
-    invL, invN, pmL, pmN, paL, paN, yL, yN,
-    basis, basisPrice, basisVat,
-    dnPct, mid1Pct, mid2Pct, midCnt, balPct,
-    showPay, showDisc
-  });
+function calculatePresale(){
+  const loc=$('p-loc').value.trim()||'-',room=$('p-room').value.trim()||'-',
+    supply=parseFloat($('p-supply').value)||0,priv=parseFloat($('p-priv').value)||0,
+    oprice=rawN('p-oprice'),disc=parseFloat($('p-disc').value)||0;
+  const vm=document.querySelector('input[name="p-vat-mode"]:checked'),mode=vm?vm.value:'pct';
+  let vatPct=0,vatAmt=0;
+  const dprice=oprice*(1-disc/100);
+  if(mode==='pct'){vatPct=parseFloat($('p-vat-pct').value)||0;vatAmt=dprice*vatPct/100;}
+  else{vatAmt=rawN('p-vat-amt');vatPct=dprice>0?vatAmt/dprice*100:0;}
+  const dep=rawN('p-deposit'),rent=rawN('p-rent'),
+    lratio=parseFloat($('p-lratio').value)||0,rate=parseFloat($('p-rate').value)||0;
+  const be=document.querySelector('input[name="p-basis"]:checked'),basis=be?be.value:'ori';
+  const me=document.querySelector('input[name="p-mid-cnt"]:checked'),midCnt=me?parseInt(me.value):1;
+  const dnPct=parseFloat($('p-dn-pct').value)||0,
+    mid1Pct=parseFloat($('p-mid1-pct').value)||0,
+    mid2Pct=midCnt===2?(parseFloat($('p-mid2-pct').value)||0):0;
+  const total=dprice+vatAmt,acqtax=total*0.046,loan=total*lratio/100,
+    intA=loan*rate/100,intM=intA/12,
+    invL=total-loan-dep,invN=total-dep,pmL=rent-intM,pmN=rent,
+    paL=pmL*12,paN=pmN*12,
+    yL=invL>0?paL/invL*100:0,yN=invN>0?paN/invN*100:0;
+  const basisPrice=basis==='ori'?oprice:dprice,basisVat=basisPrice*vatPct/100,
+    balPct=Math.max(0,100-dnPct-mid1Pct-mid2Pct);
+  const showDisc=$('chk-disc')?$('chk-disc').checked:false,
+    showPay=$('chk-pay')?$('chk-pay').checked:true;
+  renderPresale({loc,room,supply,priv,oprice,disc,dprice,vatPct,vatAmt,total,acqtax,
+    dep,rent,lratio,rate,loan,intA,intM,invL,invN,pmL,pmN,paL,paN,yL,yN,
+    basis,basisPrice,basisVat,dnPct,mid1Pct,mid2Pct,midCnt,balPct,showPay,showDisc});
 }
 
-/* ══════════════════════════════════════════
-   상가분양견적서 렌더링
-══════════════════════════════════════════ */
-function renderPresale(d) {
-  const bL = Math.min(Math.max(d.yL, 0), 20) / 20 * 100;
-  const bN = Math.min(Math.max(d.yN, 0), 20) / 20 * 100;
-
-  /* ---- 납부일정 행 계산 ---- */
-  function makePayRow(label, pct) {
-    const amt   = d.basisPrice * pct / 100;
-    const vat   = d.basisVat   * pct / 100;
-    const total = amt + vat;
-    return { label, pct, amt, vat, total };
-  }
-
-  const rows = [];
-  rows.push(makePayRow('계약금', d.dnPct));
-  if (d.midCnt === 1) {
-    rows.push(makePayRow('중도금', d.mid1Pct));
-  } else {
-    rows.push(makePayRow('중도금 1차', d.mid1Pct));
-    rows.push(makePayRow('중도금 2차', d.mid2Pct));
-  }
-  rows.push(makePayRow('잔금', d.balPct));
-
-  const sumAmt   = rows.reduce((s, r) => s + r.amt,   0);
-  const sumVat   = rows.reduce((s, r) => s + r.vat,   0);
-  const sumTotal = rows.reduce((s, r) => s + r.total, 0);
-  const sumPct   = rows.reduce((s, r) => s + r.pct,   0);
-
-  const payRowsHtml = rows.map(r => `
-    <tr>
-      <td class="p-lbl">${r.label}</td>
-      <td class="p-pct">${r.pct.toFixed(1)}%</td>
-      <td class="p-num">${fmt(r.amt)}</td>
-      <td class="p-num">${d.vatPct > 0 ? fmt(r.vat) : '-'}</td>
-      <td class="p-num">${fmt(r.total)}</td>
-    </tr>`).join('');
-
-  const vatLabel = d.vatPct > 0 ? `부가세 (${d.vatPct}%)` : '부가세';
-  const basisLabel = d.basis === 'ori' ? '원분양가 기준' : '할인가 기준';
-
-  const html = `
-  <div class="est-doc">
+function renderPresale(d){
+  const bL=Math.min(Math.max(d.yL,0),20)/20*100,bN=Math.min(Math.max(d.yN,0),20)/20*100;
+  function mkRow(label,pct){const a=d.basisPrice*pct/100,v=d.basisVat*pct/100;return{label,pct,amt:a,vat:v,total:a+v};}
+  const rows=[mkRow('계약금',d.dnPct)];
+  if(d.midCnt===1)rows.push(mkRow('중도금',d.mid1Pct));
+  else{rows.push(mkRow('중도금 1차',d.mid1Pct));rows.push(mkRow('중도금 2차',d.mid2Pct));}
+  rows.push(mkRow('잔금',d.balPct));
+  const sA=rows.reduce((s,r)=>s+r.amt,0),sV=rows.reduce((s,r)=>s+r.vat,0),
+    sT=rows.reduce((s,r)=>s+r.total,0),sP=rows.reduce((s,r)=>s+r.pct,0);
+  const prHtml=rows.map(r=>`<tr>
+    <td class="p-lbl">${r.label}</td><td class="p-pct">${r.pct.toFixed(1)}%</td>
+    <td class="p-num">${fmt(r.amt)}</td><td class="p-num">${d.vatPct>0?fmt(r.vat):'-'}</td>
+    <td class="p-num">${fmt(r.total)}</td></tr>`).join('');
+  const vl=d.vatPct>0?`부가세 (${d.vatPct}%)`:'부가세',bl=d.basis==='ori'?'원분양가 기준':'할인가 기준';
+  const html=`<div class="est-doc">
     <div class="est-banner">
       <h2>수 익 률 &nbsp; 상 가 &nbsp; 분 양 &nbsp; 견 적 서</h2>
-      <div class="sub">C O M M E R C I A L &nbsp; R E A L &nbsp; E S T A T E &nbsp; P R E S A L E &nbsp; E S T I M A T E</div>
+      <div class="sub">COMMERCIAL REAL ESTATE PRESALE ESTIMATE</div>
     </div>
-
     <table class="est-tbl">
-      <colgroup>
-        <col style="width:30%">
-        <col style="width:35%">
-        <col style="width:35%">
-      </colgroup>
-      <thead>
-        <tr>
-          <th>항목</th>
-          <th>대출 (O)</th>
-          <th>대출 (X)</th>
-        </tr>
-      </thead>
+      <colgroup><col style="width:30%"><col style="width:35%"><col style="width:35%"></colgroup>
+      <thead><tr><th>항목</th><th>대출 (O)</th><th>대출 (X)</th></tr></thead>
       <tbody>
-        <tr>
-          <td class="lbl">위치 (빌딩명)</td>
-          <td class="c-both" colspan="2" style="font-weight:700;">${d.loc}</td>
-        </tr>
-        <tr class="alt">
-          <td class="lbl">호실</td>
-          <td class="c-both" colspan="2" style="font-weight:700;">${d.room}</td>
-        </tr>
-        <tr>
-          <td class="lbl">공급면적</td>
-          <td class="c-both" colspan="2">${d.supply > 0 ? d.supply.toLocaleString('ko-KR') + ' 평' : '-'}</td>
-        </tr>
-        <tr class="alt">
-          <td class="lbl">전용면적</td>
-          <td class="c-both" colspan="2">${d.priv > 0 ? d.priv.toLocaleString('ko-KR') + ' 평' : '-'}</td>
-        </tr>
-
+        <tr><td class="lbl">위치 (빌딩명)</td><td class="c-both" colspan="2" style="font-weight:700;">${d.loc}</td></tr>
+        <tr class="alt"><td class="lbl">호실</td><td class="c-both" colspan="2" style="font-weight:700;">${d.room}</td></tr>
+        <tr><td class="lbl">공급면적</td><td class="c-both" colspan="2">${d.supply>0?d.supply.toLocaleString('ko-KR')+' 평':'-'}</td></tr>
+        <tr class="alt"><td class="lbl">전용면적</td><td class="c-both" colspan="2">${d.priv>0?d.priv.toLocaleString('ko-KR')+' 평':'-'}</td></tr>
         <tr class="sec"><td colspan="3">▪ &nbsp; 분 &nbsp; 양 &nbsp; 조 &nbsp; 건</td></tr>
-
-        <tr class="emph-row">
-          <td class="lbl">원분양가</td>
-          <td class="c-both emph-num" colspan="2">${fmt(d.oprice)} 원</td>
-        </tr>
-        ${d.showDisc ? `<tr class="alt">
-          <td class="lbl">할인율</td>
-          <td class="c-both" colspan="2"
-            style="text-align:center; color:var(--navy-mid); font-weight:600;">${d.disc > 0 ? d.disc + ' %' : '-'}</td>
-        </tr>
-        <tr class="emph-row">
-          <td class="lbl">할인가</td>
-          <td class="c-both emph-num" colspan="2">${fmt(d.dprice)} 원</td>
-        </tr>` : ''}
-        <tr class="alt">
-          <td class="lbl">${vatLabel}</td>
-          <td class="c-both" colspan="2"
-            style="text-align:right; color:var(--navy-mid); font-weight:600;">${d.vatPct > 0 ? fmt(d.vatAmt) + ' 원' : '-'}</td>
-        </tr>
-        <tr class="emph-row">
-          <td class="lbl">총공급금액</td>
-          <td class="c-both emph-num" colspan="2">${fmt(d.total)} 원</td>
-        </tr>
-        <tr class="alt">
-          <td class="lbl">취등록세 (4.6%)</td>
-          <td class="c-both" colspan="2"
-            style="text-align:right; color:var(--navy-mid); font-weight:600;">${fmt(d.acqtax)} 원</td>
-        </tr>
-
-        <tr>
-          <td class="lbl">대출금액</td>
-          <td class="c-loan">${fmt(d.loan)} 원</td>
-          <td class="dash">-</td>
-        </tr>
-        <tr class="alt">
-          <td class="lbl">대출비율</td>
-          <td class="c-loan">${d.lratio} %</td>
-          <td class="dash">-</td>
-        </tr>
-        <tr>
-          <td class="lbl">이율</td>
-          <td class="c-loan">${d.rate} %</td>
-          <td class="dash">-</td>
-        </tr>
-        <tr class="alt">
-          <td class="lbl">이자 (연)</td>
-          <td class="c-loan">${fmt(d.intA)} 원</td>
-          <td class="dash">-</td>
-        </tr>
-        <tr>
-          <td class="lbl">월이자</td>
-          <td class="c-loan">${fmt(d.intM)} 원</td>
-          <td class="dash">-</td>
-        </tr>
-
-        <tr class="emph-row">
-          <td class="lbl">보증금</td>
-          <td class="c-both emph-num" colspan="2">${fmt(d.dep)} 원</td>
-        </tr>
-        <tr class="emph-row alt">
-          <td class="lbl">월임대료</td>
-          <td class="c-both emph-num" colspan="2">${fmt(d.rent)} 원</td>
-        </tr>
-
+        <tr class="emph-row"><td class="lbl">원분양가</td><td class="c-both emph-num" colspan="2">${fmt(d.oprice)} 원</td></tr>
+        ${d.showDisc?`<tr class="alt"><td class="lbl">할인율</td><td class="c-both" colspan="2" style="text-align:center;color:#1565c0;font-weight:600;">${d.disc>0?d.disc+' %':'-'}</td></tr>
+        <tr class="emph-row"><td class="lbl">할인가</td><td class="c-both emph-num" colspan="2">${fmt(d.dprice)} 원</td></tr>`:''}
+        <tr class="alt"><td class="lbl">${vl}</td><td class="c-both" colspan="2" style="text-align:right;color:#1565c0;font-weight:600;">${d.vatPct>0?fmt(d.vatAmt)+' 원':'-'}</td></tr>
+        <tr class="emph-row"><td class="lbl">총공급금액</td><td class="c-both emph-num" colspan="2">${fmt(d.total)} 원</td></tr>
+        <tr class="alt"><td class="lbl">취등록세 (4.6%)</td><td class="c-both" colspan="2" style="text-align:right;color:#1565c0;font-weight:600;">${fmt(d.acqtax)} 원</td></tr>
+        <tr><td class="lbl">대출금액</td><td class="c-loan">${fmt(d.loan)} 원</td><td class="dash">-</td></tr>
+        <tr class="alt"><td class="lbl">대출비율</td><td class="c-loan">${d.lratio} %</td><td class="dash">-</td></tr>
+        <tr><td class="lbl">이율</td><td class="c-loan">${d.rate} %</td><td class="dash">-</td></tr>
+        <tr class="alt"><td class="lbl">이자 (연)</td><td class="c-loan">${fmt(d.intA)} 원</td><td class="dash">-</td></tr>
+        <tr><td class="lbl">월이자</td><td class="c-loan">${fmt(d.intM)} 원</td><td class="dash">-</td></tr>
+        <tr class="emph-row"><td class="lbl">보증금</td><td class="c-both emph-num" colspan="2">${fmt(d.dep)} 원</td></tr>
+        <tr class="emph-row alt"><td class="lbl">월임대료</td><td class="c-both emph-num" colspan="2">${fmt(d.rent)} 원</td></tr>
         <tr class="sec"><td colspan="3">▪ &nbsp; 수 &nbsp; 익 &nbsp; 분 &nbsp; 석</td></tr>
-
-        <tr class="inv">
-          <td class="lbl">실투자금</td>
-          <td class="c-loan">${fmt(d.invL)} 원</td>
-          <td class="c-no">${fmt(d.invN)} 원</td>
-        </tr>
-        <tr class="inv">
-          <td class="lbl">월수익금</td>
-          <td class="c-loan">${fmt(d.pmL)} 원</td>
-          <td class="c-no">${fmt(d.pmN)} 원</td>
-        </tr>
-        <tr class="inv">
-          <td class="lbl">년수익금</td>
-          <td class="c-loan">${fmt(d.paL)} 원</td>
-          <td class="c-no">${fmt(d.paN)} 원</td>
-        </tr>
-
+        <tr class="inv"><td class="lbl">실투자금</td><td class="c-loan">${fmt(d.invL)} 원</td><td class="c-no">${fmt(d.invN)} 원</td></tr>
+        <tr class="inv"><td class="lbl">월수익금</td><td class="c-loan">${fmt(d.pmL)} 원</td><td class="c-no">${fmt(d.pmN)} 원</td></tr>
+        <tr class="inv"><td class="lbl">년수익금</td><td class="c-loan">${fmt(d.paL)} 원</td><td class="c-no">${fmt(d.paN)} 원</td></tr>
         <tr class="yld">
           <td class="lbl">수 익 률</td>
-          <td>
-            <div class="yc">
-              <div class="ytrack"><div class="yfill r1" style="width:${bL}%"></div></div>
-              <span class="ynum loan-o">${fmtD(d.yL)}%</span>
-            </div>
-          </td>
-          <td>
-            <div class="yc">
-              <div class="ytrack"><div class="yfill r2" style="width:${bN}%"></div></div>
-              <span class="ynum loan-x">${fmtD(d.yN)}%</span>
-            </div>
-          </td>
+          <td><div class="yc"><div class="ytrack"><div class="yfill r1" style="width:${bL}%"></div></div><span class="ynum loan-o">${fmtD(d.yL)}%</span></div></td>
+          <td><div class="yc"><div class="ytrack"><div class="yfill r2" style="width:${bN}%"></div></div><span class="ynum loan-x">${fmtD(d.yN)}%</span></div></td>
         </tr>
       </tbody>
     </table>
-
-    <!-- 납부일정표 -->
-    ${d.showPay ? `<table class="pay-tbl">
+    ${d.showPay?`<table class="pay-tbl">
       <thead>
-        <tr class="pay-sec-head">
-          <td colspan="5">
-            ▪ &nbsp; 납 &nbsp; 부 &nbsp; 일 &nbsp; 정 &nbsp; 표
-            <span style="font-size:10px; color:rgba(255,255,255,0.6); font-weight:400;
-                         letter-spacing:1px; margin-left:10px;">(${basisLabel})</span>
-          </td>
-        </tr>
-        <tr>
-          <th style="width:18%">구분</th>
-          <th style="width:11%">비율</th>
-          <th style="width:24%">분양가</th>
-          <th style="width:24%">부가세</th>
-          <th style="width:23%">합계</th>
-        </tr>
+        <tr class="pay-sec-head"><td colspan="5">▪ &nbsp; 납 &nbsp; 부 &nbsp; 일 &nbsp; 정 &nbsp; 표
+          <span style="font-size:10px;color:rgba(255,255,255,.5);margin-left:10px;">(${bl})</span></td></tr>
+        <tr><th style="width:18%">구분</th><th style="width:11%">비율</th><th style="width:24%">분양가</th><th style="width:24%">부가세</th><th style="width:23%">합계</th></tr>
       </thead>
-      <tbody>
-        ${payRowsHtml}
-        <tr class="p-sum">
-          <td class="p-lbl">합 계</td>
-          <td class="p-pct">${sumPct.toFixed(1)}%</td>
-          <td class="p-num">${fmt(sumAmt)}</td>
-          <td class="p-num">${d.vatPct > 0 ? fmt(sumVat) : '-'}</td>
-          <td class="p-num">${fmt(sumTotal)}</td>
-        </tr>
-      </tbody>
-    </table>` : ''}
-
-    <div class="est-foot">
-      <div class="fc">하 이 탑 부 동 산</div>
-      <div class="fp">T. 031.949.8969</div>
-    </div>
+      <tbody>${prHtml}
+        <tr class="p-sum"><td class="p-lbl">합 계</td><td class="p-pct">${sP.toFixed(1)}%</td>
+          <td class="p-num">${fmt(sA)}</td><td class="p-num">${d.vatPct>0?fmt(sV):'-'}</td><td class="p-num">${fmt(sT)}</td></tr>
+      </tbody></table>`:''}
+    <div class="est-foot"><div class="fc">하 이 탑 부 동 산</div><div class="fp">T. 031.949.8969</div></div>
   </div>`;
-
-  $('ph-presale').style.display = 'none';
-  const r = $('res-presale');
-  r.innerHTML = html;
-  r.style.display = 'block';
+  $('ph-presale').style.display='none';
+  const r=$('res-presale');r.innerHTML=html;r.style.display='block';
 }
-/* ===========================
-   부가세 모드 전환
-=========================== */
-function switchVatMode(mode) {
-  if (mode === 'pct') {
-    $('vat-pct-wrap').style.display = '';
-    $('vat-amt-wrap').style.display = 'none';
-  } else {
-    $('vat-pct-wrap').style.display = 'none';
-    $('vat-amt-wrap').style.display = '';
-  }
+
+function switchVatMode(mode){
+  $('vat-pct-wrap').style.display=mode==='pct'?'':'none';
+  $('vat-amt-wrap').style.display=mode==='amt'?'':'none';
   updatePresaleCalc();
 }
-
-/* ===========================
-   할인율 체크박스 토글
-=========================== */
-function toggleDisc(chk) {
-  const inp = $('p-disc');
-  inp.disabled = !chk.checked;
-  inp.style.background = chk.checked ? '' : '#f0f0f0';
-  inp.style.color = chk.checked ? '' : '#aaa';
-  if (!chk.checked) inp.value = '0';
+function toggleDisc(chk){
+  const inp=$('p-disc');
+  inp.disabled=!chk.checked;
+  inp.style.opacity=chk.checked?'1':'.4';
+  if(!chk.checked)inp.value='0';
   updatePresaleCalc();
 }
+function togglePay(chk){$('pay-inputs-wrap').style.display=chk.checked?'':'none';}
 
-/* ===========================
-   납부일정표 체크박스 토글
-=========================== */
-function togglePay(chk) {
-  $('pay-inputs-wrap').style.display = chk.checked ? '' : 'none';
-}
-
-/* ===========================
-   인쇄 모드별 독립 출력 + A4 꽉 채우기
-=========================== */
-let _printMode = '';
-
-function printMode(mode) {
-  _printMode = mode;
-  document.body.setAttribute('data-print', mode);
-  if (mode === 'presale') {
-    const hasPay = $('chk-pay') && $('chk-pay').checked;
-    document.body.setAttribute('data-presale-pay', hasPay ? 'yes' : 'no');
+let _printMode='';
+function printMode(mode){
+  _printMode=mode;
+  document.body.setAttribute('data-print',mode);
+  if(mode==='presale'){
+    const hasPay=$('chk-pay')&&$('chk-pay').checked;
+    document.body.setAttribute('data-presale-pay',hasPay?'yes':'no');
   }
   window.print();
 }
-
-/* @media print CSS 적용 직후 높이 측정 → 스케일 자동 조정 */
-(function () {
-  const mq = window.matchMedia('print');
-
-  function onPrintChange(e) {
-    if (!e.matches || !_printMode) return;
-    const pane = document.querySelector('#mode-' + _printMode + ' .est-pane');
-    if (!pane) return;
-
-    /* 기존 스케일 초기화 후 reflow */
-    pane.style.transform = '';
-    pane.style.width     = '';
-    void pane.offsetHeight;
-
-    const contentH = pane.scrollHeight;
-    /* A4 @page margin:10mm → 가용 높이 277mm × (96px/25.4) ≈ 1047px */
-    const a4H = Math.round(277 * 96 / 25.4);
-
-    if (contentH > 0 && Math.abs(contentH - a4H) > 10) {
-      const scale = (a4H / contentH) * 0.994; /* 0.6% 여유 */
-      pane.style.transformOrigin = 'top left';
-      pane.style.transform       = 'scale(' + scale.toFixed(4) + ')';
-      pane.style.width           = (100 / scale).toFixed(2) + '%';
-    }
-  }
-
-  if (mq.addEventListener) mq.addEventListener('change', onPrintChange);
-  else                      mq.addListener(onPrintChange);
-})();
-
-window.addEventListener('afterprint', function () {
-  if (_printMode) {
-    const pane = document.querySelector('#mode-' + _printMode + ' .est-pane');
-    if (pane) { pane.style.transform = ''; pane.style.width = ''; }
-  }
-  _printMode = '';
+window.addEventListener('afterprint',function(){
+  _printMode='';
   document.body.removeAttribute('data-print');
   document.body.removeAttribute('data-presale-pay');
 });
 </script>
-
 </body>
 </html>
