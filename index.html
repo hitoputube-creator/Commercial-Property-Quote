@@ -49,18 +49,20 @@
     }
     .h-logo { display: flex; align-items: center; gap: 14px; }
     .logo-mark {
-      width: 42px; height: 42px;
+      width: 44px; height: 44px;
       border: 1px solid var(--line);
       border-radius: 12px;
       display: grid; place-items: center;
       color: var(--gold2); font-weight: 900; font-size: 13px;
       background: rgba(214,173,53,.12);
+      flex-shrink: 0;
     }
-    .h-title { font-size: 20px; font-weight: 800; letter-spacing: -0.5px; color: var(--text); }
-    .h-sub   { font-size: 12px; color: var(--muted); margin-top: 2px; letter-spacing: 1.5px; }
-    .h-right { text-align: right; }
-    .h-right strong { display: block; color: var(--gold2); font-size: 14px; font-weight: 700; }
-    .h-right span   { color: var(--muted); font-size: 11px; }
+    .h-text { display: flex; flex-direction: column; justify-content: center; gap: 3px; }
+    .h-title { font-size: 20px; font-weight: 800; letter-spacing: -0.5px; color: var(--text); line-height: 1.2; }
+    .h-sub   { font-size: 11px; color: var(--muted); letter-spacing: 2px; line-height: 1; }
+    .h-right { text-align: right; display: flex; flex-direction: column; justify-content: center; gap: 3px; }
+    .h-right strong { color: var(--gold2); font-size: 15px; font-weight: 800; line-height: 1.2; }
+    .h-right span   { color: var(--muted); font-size: 12px; line-height: 1; }
 
     /* ===== MODE NAV ===== */
     .mode-nav {
@@ -322,7 +324,7 @@
 
     /* ===== PRINT ===== */
     @media print {
-      @page { size: A4 portrait; margin: 8mm 10mm; }
+      @page { size: A4 portrait; margin: 4mm 6mm; }
 
       .site-header, .mode-nav, .input-card, .out-bar,
       .no-print, .amt-hint { display: none !important; }
@@ -343,7 +345,7 @@
     }
 
     @media print {
-      body[data-print="sale"] .est-pane { zoom: 0.88; }
+      body[data-print="sale"] .est-pane { zoom: 1.0; }
       body[data-print="sale"] .est-banner { padding:14px 20px 12px; }
       body[data-print="sale"] .est-banner h2 { font-size:18px; }
       body[data-print="sale"] .est-tbl th,
@@ -353,7 +355,7 @@
       body[data-print="sale"] .est-foot { padding:10px 20px; }
     }
     @media print {
-      body[data-print="presale"][data-presale-pay="no"] .est-pane { zoom: 0.84; }
+      body[data-print="presale"][data-presale-pay="no"] .est-pane { zoom: 0.94; }
       body[data-print="presale"][data-presale-pay="no"] .est-tbl th,
       body[data-print="presale"][data-presale-pay="no"] .est-tbl td { padding:7px 11px; font-size:12px; }
       body[data-print="presale"][data-presale-pay="no"] .est-tbl .yld td { padding:8px 11px; }
@@ -361,7 +363,7 @@
       body[data-print="presale"][data-presale-pay="no"] .est-foot { padding:8px 18px; }
     }
     @media print {
-      body[data-print="presale"][data-presale-pay="yes"] .est-pane { zoom: 0.74; }
+      body[data-print="presale"][data-presale-pay="yes"] .est-pane { zoom: 0.82; }
       body[data-print="presale"][data-presale-pay="yes"] .est-tbl th,
       body[data-print="presale"][data-presale-pay="yes"] .est-tbl td { padding:5px 10px; font-size:11px; }
       body[data-print="presale"][data-presale-pay="yes"] .est-tbl .sec td { padding:4px 10px; font-size:9.5px; }
@@ -382,7 +384,7 @@
 <header class="site-header">
   <div class="h-logo">
     <div class="logo-mark">HT</div>
-    <div>
+    <div class="h-text">
       <div class="h-title" id="header-title">수익률 상가 매매 견적서</div>
       <div class="h-sub" id="header-sub">COMMERCIAL REAL ESTATE YIELD ESTIMATE</div>
     </div>
