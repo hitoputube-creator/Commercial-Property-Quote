@@ -707,8 +707,11 @@
             </div>
           </div>
           <div class="ig">
-            <label>할인가 (자동)</label>
-            <div class="calc-display" id="p-dprice-disp">-</div>
+            <label>할인가</label>
+            <div class="iw">
+              <input type="text" id="p-dprice-input" placeholder="-" disabled style="background:#f0f0f0;color:#aaa;" autocomplete="off">
+              <span class="unit">원</span>
+            </div>
           </div>
           <div class="ig">
             <label>부가세
@@ -1025,19 +1028,41 @@ function switchFpTab(type, btn) {
 
 /* ===========================
    분양 - 실시간 자동계산 표시
-   (할인가 / 총공급금액 / 취등록세)
+   (할인율 ↔ 할인가 상호계산 / 총공급금액 / 취등록세)
 =========================== */
-function updatePresaleCalc() {
-  const oprice = rawN('p-oprice');
-  const disc   = parseFloat($('p-disc').value) || 0;
+let _discLastEdited = 'rate'; // 'rate' | 'price'
 
-  // 부가세 계산 - 모드에 따라 다르게
+function updatePresaleCalc(source) {
+  if (source) _discLastEdited = source;
+
+  const oprice = rawN('p-oprice');
+  let disc   = parseFloat($('p-disc').value) || 0;
+  let dprice = rawN('p-dprice-input');
+
+  if (oprice > 0 && $('chk-disc').checked) {
+    if (_discLastEdited === 'rate') {
+      dprice = oprice * (1 - disc / 100);
+      $('p-dprice-input').value = dprice > 0 ? Math.round(dprice) : '';
+    } else {
+      if (dprice > 0) {
+        disc = (1 - dprice / oprice) * 100;
+        disc = Math.max(0, Math.min(100, disc));
+        $('p-disc').value = disc.toFixed(2);
+      } else {
+        disc = 0;
+        dprice = oprice;
+        $('p-disc').value = '0';
+      }
+    }
+  } else {
+    dprice = oprice;
+    disc   = 0;
+  }
+
   const vatMode = document.querySelector('input[name="p-vat-mode"]:checked');
   const mode = vatMode ? vatMode.value : 'pct';
   let vatPct = 0;
   let vatAmt = 0;
-
-  const dprice = oprice * (1 - disc / 100);
 
   if (mode === 'pct') {
     vatPct = parseFloat($('p-vat-pct').value) || 0;
@@ -1050,17 +1075,17 @@ function updatePresaleCalc() {
   const total  = dprice + vatAmt;
   const acqtax = total * 0.046;
 
-  $('p-dprice-disp').textContent  = oprice > 0 ? fmt(dprice) + ' 원' : '-';
   $('p-total-disp').textContent   = oprice > 0 ? fmt(total)  + ' 원' : '-';
   $('p-acqtax-disp').textContent  = oprice > 0 ? fmt(acqtax) + ' 원' : '-';
 }
 
 // 자동계산 트리거 등록
-$('p-oprice').addEventListener('input', updatePresaleCalc);
-$('p-disc').addEventListener('input', updatePresaleCalc);
-$('p-vat-pct').addEventListener('input', updatePresaleCalc);
+$('p-oprice').addEventListener('input', () => updatePresaleCalc());
+$('p-disc').addEventListener('input', () => updatePresaleCalc('rate'));
+$('p-dprice-input').addEventListener('input', () => updatePresaleCalc('price'));
+$('p-vat-pct').addEventListener('input', () => updatePresaleCalc());
 document.querySelectorAll('input[name="p-vat-mode"]').forEach(r =>
-  r.addEventListener('change', updatePresaleCalc)
+  r.addEventListener('change', () => updatePresaleCalc())
 );
 
 /* ===========================
@@ -1260,13 +1285,16 @@ function calculatePresale() {
   const privM2   = parseFloat($('p-priv-m2').value)   || 0;
   const privPy   = parseFloat($('p-priv-py').value)   || 0;
   const oprice = rawN('p-oprice');
-  const disc   = parseFloat($('p-disc').value)   || 0;
+  const disc   = parseFloat($('p-disc').value) || 0;
+  const showDisc = $('chk-disc') ? $('chk-disc').checked : false;
+  const dprice  = showDisc && rawN('p-dprice-input') > 0
+    ? rawN('p-dprice-input')
+    : oprice * (1 - disc / 100);
 
   const vatMode = document.querySelector('input[name="p-vat-mode"]:checked');
   const mode = vatMode ? vatMode.value : 'pct';
   let vatPct = 0;
   let vatAmt = 0;
-  const dprice  = oprice * (1 - disc / 100);
   if (mode === 'pct') {
     vatPct = parseFloat($('p-vat-pct').value) || 0;
     vatAmt = dprice * vatPct / 100;
@@ -1310,7 +1338,6 @@ function calculatePresale() {
   const basisVat   = basisPrice * vatPct / 100;
   const balPct     = Math.max(0, 100 - dnPct - mid1Pct - mid2Pct);
 
-  const showDisc = $('chk-disc') ? $('chk-disc').checked : false;
   const showPay = $('chk-pay') ? $('chk-pay').checked : true;
 
   renderPresale({
@@ -1571,11 +1598,16 @@ function switchVatMode(mode) {
    할인율 체크박스 토글
 =========================== */
 function toggleDisc(chk) {
-  const inp = $('p-disc');
-  inp.disabled = !chk.checked;
-  inp.style.background = chk.checked ? '' : '#f0f0f0';
-  inp.style.color = chk.checked ? '' : '#aaa';
-  if (!chk.checked) inp.value = '0';
+  const inpRate  = $('p-disc');
+  const inpPrice = $('p-dprice-input');
+  const enabled  = chk.checked;
+  [inpRate, inpPrice].forEach(inp => {
+    inp.disabled = !enabled;
+    inp.style.background = enabled ? '' : '#f0f0f0';
+    inp.style.color       = enabled ? '' : '#aaa';
+  });
+  if (!enabled) { inpRate.value = '0'; inpPrice.value = ''; }
+  _discLastEdited = 'rate';
   updatePresaleCalc();
 }
 
