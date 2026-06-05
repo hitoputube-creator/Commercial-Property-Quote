@@ -325,6 +325,21 @@
     }
     .fp-body svg { opacity: 0.3; }
 
+    /* ===== 참고란 ===== */
+    .ref-note {
+      border-left: 4px solid var(--accent);
+      background: #eef4ff;
+      padding: 10px 16px;
+      font-size: 12.5px;
+      color: var(--text-mid);
+      margin: 0;
+      line-height: 1.7;
+    }
+    .ref-note strong { color: var(--navy); font-weight: 700; }
+
+    /* ===== 면적 듀얼 입력 ===== */
+    .area-dual { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+
     /* ===== PRINT ===== */
     @media print {
       /* A4 여백 10mm, 브라우저 기본 머리글/바닥글 영역 제거 */
@@ -491,20 +506,13 @@
             <div class="iw"><input type="text" id="i-biz" placeholder="예: 카페, 음식점"></div>
           </div>
           <div class="ig">
-            <label>공급면적</label>
+            <label>층수</label>
             <div class="iw">
-              <input type="number" id="i-supply" placeholder="0" min="0" step="0.1">
-              <span class="unit">평</span>
+              <input type="number" id="i-floor" placeholder="0" min="0" step="1">
+              <span class="unit">층</span>
             </div>
           </div>
-          <div class="ig">
-            <label>전용면적</label>
-            <div class="iw">
-              <input type="number" id="i-priv" placeholder="0" min="0" step="0.1">
-              <span class="unit">평</span>
-            </div>
-          </div>
-          <div class="ig">
+          <div class="ig" style="grid-column: span 2;">
             <label>매매가격</label>
             <div class="iw">
               <input type="text" id="i-price" placeholder="0" autocomplete="off">
@@ -512,6 +520,35 @@
             </div>
             <div class="amt-hint" id="h-i-price"></div>
           </div>
+          <!-- 공급면적 / 전용면적 듀얼 행 -->
+          <div class="ig">
+            <label>공급면적 (m²)</label>
+            <div class="area-dual">
+              <div class="iw">
+                <input type="number" id="i-supply-m2" placeholder="0" min="0" step="0.01">
+                <span class="unit">m²</span>
+              </div>
+              <div class="iw">
+                <input type="number" id="i-supply-py" placeholder="0" min="0" step="0.01">
+                <span class="unit">평</span>
+              </div>
+            </div>
+          </div>
+          <div class="ig">
+            <label>전용면적 (m²)</label>
+            <div class="area-dual">
+              <div class="iw">
+                <input type="number" id="i-priv-m2" placeholder="0" min="0" step="0.01">
+                <span class="unit">m²</span>
+              </div>
+              <div class="iw">
+                <input type="number" id="i-priv-py" placeholder="0" min="0" step="0.01">
+                <span class="unit">평</span>
+              </div>
+            </div>
+          </div>
+          <div class="ig" style="grid-column: span 2;"></div>
+
           <div class="ig">
             <label>대출비율</label>
             <div class="iw">
@@ -614,19 +651,41 @@
             <div class="iw"><input type="text" id="p-room" placeholder="예: 101호"></div>
           </div>
           <div class="ig">
-            <label>공급면적</label>
+            <label>층수</label>
             <div class="iw">
-              <input type="number" id="p-supply" placeholder="0" min="0" step="0.1">
-              <span class="unit">평</span>
+              <input type="number" id="p-floor" placeholder="0" min="0" step="1">
+              <span class="unit">층</span>
+            </div>
+          </div>
+          <div class="ig"></div>
+
+          <div class="ig">
+            <label>공급면적 (m²)</label>
+            <div class="area-dual">
+              <div class="iw">
+                <input type="number" id="p-supply-m2" placeholder="0" min="0" step="0.01">
+                <span class="unit">m²</span>
+              </div>
+              <div class="iw">
+                <input type="number" id="p-supply-py" placeholder="0" min="0" step="0.01">
+                <span class="unit">평</span>
+              </div>
             </div>
           </div>
           <div class="ig">
-            <label>전용면적</label>
-            <div class="iw">
-              <input type="number" id="p-priv" placeholder="0" min="0" step="0.1">
-              <span class="unit">평</span>
+            <label>전용면적 (m²)</label>
+            <div class="area-dual">
+              <div class="iw">
+                <input type="number" id="p-priv-m2" placeholder="0" min="0" step="0.01">
+                <span class="unit">m²</span>
+              </div>
+              <div class="iw">
+                <input type="number" id="p-priv-py" placeholder="0" min="0" step="0.01">
+                <span class="unit">평</span>
+              </div>
             </div>
           </div>
+          <div class="ig" style="grid-column: span 2;"></div>
 
           <div class="ig">
             <label>원분양가</label>
@@ -901,6 +960,29 @@ function updateHint(inputId, hintId) {
 });
 
 /* ===========================
+   m²↔평 자동 변환 (1평 = 3.30579 m²)
+=========================== */
+const PY = 3.30579;
+
+function bindAreaSync(m2Id, pyId) {
+  const m2El = $(m2Id), pyEl = $(pyId);
+  if (!m2El || !pyEl) return;
+  m2El.addEventListener('input', () => {
+    const v = parseFloat(m2El.value);
+    pyEl.value = isNaN(v) || v === 0 ? '' : (v / PY).toFixed(2);
+  });
+  pyEl.addEventListener('input', () => {
+    const v = parseFloat(pyEl.value);
+    m2El.value = isNaN(v) || v === 0 ? '' : (v * PY).toFixed(2);
+  });
+}
+
+bindAreaSync('i-supply-m2', 'i-supply-py');
+bindAreaSync('i-priv-m2',   'i-priv-py');
+bindAreaSync('p-supply-m2', 'p-supply-py');
+bindAreaSync('p-priv-m2',   'p-priv-py');
+
+/* ===========================
    Enter 키
 =========================== */
 document.addEventListener('keydown', e => {
@@ -993,14 +1075,17 @@ document.querySelectorAll('input[name="p-mid-cnt"]').forEach(r => {
    상가매매견적서 계산
 ══════════════════════════════════════════ */
 function calculateSale() {
-  const biz    = $('i-biz').value.trim() || '-';
-  const supply = parseFloat($('i-supply').value) || 0;
-  const priv   = parseFloat($('i-priv').value)   || 0;
-  const price  = rawN('i-price');
-  const lratio = parseFloat($('i-lratio').value) || 0;
-  const rate   = parseFloat($('i-rate').value)   || 0;
-  const dep    = rawN('i-deposit');
-  const rent   = rawN('i-rent');
+  const biz      = $('i-biz').value.trim() || '-';
+  const floor    = parseFloat($('i-floor').value) || 0;
+  const supplyM2 = parseFloat($('i-supply-m2').value) || 0;
+  const supplyPy = parseFloat($('i-supply-py').value) || 0;
+  const privM2   = parseFloat($('i-priv-m2').value)   || 0;
+  const privPy   = parseFloat($('i-priv-py').value)   || 0;
+  const price    = rawN('i-price');
+  const lratio   = parseFloat($('i-lratio').value) || 0;
+  const rate     = parseFloat($('i-rate').value)   || 0;
+  const dep      = rawN('i-deposit');
+  const rent     = rawN('i-rent');
 
   const acqtax = price * 0.046;
   const loan   = price * lratio / 100;
@@ -1015,7 +1100,8 @@ function calculateSale() {
   const yL     = invL > 0 ? paL / invL * 100 : 0;
   const yN     = invN > 0 ? paN / invN * 100 : 0;
 
-  renderSale({ biz, supply, priv, price, acqtax, lratio, rate,
+  renderSale({ biz, floor, supplyM2, supplyPy, privM2, privPy,
+               price, acqtax, lratio, rate,
                loan, intA, intM, dep, rent,
                invL, invN, pmL, pmN, paL, paN, yL, yN });
 }
@@ -1053,12 +1139,16 @@ function renderSale(d) {
           <td class="c-both" colspan="2" style="font-weight:700;">${d.biz}</td>
         </tr>
         <tr class="alt">
-          <td class="lbl">공급면적</td>
-          <td class="c-both" colspan="2">${d.supply > 0 ? d.supply.toLocaleString('ko-KR') + ' 평' : '-'}</td>
+          <td class="lbl">층수</td>
+          <td class="c-both" colspan="2">${d.floor > 0 ? d.floor + ' 층' : '-'}</td>
         </tr>
         <tr>
+          <td class="lbl">공급면적</td>
+          <td class="c-both" colspan="2">${d.supplyM2 > 0 ? d.supplyM2.toFixed(2) + ' m² / ' + d.supplyPy.toFixed(2) + ' 평' : (d.supplyPy > 0 ? (d.supplyPy * 3.30579).toFixed(2) + ' m² / ' + d.supplyPy.toFixed(2) + ' 평' : '-')}</td>
+        </tr>
+        <tr class="alt">
           <td class="lbl">전용면적</td>
-          <td class="c-both" colspan="2">${d.priv > 0 ? d.priv.toLocaleString('ko-KR') + ' 평' : '-'}</td>
+          <td class="c-both" colspan="2">${d.privM2 > 0 ? d.privM2.toFixed(2) + ' m² / ' + d.privPy.toFixed(2) + ' 평' : (d.privPy > 0 ? (d.privPy * 3.30579).toFixed(2) + ' m² / ' + d.privPy.toFixed(2) + ' 평' : '-')}</td>
         </tr>
 
         <tr class="sec"><td colspan="3">▪ &nbsp; 매 &nbsp; 매 &nbsp; 조 &nbsp; 건</td></tr>
@@ -1066,11 +1156,6 @@ function renderSale(d) {
         <tr class="emph-row">
           <td class="lbl">매매가격</td>
           <td class="c-both emph-num" colspan="2">${fmt(d.price)} 원</td>
-        </tr>
-        <tr class="alt">
-          <td class="lbl">취득세 (4.6%)</td>
-          <td class="c-both" colspan="2"
-            style="text-align:right; color:var(--navy-mid); font-weight:600;">${fmt(d.acqtax)} 원</td>
         </tr>
         <tr>
           <td class="lbl">대출금액</td>
@@ -1143,6 +1228,10 @@ function renderSale(d) {
       </tbody>
     </table>
 
+    <div class="ref-note">
+      ※ <strong>취득세 (4.6%)</strong> : ${fmt(d.acqtax)} 원 &nbsp;— 부가세 발생 여부 및 건물/토지 비율에 따라 변동될 수 있습니다.
+    </div>
+
     <div class="est-foot">
       <div class="fc">하이탑부동산공인중개사사무소</div>
       <div class="fp">
@@ -1162,10 +1251,13 @@ function renderSale(d) {
    상가분양견적서 계산
 ══════════════════════════════════════════ */
 function calculatePresale() {
-  const loc    = $('p-loc').value.trim()  || '-';
-  const room   = $('p-room').value.trim() || '-';
-  const supply = parseFloat($('p-supply').value) || 0;
-  const priv   = parseFloat($('p-priv').value)   || 0;
+  const loc      = $('p-loc').value.trim()  || '-';
+  const room     = $('p-room').value.trim() || '-';
+  const floor    = parseFloat($('p-floor').value) || 0;
+  const supplyM2 = parseFloat($('p-supply-m2').value) || 0;
+  const supplyPy = parseFloat($('p-supply-py').value) || 0;
+  const privM2   = parseFloat($('p-priv-m2').value)   || 0;
+  const privPy   = parseFloat($('p-priv-py').value)   || 0;
   const oprice = rawN('p-oprice');
   const disc   = parseFloat($('p-disc').value)   || 0;
 
@@ -1221,7 +1313,7 @@ function calculatePresale() {
   const showPay = $('chk-pay') ? $('chk-pay').checked : true;
 
   renderPresale({
-    loc, room, supply, priv,
+    loc, room, floor, supplyM2, supplyPy, privM2, privPy,
     oprice, disc, dprice, vatPct, vatAmt, total, acqtax,
     dep, rent, lratio, rate,
     loan, intA, intM,
@@ -1304,12 +1396,16 @@ function renderPresale(d) {
           <td class="c-both" colspan="2" style="font-weight:700;">${d.room}</td>
         </tr>
         <tr>
-          <td class="lbl">공급면적</td>
-          <td class="c-both" colspan="2">${d.supply > 0 ? d.supply.toLocaleString('ko-KR') + ' 평' : '-'}</td>
+          <td class="lbl">층수</td>
+          <td class="c-both" colspan="2">${d.floor > 0 ? d.floor + ' 층' : '-'}</td>
         </tr>
         <tr class="alt">
+          <td class="lbl">공급면적</td>
+          <td class="c-both" colspan="2">${d.supplyM2 > 0 ? d.supplyM2.toFixed(2) + ' m² / ' + d.supplyPy.toFixed(2) + ' 평' : (d.supplyPy > 0 ? (d.supplyPy * 3.30579).toFixed(2) + ' m² / ' + d.supplyPy.toFixed(2) + ' 평' : '-')}</td>
+        </tr>
+        <tr>
           <td class="lbl">전용면적</td>
-          <td class="c-both" colspan="2">${d.priv > 0 ? d.priv.toLocaleString('ko-KR') + ' 평' : '-'}</td>
+          <td class="c-both" colspan="2">${d.privM2 > 0 ? d.privM2.toFixed(2) + ' m² / ' + d.privPy.toFixed(2) + ' 평' : (d.privPy > 0 ? (d.privPy * 3.30579).toFixed(2) + ' m² / ' + d.privPy.toFixed(2) + ' 평' : '-')}</td>
         </tr>
 
         <tr class="sec"><td colspan="3">▪ &nbsp; 분 &nbsp; 양 &nbsp; 조 &nbsp; 건</td></tr>
@@ -1335,11 +1431,6 @@ function renderPresale(d) {
         <tr class="emph-row">
           <td class="lbl">총공급금액</td>
           <td class="c-both emph-num" colspan="2">${fmt(d.total)} 원</td>
-        </tr>
-        <tr class="alt">
-          <td class="lbl">취등록세 (4.6%)</td>
-          <td class="c-both" colspan="2"
-            style="text-align:right; color:var(--navy-mid); font-weight:600;">${fmt(d.acqtax)} 원</td>
         </tr>
 
         <tr>
@@ -1442,6 +1533,10 @@ function renderPresale(d) {
         </tr>
       </tbody>
     </table>` : ''}
+
+    <div class="ref-note">
+      ※ <strong>취등록세 (4.6%)</strong> : ${fmt(d.acqtax)} 원 &nbsp;— 부가세 발생 여부 및 건물/토지 비율에 따라 변동될 수 있습니다.
+    </div>
 
     <div class="est-foot">
       <div class="fc">하이탑부동산공인중개사사무소</div>
