@@ -342,10 +342,9 @@
 
     /* ===== PRINT ===== */
     @media print {
-      /* A4 여백 10mm, 브라우저 기본 머리글/바닥글 영역 제거 */
       @page {
         size: A4 portrait;
-        margin: 8mm 10mm 8mm 10mm;
+        margin: 12mm 14mm 12mm 14mm;
       }
 
       /* ── 화면 전용 요소 숨김 ── */
@@ -366,81 +365,84 @@
         margin: 0;
         padding: 0;
         background: white;
-        /* 전체 폰트 85% 수준으로 축소 */
-        font-size: 85%;
+        font-size: 100%;
       }
-      body {
-        display: block;
-      }
+      body { display: block; }
       .container {
         width: 100%;
         max-width: 100%;
         padding: 0;
-        /* 페이지 넘김 방지 */
-        page-break-inside: avoid;
       }
       .card { box-shadow: none; border-radius: 0; }
       .est-pane { padding: 0; }
       .est-doc {
         max-width: 100%;
         border: none;
-        font-size: 11.5px;   /* 베이스 폰트 강제 고정 */
+        font-size: 13px;
         page-break-inside: avoid;
       }
 
       /* ── 배너 ── */
-      .est-banner { padding: 10px 16px 9px; }
-      .est-banner h2 { font-size: 15px; letter-spacing: 4px; }
+      .est-banner { padding: 18px 20px 16px; }
+      .est-banner h2 { font-size: 20px; letter-spacing: 5px; }
 
-      /* ── 표 셀 padding 축소 및 정렬 개선 ── */
+      /* ── 표 셀 ── */
       .est-tbl th,
-      .est-tbl td { padding: 3px 8px; font-size: 11px; }
-      .est-tbl thead th { font-size: 10px; }
-      .est-tbl .sec td  { padding: 4px 10px; font-size: 9.5px; letter-spacing: 2px; }
-      .est-tbl .lbl { width: 28%; }
-      .est-tbl colgroup col:nth-child(1) { width: 28%; }
-      .est-tbl colgroup col:nth-child(2) { width: 36%; }
-      .est-tbl colgroup col:nth-child(3) { width: 36%; }
+      .est-tbl td { padding: 9px 14px; font-size: 13px; }
+      .est-tbl thead th { font-size: 12px; }
+      .est-tbl .sec td  { padding: 7px 16px; font-size: 11px; letter-spacing: 2.5px; }
+      .est-tbl .lbl { width: 30%; }
+      .est-tbl colgroup col:nth-child(1) { width: 30%; }
+      .est-tbl colgroup col:nth-child(2) { width: 35%; }
+      .est-tbl colgroup col:nth-child(3) { width: 35%; }
       .est-tbl .c-loan, .est-tbl .c-no { text-align: right; }
       .est-tbl .c-both { text-align: right; }
       .est-tbl .dash { text-align: center; }
 
-      /* ── 강조 행 숫자 크기 축소 ── */
-      .est-tbl .emph-row .emph-num { font-size: 13px; }
+      /* ── 강조 행 ── */
+      .est-tbl .emph-row .emph-num { font-size: 17px; }
 
       /* ── 수익률 행 ── */
-      .est-tbl .yld td   { padding: 6px 8px; }
-      .est-tbl .yld .lbl { font-size: 12px; }
+      .est-tbl .yld td   { padding: 12px 14px; }
+      .est-tbl .yld .lbl { font-size: 15px; }
 
-      /* ── 게이지바 높이 축소 ── */
-      .ytrack { width: 60px; height: 6px; }
-      .ynum   { font-size: 16px; min-width: 54px; }
+      /* ── 게이지바 ── */
+      .ytrack { width: 80px; height: 8px; }
+      .ynum   { font-size: 22px; min-width: 70px; }
+
+      /* ── 참고란 ── */
+      .ref-note {
+        padding: 11px 16px;
+        font-size: 13px;
+        line-height: 1.8;
+      }
 
       /* ── 납부일정표 ── */
       .pay-tbl th,
-      .pay-tbl td { padding: 3px 8px; font-size: 10.5px; }
-      .pay-tbl .p-sum .p-num { font-size: 11px; }
-      .pay-sec-head td { padding: 4px 10px; font-size: 9.5px; letter-spacing: 2px; }
+      .pay-tbl td { padding: 8px 12px; font-size: 12.5px; }
+      .pay-tbl .p-sum .p-lbl,
+      .pay-tbl .p-sum .p-num { font-size: 13.5px; }
+      .pay-sec-head td { padding: 7px 16px; font-size: 11px; letter-spacing: 2.5px; }
 
       /* ── 푸터 ── */
-      .est-foot { padding: 7px 14px; }
-      .est-foot .fc { font-size: 13px; }
-      .est-foot .fp { font-size: 10px; }
+      .est-foot { padding: 12px 20px; }
+      .est-foot .fc { font-size: 15px; }
+      .est-foot .fp { font-size: 11.5px; line-height: 1.9; }
 
-      /* ── 평면도 섹션: 1장 내 자동 축소 ── */
-      #fp-area { margin-top: 10px; page-break-before: avoid; }
+      /* ── 평면도 섹션 ── */
+      #fp-area { margin-top: 14px; page-break-before: avoid; }
       .fp-section { border-radius: 0; }
-      .fp-head { padding: 6px 12px; font-size: 11px; }
+      .fp-head { padding: 8px 14px; font-size: 13px; }
       .fp-body {
         min-height: unset;
-        max-height: 160mm;
+        max-height: 150mm;
         overflow: hidden;
-        padding: 8px;
+        padding: 12px;
         justify-content: center;
       }
       .fp-body img {
         max-width: 100%;
-        max-height: 150mm;
+        max-height: 140mm;
         width: auto;
         height: auto;
         object-fit: contain;
