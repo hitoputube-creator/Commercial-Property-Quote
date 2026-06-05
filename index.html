@@ -712,6 +712,7 @@
               <input type="text" id="p-dprice-input" placeholder="-" disabled style="background:#f0f0f0;color:#aaa;" autocomplete="off">
               <span class="unit">원</span>
             </div>
+            <div class="amt-hint" id="h-p-dprice"></div>
           </div>
           <div class="ig">
             <label>부가세
@@ -963,6 +964,14 @@ function updateHint(inputId, hintId) {
   });
 });
 
+// 할인가 직접 입력 시 콤마 포맷 + 힌트 + 상호계산
+$('p-dprice-input').addEventListener('input', function () {
+  const v = this.value.replace(/\D/g, '');
+  this.value = v ? Number(v).toLocaleString('ko-KR') : '';
+  updateHint('p-dprice-input', 'h-p-dprice');
+  updatePresaleCalc('price');
+});
+
 /* ===========================
    m²↔평 자동 변환 (1평 = 3.30579 m²)
 =========================== */
@@ -1042,7 +1051,10 @@ function updatePresaleCalc(source) {
   if (oprice > 0 && $('chk-disc').checked) {
     if (_discLastEdited === 'rate') {
       dprice = oprice * (1 - disc / 100);
-      $('p-dprice-input').value = dprice > 0 ? Math.round(dprice) : '';
+      const dv = dprice > 0 ? Math.round(dprice) : 0;
+      $('p-dprice-input').value = dv ? Number(dv).toLocaleString('ko-KR') : '';
+      const dHint = $('h-p-dprice');
+      if (dHint) dHint.textContent = toKorAmt(dv);
     } else {
       if (dprice > 0) {
         disc = (1 - dprice / oprice) * 100;
@@ -1082,7 +1094,6 @@ function updatePresaleCalc(source) {
 // 자동계산 트리거 등록
 $('p-oprice').addEventListener('input', () => updatePresaleCalc());
 $('p-disc').addEventListener('input', () => updatePresaleCalc('rate'));
-$('p-dprice-input').addEventListener('input', () => updatePresaleCalc('price'));
 $('p-vat-pct').addEventListener('input', () => updatePresaleCalc());
 document.querySelectorAll('input[name="p-vat-mode"]').forEach(r =>
   r.addEventListener('change', () => updatePresaleCalc())
