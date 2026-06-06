@@ -233,8 +233,8 @@
       background: linear-gradient(90deg, var(--accent), var(--navy-mid));
       position: absolute; bottom: 0; left: 0; right: 0;
     }
-    .est-banner h2 { font-size: 20px; font-weight: 700; letter-spacing: 5px; }
-    .est-banner .sub { color: #90b8f8; font-size: 9.5px; letter-spacing: 3px; margin-top: 4px; font-weight: 400; }
+    .est-banner h2 { font-size: 23px; font-weight: 700; letter-spacing: 5px; }
+    .est-banner .sub { color: #90b8f8; font-size: 10.5px; letter-spacing: 3px; margin-top: 6px; font-weight: 400; }
 
     /* Table */
     .est-tbl { width: 100%; border-collapse: collapse; }
@@ -282,9 +282,10 @@
     .yfill.r2 { background: linear-gradient(90deg, #b71c1c, #e53935); }
 
     /* Footer */
-    .est-foot { border: 1px solid var(--border); border-top: 2px solid var(--border); background: #f5f7fc; text-align: center; padding: 12px 20px; }
-    .est-foot .fc { color: var(--navy); font-size: 15px; font-weight: 700; letter-spacing: 3px; }
-    .est-foot .fp { color: #7a8aab; font-size: 11px; margin-top: 4px; letter-spacing: 0.5px; line-height: 1.8; }
+    .est-foot { border: 1px solid var(--border); border-top: 3px solid var(--navy); background: #f0f4ff; text-align: center; padding: 14px 20px; }
+    .est-foot .fc { color: var(--navy); font-size: 17px; font-weight: 900; letter-spacing: 3px; }
+    .est-foot .ft { color: var(--accent); font-size: 15px; font-weight: 700; letter-spacing: 2px; margin-top: 4px; }
+    .est-foot .fp { color: #7a8aab; font-size: 11px; margin-top: 5px; letter-spacing: 0.5px; line-height: 1.8; }
 
     /* ===== 납부일정표 ===== */
     .pay-tbl { width: 100%; border-collapse: collapse; }
@@ -356,7 +357,7 @@
       .fptab-bar,
       .no-print { display: none !important; }
       .amt-hint { display: none !important; }
-      .est-banner .sub { display: none !important; }
+      /* .est-banner .sub { display: none !important; } */ /* 영문 부제 프린트 출력 */
       #fp-upload-label,
       #fp-reset-btn { display: none !important; }
 
@@ -384,8 +385,9 @@
       }
 
       /* ── 배너 ── */
-      .est-banner { padding: 32px 16px 28px; }
-      .est-banner h2 { font-size: 16px; letter-spacing: 4px; }
+      .est-banner { padding: 26px 16px 22px; }
+      .est-banner h2 { font-size: 20px; letter-spacing: 5px; }
+      .est-banner .sub { font-size: 10px; letter-spacing: 3px; margin-top: 5px; }
       .est-banner .brand { font-size: 11px; }
 
       /* ── 표 셀 ── */
@@ -427,8 +429,9 @@
       .pay-sec-head td { padding: 4px 12px; font-size: 9.5px; letter-spacing: 2px; }
 
       /* ── 푸터 ── */
-      .est-foot { padding: 6px 16px; }
-      .est-foot .fc { font-size: 12px; }
+      .est-foot { padding: 10px 16px; border-top: 3px solid var(--navy); }
+      .est-foot .fc { font-size: 14px; font-weight: 900; }
+      .est-foot .ft { font-size: 12.5px; font-weight: 700; margin-top: 3px; }
       .est-foot .fp { font-size: 9.5px; line-height: 1.6; }
 
       /* ── 평면도 섹션 ── */
@@ -1268,8 +1271,9 @@ function renderSale(d) {
 
     <div class="est-foot">
       <div class="fc">하이탑부동산공인중개사사무소</div>
+      <div class="ft">☎ 031-949-8969 &nbsp;|&nbsp; 팩스 031-944-1108</div>
       <div class="fp">
-        대표: 주현희 &nbsp;|&nbsp; 주소: 경기도 파주시 책향기로 830, 1층 &nbsp;|&nbsp; 전화: 031-949-8969 &nbsp;|&nbsp; 팩스: 031-944-1108<br>
+        대표: 주현희 &nbsp;|&nbsp; 주소: 경기도 파주시 책향기로 830, 1층<br>
         사업자등록번호: 305-48-62183 &nbsp;|&nbsp; 중개사무소 등록번호: 41480-2016-00026 &nbsp;|&nbsp; 이메일: newpajucity@naver.com
       </div>
     </div>
@@ -1576,8 +1580,9 @@ function renderPresale(d) {
 
     <div class="est-foot">
       <div class="fc">하이탑부동산공인중개사사무소</div>
+      <div class="ft">☎ 031-949-8969 &nbsp;|&nbsp; 팩스 031-944-1108</div>
       <div class="fp">
-        대표: 주현희 &nbsp;|&nbsp; 주소: 경기도 파주시 책향기로 830, 1층 &nbsp;|&nbsp; 전화: 031-949-8969 &nbsp;|&nbsp; 팩스: 031-944-1108<br>
+        대표: 주현희 &nbsp;|&nbsp; 주소: 경기도 파주시 책향기로 830, 1층<br>
         사업자등록번호: 305-48-62183 &nbsp;|&nbsp; 중개사무소 등록번호: 41480-2016-00026 &nbsp;|&nbsp; 이메일: newpajucity@naver.com
       </div>
     </div>
