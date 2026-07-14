@@ -21,6 +21,9 @@
       --gold-light: #EFE4CB;
       --accent: #C8A96B;
       --red: #B94A48;
+      --red-accent: #B4232C;
+      --red-deep: #8F1D24;
+      --red-light: #FCEBEC;
       --red-lite: #F8ECE9;
       --background: #F3F5F9;
       --card: #FFFFFF;
@@ -125,7 +128,7 @@
     .btn-calc:active { transform: translateY(0); box-shadow: none; }
     .input-sec-lbl {
       grid-column: 1 / -1;
-      font-size: 12px; font-weight: 800; color: var(--gold-deep);
+      font-size: 12px; font-weight: 800; color: var(--navy-mid);
       letter-spacing: 2.3px;
       padding: 10px 0 7px;
       border-bottom: 1px solid var(--border);
@@ -134,7 +137,7 @@
     .amt-hint {
       font-size: 12px;
       font-weight: 800;
-      color: var(--gold-deep);
+      color: var(--red-accent);
       margin-top: 3px;
       min-height: 17px;
       letter-spacing: 0.2px;
@@ -243,29 +246,29 @@
     .est-tbl .c-no   { text-align: right; color: var(--navy); font-weight: 700; }
     .est-tbl .dash   { text-align: center; color: #B7C0CF; }
     .est-tbl .sec td {
-      background: var(--navy); color: var(--gold-light);
+      background: var(--navy); color: white;
       font-size: 12px; font-weight: 800;
       letter-spacing: 3px; padding: 8px 16px; border-color: var(--navy-mid);
     }
     .est-tbl .alt td { background: #FBFCFE; }
     .est-tbl .emph-row .lbl { background: var(--navy-light); border-left: 3px solid var(--gold); color: var(--navy-deep); }
-    .est-tbl .emph-row .emph-num { background: var(--navy-light); font-size: 17px; font-weight: 800; color: var(--gold-deep); letter-spacing: 0; }
+    .est-tbl .emph-row .emph-num { background: var(--navy-light); font-size: 17px; font-weight: 800; color: var(--red-accent); letter-spacing: 0; }
     .est-tbl .inv td { background: var(--navy-bg); }
     .est-tbl .yld td   { padding: 14px 14px; background: #F1F4F9; }
     .est-tbl .yld .lbl { font-size: 16px; font-weight: 800; background: #F1F4F9; border-left: 3px solid var(--gold); color: var(--navy-deep); }
 
     .yc { display: flex; align-items: center; gap: 10px; justify-content: flex-end; }
     .ynum { font-size: 25px; font-weight: 800; line-height: 1; min-width: 76px; text-align: right; }
-    .ynum.loan-o { color: var(--gold-deep); }
-    .ynum.loan-x { color: var(--navy-deep); }
+    .ynum.loan-o { color: var(--red-accent); }
+    .ynum.loan-x { color: var(--red-deep); }
     .ytrack { width: 90px; height: 9px; background: #dde3f0; border-radius: 5px; overflow: hidden; flex-shrink: 0; }
     .yfill { height: 100%; border-radius: 5px; transition: width 0.85s cubic-bezier(0.22, 1, 0.36, 1); }
-    .yfill.r1 { background: linear-gradient(90deg, var(--navy-deep), var(--gold)); }
-    .yfill.r2 { background: linear-gradient(90deg, var(--navy-mid), var(--gold-deep)); }
+    .yfill.r1 { background: linear-gradient(90deg, var(--red-deep), var(--red-accent)); }
+    .yfill.r2 { background: linear-gradient(90deg, var(--navy-mid), var(--red-deep)); }
 
     .est-foot { border: 1px solid var(--border); border-top: 3px solid var(--gold); background: #F1F4F9; text-align: center; padding: 14px 20px; }
     .est-foot .fc { color: var(--navy); font-size: 17px; font-weight: 900; letter-spacing: 3px; }
-    .est-foot .ft { color: var(--gold-deep); font-size: 15.5px; font-weight: 700; letter-spacing: 2px; margin-top: 4px; }
+    .est-foot .ft { color: var(--navy-mid); font-size: 15.5px; font-weight: 700; letter-spacing: 2px; margin-top: 4px; }
     .est-foot .fp { color: #7a8aab; font-size: 11px; margin-top: 5px; letter-spacing: 0.5px; line-height: 1.8; }
 
     .pay-tbl { width: 100%; border-collapse: collapse; }
@@ -276,12 +279,12 @@
     }
     .pay-tbl td { border: 1px solid var(--border); padding: 9px 12px; }
     .pay-tbl .p-lbl { background: #f4f7fc; font-weight: 600; color: var(--text-mid); }
-    .pay-tbl .p-num { text-align: right; color: var(--navy); font-weight: 600; }
-    .pay-tbl .p-pct { text-align: center; color: var(--gold-deep); font-weight: 700; }
+    .pay-tbl .p-num { text-align: right; color: var(--red-deep); font-weight: 600; }
+    .pay-tbl .p-pct { text-align: center; color: var(--red-accent); font-weight: 700; }
     .pay-tbl .p-dash { text-align: center; color: #c8d3e8; }
     .pay-tbl .p-sum td { background: var(--navy-bg); font-weight: 700; }
     .pay-tbl .p-sum .p-lbl { background: var(--navy-bg); color: var(--navy); font-size: 13.5px; }
-    .pay-tbl .p-sum .p-num { font-size: 14px; color: var(--navy); }
+    .pay-tbl .p-sum .p-num { font-size: 14px; color: var(--red-accent); }
     .pay-sec-head td {
       background: var(--navy); color: var(--gold-light);
       font-size: 11px; font-weight: 700;
@@ -359,120 +362,123 @@
     @media print {
       @page {
         size: A4 portrait;
-        margin: 10mm;
+        margin: 10mm 10mm 10mm;
       }
 
-      /* ── 화면 전용 요소 숨김 ── */
       .site-header,
       .mode-nav,
       .input-card,
       .out-bar,
       .fptab-bar,
-      .no-print { display: none !important; }
-      .amt-hint { display: none !important; }
-      /* .est-banner .sub { display: none !important; } */ /* 영문 부제 프린트 출력 */
+      .no-print,
+      .amt-hint,
       #fp-upload-label,
       #fp-reset-btn { display: none !important; }
 
-      /* ── 기본 레이아웃 ── */
       html, body {
         width: 100%;
         height: auto;
         margin: 0;
         padding: 0;
-        background: white;
+        background: #fff !important;
+        color: #111;
         font-size: 100%;
       }
       body { display: block; }
       .container {
         width: 100%;
-        max-width: 100%;
+        max-width: none;
+        margin: 0;
         padding: 0;
       }
-      .card { box-shadow: none; border-radius: 0; margin: 0; padding: 0; }
-      .est-pane { padding: 0; }
+      .card {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        overflow: visible;
+      }
+      .est-pane {
+        width: 100%;
+        padding: 0;
+        overflow: visible;
+      }
       .est-doc {
-        max-width: 100%;
-        border: none;
-        font-size: 11px;
+        width: 190mm;
+        max-width: none;
+        margin: 0 auto;
+        border: 1px solid #222;
+        font-size: 9.2pt;
+        background: #fff;
       }
 
-      /* ── 배너 ── */
-      .est-banner { padding: 26px 16px 22px; }
-      .est-banner h2 { font-size: 20px; letter-spacing: 5px; }
-      .est-banner .sub { font-size: 10px; letter-spacing: 3px; margin-top: 5px; }
-      .est-banner .brand { font-size: 11px; }
+      .est-banner { padding: 5.2mm 8mm 4.6mm; }
+      .est-banner h2 { font-size: 16pt; letter-spacing: 2.8pt; line-height: 1.12; }
+      .est-banner .sub { font-size: 7.5pt; letter-spacing: 1.5pt; margin-top: 1.8mm; }
+      .est-banner .brand { font-size: 8pt; }
 
-      /* ── 표 셀 ── */
+      .est-tbl { width: 100%; page-break-inside: avoid; border-collapse: collapse; }
       .est-tbl th,
-      .est-tbl td { padding: 5px 10px; font-size: 11px; }
-      .est-tbl thead th { font-size: 10px; }
-      .est-tbl .sec td  { padding: 4px 12px; font-size: 9.5px; letter-spacing: 2px; }
+      .est-tbl td { padding: 0.75mm 2.6mm; font-size: 9pt; line-height: 1.15; border: 1px solid #9aa3b2; }
+      .est-tbl thead th { font-size: 9pt; font-weight: 700; padding-top: 0.9mm; padding-bottom: 0.9mm; }
+      .est-tbl .sec td  { padding: 0.8mm 2.6mm; font-size: 8.5pt; letter-spacing: 1.4pt; }
       .est-tbl .lbl { width: 28%; }
       .est-tbl colgroup col:nth-child(1) { width: 28%; }
       .est-tbl colgroup col:nth-child(2) { width: 36%; }
       .est-tbl colgroup col:nth-child(3) { width: 36%; }
-      .est-tbl .c-loan, .est-tbl .c-no { text-align: right; }
+      .est-tbl .c-loan,
+      .est-tbl .c-no,
       .est-tbl .c-both { text-align: right; }
       .est-tbl .dash { text-align: center; }
+      .est-tbl .emph-row .emph-num { font-size: 10.5pt; font-weight: 800; }
+      .est-tbl .yld td { padding: 1mm 2.6mm; }
+      .est-tbl .yld .lbl { font-size: 10pt; }
 
-      /* ── 강조 행 ── */
-      .est-tbl .emph-row .emph-num { font-size: 13px; }
+      .yc { gap: 2.2mm; }
+      .ytrack { width: 18mm; height: 1.8mm; }
+      .ynum { font-size: 13pt; min-width: 15mm; }
 
-      /* ── 수익률 행 ── */
-      .est-tbl .yld td   { padding: 6px 10px; }
-      .est-tbl .yld .lbl { font-size: 12px; }
-
-      /* ── 게이지바 ── */
-      .ytrack { width: 60px; height: 6px; }
-      .ynum   { font-size: 17px; min-width: 55px; }
-
-      /* ── 참고란 ── */
-      .ref-note {
-        padding: 6px 12px;
-        font-size: 10px;
-        line-height: 1.6;
-      }
-
-      /* ── 납부일정표 ── */
+      .pay-tbl { width: 190mm; margin: 0 auto; page-break-inside: avoid; border-collapse: collapse; }
       .pay-tbl th,
-      .pay-tbl td { padding: 4px 8px; font-size: 10px; }
+      .pay-tbl td { padding: 0.65mm 2.4mm; font-size: 8.5pt; line-height: 1.12; border: 1px solid #9aa3b2; }
       .pay-tbl .p-sum .p-lbl,
-      .pay-tbl .p-sum .p-num { font-size: 11px; }
-      .pay-sec-head td { padding: 4px 12px; font-size: 9.5px; letter-spacing: 2px; }
+      .pay-tbl .p-sum .p-num { font-size: 9pt; }
+      .pay-sec-head td { padding: 0.75mm 2.6mm; font-size: 8.3pt; letter-spacing: 1.4pt; }
 
-      /* ── 푸터 ── */
-      .est-foot { padding: 10px 16px; border-top: 3px solid var(--navy); }
-      .est-foot .fc { font-size: 14px; font-weight: 900; }
-      .est-foot .ft { font-size: 12.5px; font-weight: 700; margin-top: 3px; }
-      .est-foot .fp { font-size: 9.5px; line-height: 1.6; }
+      .ref-note {
+        padding: 1.1mm 2.8mm;
+        font-size: 8pt;
+        line-height: 1.25;
+      }
+      .est-foot {
+        padding: 1.8mm 5mm;
+        border-top: 2px solid var(--navy-deep);
+        page-break-inside: avoid;
+      }
+      .est-foot .fc { font-size: 10.5pt; font-weight: 900; }
+      .est-foot .ft { font-size: 8.7pt; font-weight: 700; margin-top: 0.8mm; }
+      .est-foot .fp { font-size: 7.8pt; line-height: 1.25; margin-top: 0.5mm; }
 
-      /* ── 평면도 섹션 ── */
-      #fp-area { margin-top: 8px; page-break-before: avoid; }
-      .fp-section { border-radius: 0; }
-      .fp-head { padding: 5px 12px; font-size: 11px; }
+      #fp-area { margin-top: 1.5mm; page-break-before: avoid; }
+      .fp-section { width: 190mm; max-width: none; margin: 1.5mm auto 0; border-radius: 0; page-break-inside: avoid; }
+      .fp-head { padding: 1mm 2.8mm; font-size: 8.5pt; }
       .fp-body {
         min-height: unset;
-        max-height: 120mm;
+        max-height: 34mm;
         overflow: hidden;
-        padding: 8px;
+        padding: 1mm;
         justify-content: center;
       }
       .fp-body img {
         max-width: 100%;
-        max-height: 115mm;
+        max-height: 30mm;
         width: auto;
         height: auto;
         object-fit: contain;
       }
 
-      /* ── 페이지 넘김 제어 ── */
-      .est-tbl { page-break-inside: avoid; }
-      .pay-tbl { page-break-inside: avoid; }
-      .fp-section { page-break-inside: avoid; }
-      .est-foot { page-break-inside: avoid; }
-
-      /* ── 배경색 강제 출력 ── */
       * {
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
