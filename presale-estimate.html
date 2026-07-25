@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>상가 분양견적서 | 하이탑부동산</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    /* Premium navy and champagne gold theme */
+
+    :root {
+      --navy: #172A52;
+      --navy-deep: #0F1D3A;
+      --navy-mid: #243F77;
+      --navy-light: #E9EEF7;
+      --navy-lite: #E9EEF7;
+      --navy-bg: #F1F4F9;
+      --gold: #C8A96B;
+      --gold-deep: #A98545;
+      --gold-light: #EFE4CB;
+      --accent: #C8A96B;
+      --red: #B94A48;
+      --red-accent: #B4232C;
+      --red-deep: #8F1D24;
+      --red-light: #FCEBEC;
+      --red-lite: #F8ECE9;
+      --background: #F3F5F9;
+      --card: #FFFFFF;
+      --border: #D9DFE9;
+      --text: #26354D;
+      --text-muted: #778397;
+      --text-mid: #4C5B73;
+      --bg: #F3F5F9;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: var(--background);
+      color: var(--text);
+      line-height: 1.55;
+      min-height: 100vh;
+      font-size: 15px;
+    }
+
+    .site-header {
+      background: var(--navy-deep);
+      color: white;
+      padding: 17px 40px;
+      border-bottom: 3px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .site-header .h-left h1 { font-size: 25px; font-weight: 800; letter-spacing: 2.2px; color: #fff; line-height: 1.2; }
+    .site-header .h-left p  { color: rgba(239,228,203,0.78); font-size: 11.5px; letter-spacing: 2.3px; margin-top: 4px; }
+    .site-header .h-right   { text-align: right; line-height: 1.45; flex-shrink: 0; }
+    .site-header .h-right strong { display: block; color: rgba(255,255,255,0.96); font-size: 15px; font-weight: 700; letter-spacing: 0.8px; }
+    .site-header .h-right span  { color: rgba(239,228,203,0.78); font-size: 13px; }
+    .page-nav {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 40px;
+      display: flex;
+      justify-content: center;
+    }
+    .page-nav a {
+      background: var(--navy);
+      color: white;
+      text-decoration: none;
+      border: 1px solid var(--gold);
+      border-radius: 8px;
+      padding: 11px 20px;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.35px;
+      transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.1s, box-shadow 0.2s;
+      box-shadow: 0 6px 18px rgba(15,29,58,0.08);
+    }
+    .page-nav a:hover {
+      background: var(--navy-deep);
+      color: var(--gold-light);
+      border-color: var(--gold);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(15,29,58,0.14);
+    }
+
+    .container { max-width: 940px; margin: 0 auto; padding: 26px 24px 48px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 8px 28px rgba(15,29,58,0.08);
+      overflow: hidden;
+    }
+    .input-card { border-top: 3px solid var(--gold); margin-bottom: 22px; }
+    .input-card-head { padding: 19px 28px 0; display: flex; align-items: center; gap: 10px; }
+    .input-card-head h2 { font-size: 17px; font-weight: 800; color: var(--navy-deep); }
+    .badge { background: var(--gold-light); color: var(--navy-deep); border: 1px solid var(--gold); font-size: 11px; font-weight: 800; padding: 3px 9px; border-radius: 20px; letter-spacing: 0.5px; }
+    .input-body { padding: 16px 28px 26px; }
+    .input-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px 18px; }
+    .ig { display: flex; flex-direction: column; gap: 6px; }
+    .ig label { font-size: 12.5px; font-weight: 800; color: var(--text-muted); letter-spacing: 0.25px; text-transform: uppercase; }
+    .iw { position: relative; }
+    .iw input {
+      width: 100%; border: 1.5px solid var(--border); border-radius: 8px;
+      padding: 11px 38px 11px 13px; font-size: 15.5px;
+      font-family: 'Noto Sans KR', sans-serif; color: var(--navy-deep);
+      background: #F8F9FC; outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+    }
+    .iw input::placeholder { color: #8B96A8; }
+    .iw input:focus { border-color: var(--gold); background: white; box-shadow: 0 0 0 3px rgba(200,169,107,0.16); }
+    .iw .unit { position: absolute; right: 11px; top: 50%; transform: translateY(-50%); font-size: 12px; color: var(--text-muted); font-weight: 700; pointer-events: none; }
+    .btn-row { grid-column: 1 / -1; margin-top: 6px; }
+    .btn-calc {
+      width: 100%;
+      background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy-mid) 100%);
+      color: white; border: 1px solid rgba(200,169,107,0.55); border-radius: 9px; padding: 15px;
+      font-size: 18px; font-weight: 800; font-family: 'Noto Sans KR', sans-serif;
+      cursor: pointer; letter-spacing: 2.5px;
+      transition: opacity 0.2s, transform 0.1s, box-shadow 0.2s, border-color 0.15s;
+    }
+    .btn-calc:hover { opacity: 0.96; transform: translateY(-1px); border-color: var(--gold); box-shadow: 0 9px 24px rgba(15,29,58,0.24); }
+    .btn-calc:active { transform: translateY(0); box-shadow: none; }
+    .input-sec-lbl {
+      grid-column: 1 / -1;
+      font-size: 12px; font-weight: 800; color: var(--navy-mid);
+      letter-spacing: 2.3px;
+      padding: 10px 0 7px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2px;
+    }
+    .amt-hint {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--red-accent);
+      margin-top: 3px;
+      min-height: 17px;
+      letter-spacing: 0.2px;
+      transition: opacity 0.2s;
+    }
+    .amt-hint:empty { min-height: 0; }
+
+    .adv-toggle {
+      width: 100%; border: 1.5px solid var(--gold); border-radius: 8px;
+      background: var(--gold-light); color: var(--navy-deep);
+      font-size: 13.5px; font-weight: 800; padding: 11px 13px; height: 45px;
+      cursor: pointer; text-align: left; letter-spacing: 0.2px;
+      font-family: 'Noto Sans KR', sans-serif;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .adv-toggle:hover { background: #eddcae; border-color: var(--gold-deep); }
+    .adv-toggle .car { display: inline-block; margin-left: 4px; transition: transform 0.2s; }
+    .adv-toggle.open .car { transform: rotate(180deg); }
+
+    .adv-wrap {
+      grid-column: 1 / -1; display: none;
+      grid-template-columns: repeat(4, 1fr); gap: 13px 18px;
+      background: #FAFAF6; border: 1px solid var(--border); border-radius: 10px;
+      padding: 14px 16px; margin-top: -2px;
+    }
+    .adv-wrap.open { display: grid; }
+
+    .calc-summary {
+      grid-column: 1 / -1; display: flex; gap: 12px; flex-wrap: wrap;
+      background: var(--navy-light); border: 1px solid rgba(200,169,107,0.4);
+      border-radius: 9px; padding: 10px 16px; margin-top: 2px;
+    }
+    .calc-summary .cs-item { display: flex; align-items: center; gap: 7px; font-size: 13px; }
+    .calc-summary .cs-item .cs-lbl { color: var(--navy-mid); font-weight: 700; }
+    .calc-summary .cs-item .cs-val { color: var(--navy-deep); font-weight: 800; font-size: 14px; }
+    .calc-summary .cs-div { width: 1px; background: rgba(200,169,107,0.4); align-self: stretch; }
+
+    .calc-display {
+      background: var(--navy-light); border: 1.5px solid rgba(200,169,107,0.45);
+      border-radius: 7px;
+      padding: 9px 12px;
+      font-size: 14.5px; font-weight: 800; color: var(--navy-deep);
+      min-height: 38px;
+      display: flex;
+      align-items: center;
+    }
+
+    .radio-group { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; padding: 6px 0; }
+    .radio-group label {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 14px; font-weight: 600; color: var(--navy-deep);
+      cursor: pointer; white-space: nowrap;
+    }
+    .radio-group input[type=radio] { accent-color: var(--navy); cursor: pointer; }
+
+    .mid-row {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px 18px;
+    }
+
+    .out-bar {
+      display: flex; align-items: center;
+      padding: 13px 20px;
+      border-bottom: 1px solid rgba(200,169,107,0.42);
+      background: #F1F4F9;
+    }
+    .out-bar-title { font-size: 15.5px; font-weight: 800; color: var(--navy-deep); }
+    .out-bar-actions { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+    .print-tip { font-size: 12.5px; color: var(--text-muted); display: flex; align-items: center; gap: 4px; }
+    .print-tip strong { color: var(--navy-mid); font-weight: 700; }
+    .btn-print {
+      background: var(--navy); color: white; border: 1px solid rgba(200,169,107,0.65);
+      border-radius: 7px; padding: 8px 17px; font-size: 13.5px; font-weight: 800;
+      font-family: 'Noto Sans KR', sans-serif;
+      cursor: pointer; display: flex; align-items: center; gap: 6px;
+      letter-spacing: 0.35px; transition: background 0.15s, color 0.15s, border-color 0.15s, box-shadow 0.2s, transform 0.1s;
+    }
+    .btn-print:hover { background: var(--navy-deep); color: var(--gold-light); border-color: var(--gold); box-shadow: 0 8px 20px rgba(15,29,58,0.16); transform: translateY(-1px); }
+
+    .fptab-bar {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+      background: #f0f3fa;
+      padding: 0 20px;
+    }
+    .fptab-btn {
+      background: none; border: none;
+      border-bottom: 2px solid transparent;
+      padding: 9px 18px;
+      font-size: 12px; font-weight: 600;
+      font-family: 'Noto Sans KR', sans-serif;
+      color: #a0aec0;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+      margin-bottom: -1px;
+      letter-spacing: 0.5px;
+    }
+    .fptab-btn:hover { color: var(--gold-deep); }
+    .fptab-btn.active { color: var(--navy-deep); border-bottom-color: var(--gold); }
+
+    .est-pane { padding: 28px; }
+
+    .ph { text-align: center; padding: 60px 20px; }
+    .ph-icon {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--navy-lite);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 14px;
+    }
+    .ph p { font-size: 14px; color: #a0aec0; font-weight: 500; }
+    .ph strong { color: var(--navy-mid); }
+    .est-doc { max-width: 700px; margin: 0 auto; border: 1px solid var(--border); font-size: 14.5px; background: white; display: flex; flex-direction: column; }
+    .est-banner {
+      background: linear-gradient(155deg, var(--navy-deep) 0%, var(--navy-mid) 100%); color: white;
+      text-align: center; padding: 22px 24px 27px; position: relative;
+    }
+    .est-banner::after {
+      content: ''; display: block; height: 3px;
+      background: var(--gold);
+      position: absolute; bottom: 0; left: 0; right: 0;
+    }
+    .est-banner-top {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 18px; text-align: left;
+    }
+    .est-brand { display: flex; align-items: center; gap: 8px; }
+    .est-brand .kr { display: block; font-size: 13px; font-weight: 900; letter-spacing: 1px; color: #fff; }
+    .est-brand .en { display: block; font-size: 8px; font-weight: 500; letter-spacing: 2px; color: rgba(239,228,203,0.75); text-transform: uppercase; margin-top: 1px; }
+    .est-date { font-size: 10.5px; letter-spacing: 0.5px; color: rgba(239,228,203,0.85); border: 1px solid rgba(239,228,203,0.4); padding: 5px 11px; white-space: nowrap; }
+    .est-date b { color: #fff; margin-left: 3px; }
+    .est-banner h2 { font-size: 22px; font-weight: 800; letter-spacing: 4.5px; }
+    .est-banner .sub { color: rgba(239,228,203,0.78); font-size: 11px; letter-spacing: 3px; margin-top: 6px; font-weight: 500; }
+    .info-card {
+      background: #F5F3EA; border-left: 4px solid var(--gold);
+      margin: -8px 20px 0; padding: 14px 18px; position: relative; z-index: 1;
+      box-shadow: 0 6px 16px rgba(15,29,58,0.10);
+    }
+    .info-card .info-loc { margin-bottom: 10px; }
+    .info-card .info-loc .i-label { font-size: 10px; color: var(--text-muted); letter-spacing: 0.6px; margin-bottom: 3px; }
+    .info-card .info-loc .i-value { font-size: 15px; font-weight: 800; color: var(--navy-deep); }
+    .info-card .info-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px 12px; }
+    .info-card .info-cell .i-label { font-size: 10px; color: var(--text-muted); letter-spacing: 0.6px; margin-bottom: 3px; }
+    .info-card .info-cell .i-value { font-size: 13px; font-weight: 700; color: var(--navy-deep); }
+    .est-tbl { width: 100%; border-collapse: collapse; }
+    .est-tbl th, .est-tbl td { border: 1px solid var(--border); padding: 10px 14px; font-size: 14.5px; }
+    .est-tbl thead th {
+      background: var(--navy-deep); color: white;
+      font-size: 12.5px; font-weight: 700;
+      text-align: center; letter-spacing: 0.8px; border-color: var(--navy-mid);
+    }
+    .est-tbl .lbl { background: #F4F6FA; font-weight: 700; color: var(--text-mid); width: 30%; }
+    .est-tbl .c-both { text-align: center; color: var(--text); }
+    .est-tbl .c-loan { text-align: right; color: var(--navy-mid); font-weight: 700; }
+    .est-tbl .c-no   { text-align: right; color: var(--navy); font-weight: 700; }
+    .est-tbl .c-cost { text-align: right; color: var(--red-accent); font-weight: 800; }
+    .est-tbl .c-loan.neg, .est-tbl .c-no.neg { color: var(--red-accent); }
+    .est-tbl .dash   { text-align: center; color: #B7C0CF; }
+    .est-tbl .sec td {
+      background: var(--navy); color: white;
+      font-size: 12px; font-weight: 800;
+      letter-spacing: 3px; padding: 8px 16px; border-color: var(--navy-mid);
+    }
+    .est-tbl .alt td { background: #FBFCFE; }
+    .est-tbl .emph-row .lbl { background: var(--navy-light); border-left: 3px solid var(--gold); color: var(--navy-deep); }
+    .est-tbl .emph-row .emph-num { background: var(--navy-light); font-size: 17px; font-weight: 800; color: var(--red-accent); letter-spacing: 0; }
+    .est-tbl .inv td { background: var(--navy-bg); }
+    .est-tbl .yld td   { padding: 14px 14px; background: linear-gradient(90deg, var(--navy-deep), var(--navy-mid)); border-color: var(--navy-mid); }
+    .est-tbl .yld .lbl { font-size: 16px; font-weight: 800; background: transparent; border-left: 3px solid var(--gold); color: var(--gold-light); }
+
+    .yc { display: flex; align-items: center; gap: 10px; justify-content: flex-end; }
+    .ynum { font-size: 25px; font-weight: 800; line-height: 1; min-width: 76px; text-align: right; }
+    .ynum.loan-o { color: #FF9D8F; }
+    .ynum.loan-x { color: #8FD3A0; }
+    .ytrack { width: 90px; height: 9px; background: rgba(255,255,255,0.18); border-radius: 5px; overflow: hidden; flex-shrink: 0; }
+    .yfill { height: 100%; border-radius: 5px; transition: width 0.85s cubic-bezier(0.22, 1, 0.36, 1); }
+    .yfill.r1 { background: linear-gradient(90deg, #FF9D8F, var(--red-accent)); }
+    .yfill.r2 { background: linear-gradient(90deg, var(--gold), #8FD3A0); }
+
+    .est-foot {
+      margin-top: auto;
+      border: 1px solid var(--border); border-top: 3px solid var(--gold); background: #F8F6EE;
+      padding: 12px 20px 6px; display: flex; align-items: center; justify-content: space-between; gap: 14px;
+    }
+    .ef-left { display: flex; align-items: center; gap: 10px; }
+    .est-foot .fc { color: var(--navy-deep); font-size: 15px; font-weight: 900; letter-spacing: 1px; }
+    .est-foot .fp { color: #7a8aab; font-size: 10.5px; margin-top: 5px; letter-spacing: 0.3px; line-height: 2.2; }
+    .ef-right { text-align: right; flex-shrink: 0; }
+    .ef-right .ef-tel { color: var(--navy-deep); font-size: 19px; font-weight: 900; letter-spacing: 0.3px; }
+    .ef-right .ef-tel span { color: var(--gold-deep); font-size: 11px; font-weight: 800; margin-right: 5px; }
+    .ef-right .ef-fax { color: var(--text-muted); font-size: 10.5px; margin-top: 2px; }
+    .est-base { height: 5mm; background: var(--navy-deep); }
+
+    .pay-tbl { width: 100%; border-collapse: collapse; }
+    .pay-tbl th {
+      background: var(--navy-deep); color: white; padding: 10px 12px; text-align: center;
+      font-size: 11.5px; font-weight: 600; letter-spacing: 0.5px;
+      border: 1px solid var(--navy-mid);
+    }
+    .pay-tbl td { border: 1px solid var(--border); padding: 9px 12px; }
+    .pay-tbl .p-lbl { background: #f4f7fc; font-weight: 600; color: var(--text-mid); }
+    .pay-tbl .p-num { text-align: right; color: var(--red-deep); font-weight: 600; }
+    .pay-tbl .p-pct { text-align: center; color: var(--red-accent); font-weight: 700; }
+    .pay-tbl .p-dash { text-align: center; color: #c8d3e8; }
+    .pay-tbl .p-sum td { background: var(--navy-bg); font-weight: 700; }
+    .pay-tbl .p-sum .p-lbl { background: var(--navy-bg); color: var(--navy); font-size: 13.5px; }
+    .pay-tbl .p-sum .p-num { font-size: 14px; color: var(--red-accent); }
+    .pay-sec-head td {
+      background: var(--navy); color: var(--gold-light);
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 3px; padding: 7px 16px; border-color: #253b7a;
+    }
+
+    .fp-section {
+      max-width: 700px; margin: 20px auto 0;
+      border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
+    }
+    .fp-head { background: var(--navy-deep); color: white;
+      padding: 10px 18px; font-size: 13px; font-weight: 700; letter-spacing: 2.5px;
+    }
+    .fp-body {
+      padding: 28px 20px; background: #f5f7fc;
+      text-align: center; min-height: 200px;
+      display: flex; align-items: center; justify-content: center;
+      color: #a0aec0; font-size: 13px; flex-direction: column; gap: 8px;
+    }
+    .fp-body svg { opacity: 0.3; }
+
+    .ref-note {
+      border-left: 4px solid var(--accent);
+      background: #eef4ff;
+      padding: 10px 16px;
+      font-size: 12.5px;
+      color: var(--text-mid);
+      margin: 0;
+      line-height: 1.7;
+    }
+    .ref-note strong { color: var(--navy); font-weight: 700; }
+
+    .area-dual { display: grid; grid-template-columns: 3fr 2fr; gap: 6px; }
+    .area-dual .iw input { padding: 9px 30px 9px 10px; }
+
+    @media (max-width: 640px) {
+      .site-header { padding: 15px 18px; gap: 12px; align-items: center; }
+      .site-header .h-left h1 { font-size: 21px; letter-spacing: 1px; }
+      .site-header .h-left p { font-size: 10px; letter-spacing: 1.4px; }
+      .site-header .h-right strong { font-size: 13px; }
+      .site-header .h-right span { font-size: 12px; }
+      .page-nav { padding: 9px 16px; }
+      .page-nav a { width: 100%; text-align: center; padding: 10px 14px; font-size: 14px; white-space: nowrap; }
+      .container { padding: 20px 14px 38px; }
+      .input-card-head { padding: 16px 18px 0; }
+      .input-card-head h2 { font-size: 16px; }
+      .badge { font-size: 10.5px; }
+      .input-body { padding: 14px 18px 22px; }
+      .input-grid { grid-template-columns: 1fr; gap: 12px; }
+      .ig, .ig[style] { grid-column: auto !important; }
+      .adv-wrap { grid-template-columns: 1fr; }
+      .adv-wrap .ig[style] { grid-column: auto !important; }
+      .resp-grid { grid-template-columns: 1fr !important; }
+      .calc-summary { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .calc-summary .cs-div { display: none; }
+      .ig label { font-size: 11.5px; }
+      .iw input { font-size: 14.5px; padding: 10px 36px 10px 12px; }
+      .iw .unit { font-size: 11.5px; }
+      .btn-calc { font-size: 16px; padding: 14px; letter-spacing: 2px; }
+      .out-bar { padding: 12px 14px; align-items: flex-start; gap: 10px; flex-wrap: wrap; }
+      .out-bar-title { font-size: 15px; }
+      .out-bar-actions { width: 100%; justify-content: space-between; gap: 8px; }
+      .print-tip { font-size: 12px; }
+      .btn-print { font-size: 13px; padding: 8px 14px; white-space: nowrap; }
+      .est-pane { padding: 18px 12px; overflow-x: auto; }
+      .est-doc { font-size: 13.5px; }
+      .est-banner { padding: 25px 14px 22px; }
+      .est-banner h2 { font-size: 18px; letter-spacing: 2.4px; }
+      .est-banner .sub { font-size: 9.5px; letter-spacing: 1.8px; }
+      .est-tbl th, .est-tbl td { padding: 8px 9px; font-size: 12.5px; }
+      .est-tbl .emph-row .emph-num { font-size: 15px; }
+      .est-tbl .yld .lbl { font-size: 14px; }
+      .ynum { font-size: 20px; min-width: 58px; }
+      .ytrack { width: 54px; }
+      .area-dual { grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr); }
+      .radio-group { gap: 10px; }
+    }
+
+    /* ===== PRINT ===== */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 10mm 10mm 10mm;
+      }
+
+      .site-header,
+      .mode-nav,
+      .input-card,
+      .out-bar,
+      .fptab-bar,
+      .no-print,
+      .amt-hint,
+      #fp-upload-label,
+      #fp-reset-btn { display: none !important; }
+
+      html, body {
+        width: 100%;
+        height: auto;
+        margin: 0;
+        padding: 0;
+        background: #fff !important;
+        color: #111;
+        font-size: 100%;
+      }
+      body { display: block; }
+      .container {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 277mm;
+      }
+      .card {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        overflow: visible;
+      }
+      .est-pane {
+        width: 100%;
+        padding: 0;
+        overflow: visible;
+      }
+      .est-doc {
+        width: 190mm;
+        max-width: none;
+        margin: 0 auto;
+        border: 1px solid #222;
+        font-size: 9.2pt;
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .est-banner { padding: 5mm 8mm 4.6mm; }
+      .est-banner-top { margin-bottom: 4mm; }
+      .est-brand .kr { font-size: 9pt; }
+      .est-brand .en { font-size: 5.6pt; }
+      .est-date { font-size: 7pt; padding: 1mm 2.4mm; }
+      .est-banner h2 { font-size: 16pt; letter-spacing: 2.8pt; line-height: 1.12; }
+      .est-banner .sub { font-size: 7.5pt; letter-spacing: 1.5pt; margin-top: 1.8mm; }
+
+      .info-card { margin: -4.5mm 6mm 0; padding: 3mm 5mm; }
+      .info-card .info-loc { margin-bottom: 2mm; }
+      .info-card .info-loc .i-label { font-size: 6.5pt; }
+      .info-card .info-loc .i-value { font-size: 9.5pt; }
+      .info-card .info-grid { gap: 2mm 3mm; }
+      .info-card .info-cell .i-label { font-size: 6.5pt; }
+      .info-card .info-cell .i-value { font-size: 8.8pt; }
+
+      .est-tbl { width: 100%; page-break-inside: avoid; border-collapse: collapse; }
+      .est-tbl th,
+      .est-tbl td { padding: 0.75mm 2.6mm; font-size: 9pt; line-height: 1.15; border: 1px solid #9aa3b2; }
+      .est-tbl thead th { font-size: 9pt; font-weight: 700; padding-top: 0.9mm; padding-bottom: 0.9mm; }
+      .est-tbl .sec td  { padding: 0.8mm 2.6mm; font-size: 8.5pt; letter-spacing: 1.4pt; }
+      .est-tbl .lbl { width: 28%; }
+      .est-tbl colgroup col:nth-child(1) { width: 28%; }
+      .est-tbl colgroup col:nth-child(2) { width: 36%; }
+      .est-tbl colgroup col:nth-child(3) { width: 36%; }
+      .est-tbl .c-loan,
+      .est-tbl .c-no,
+      .est-tbl .c-cost,
+      .est-tbl .c-both { text-align: right; }
+      .est-tbl .dash { text-align: center; }
+      .est-tbl .emph-row .emph-num { font-size: 10.5pt; font-weight: 800; }
+      .est-tbl .yld td { padding: 1mm 2.6mm; }
+      .est-tbl .yld .lbl { font-size: 10pt; }
+
+      .yc { gap: 2.2mm; }
+      .ytrack { width: 18mm; height: 1.8mm; }
+      .ynum { font-size: 13pt; min-width: 15mm; }
+
+      .pay-tbl { width: 190mm; margin: 0 auto; page-break-inside: avoid; border-collapse: collapse; }
+      .pay-tbl th,
+      .pay-tbl td { padding: 0.65mm 2.4mm; font-size: 8.5pt; line-height: 1.12; border: 1px solid #9aa3b2; }
+      .pay-tbl .p-sum .p-lbl,
+      .pay-tbl .p-sum .p-num { font-size: 9pt; }
+      .pay-sec-head td { padding: 0.75mm 2.6mm; font-size: 8.3pt; letter-spacing: 1.4pt; }
+
+      .ref-note {
+        padding: 1.1mm 2.8mm;
+        font-size: 8pt;
+        line-height: 1.25;
+      }
+      .est-foot {
+        margin-top: auto;
+        padding: 2.4mm 5mm 1.2mm;
+        border-top: 2px solid var(--gold);
+        page-break-inside: avoid;
+      }
+      .est-foot .fc { font-size: 10pt; font-weight: 900; }
+      .est-foot .fp { font-size: 7.2pt; line-height: 2.1; margin-top: 1mm; }
+      .ef-right .ef-tel { font-size: 12pt; }
+      .ef-right .ef-fax { font-size: 7.4pt; margin-top: 1mm; }
+      .est-base { height: 3.5mm; }
+
+      #fp-area { margin-top: 1.5mm; page-break-before: avoid; }
+      .fp-section { width: 190mm; max-width: none; margin: 1.5mm auto 0; border-radius: 0; page-break-inside: avoid; }
+      .fp-head { padding: 1mm 2.8mm; font-size: 8.5pt; }
+      .fp-body {
+        min-height: unset;
+        max-height: 34mm;
+        overflow: hidden;
+        padding: 1mm;
+        justify-content: center;
+      }
+      .fp-body img {
+        max-width: 100%;
+        max-height: 30mm;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+      }
+
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== SITE HEADER ===== -->
+<header class="site-header">
+  <div class="h-left">
+    <h1 id="header-title">상가 분양견적서</h1>
+    <p id="header-sub">COMMERCIAL REAL ESTATE PRESALE ESTIMATE</p>
+  </div>
+  <div class="h-right">
+    <strong>하이탑부동산</strong>
+    <span>T. 031.949.8969</span>
+  </div>
+</header>
+
+<nav class="page-nav no-print">
+  <a href="./index.html">상가 매매·수익성 견적서 바로가기</a>
+</nav>
+
+<div class="container">
+
+
+  <!-- ══════════════════════════════════════
+       상가분양견적서
+  ══════════════════════════════════════ -->
+  <div id="mode-presale">
+
+    <!-- INPUT CARD -->
+    <div class="card input-card no-print">
+      <div class="input-card-head">
+        <h2>분양 정보 입력</h2>
+        <span class="badge">INPUT</span>
+      </div>
+      <div class="input-body">
+        <div class="input-grid">
+
+          <!-- ▪ 섹션1: 물건정보 -->
+          <div class="input-sec-lbl">▪ &nbsp; 물 건 정 보</div>
+
+          <div class="ig">
+            <label>위치 (빌딩명)</label>
+            <div class="iw"><input type="text" id="p-loc" placeholder="예: 하이탑빌딩"></div>
+          </div>
+          <div class="ig">
+            <label>호실</label>
+            <div class="iw"><input type="text" id="p-room" placeholder="예: 101호"></div>
+          </div>
+          <div class="ig">
+            <label>업종</label>
+            <div class="iw"><input type="text" id="p-biz" placeholder="예: 카페, 사무실"></div>
+          </div>
+          <div class="ig">
+            <label>층수</label>
+            <div class="iw">
+              <input type="number" id="p-floor" placeholder="0" min="0" step="1">
+              <span class="unit">층</span>
+            </div>
+          </div>
+
+          <div class="ig" style="grid-column: span 2;">
+            <label>공급면적 (m²)</label>
+            <div class="area-dual">
+              <div class="iw">
+                <input type="number" id="p-supply-m2" placeholder="0" min="0" step="0.01">
+                <span class="unit">m²</span>
+              </div>
+              <div class="iw">
+                <input type="number" id="p-supply-py" placeholder="0" min="0" step="0.01">
+                <span class="unit">평</span>
+              </div>
+            </div>
+          </div>
+          <div class="ig" style="grid-column: span 2;">
+            <label>전용면적 (m²)</label>
+            <div class="area-dual">
+              <div class="iw">
+                <input type="number" id="p-priv-m2" placeholder="0" min="0" step="0.01">
+                <span class="unit">m²</span>
+              </div>
+              <div class="iw">
+                <input type="number" id="p-priv-py" placeholder="0" min="0" step="0.01">
+                <span class="unit">평</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="resp-grid" style="grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px 18px;">
+            <div class="ig">
+              <label>원분양가</label>
+              <div class="iw">
+                <input type="text" id="p-oprice" placeholder="0" autocomplete="off">
+                <span class="unit">원</span>
+              </div>
+              <div class="amt-hint" id="h-p-oprice"></div>
+            </div>
+            <div class="ig">
+              <label>보증금</label>
+              <div class="iw">
+                <input type="text" id="p-deposit" placeholder="0" autocomplete="off">
+                <span class="unit">원</span>
+              </div>
+              <div class="amt-hint" id="h-p-deposit"></div>
+            </div>
+            <div class="ig">
+              <label>월임대료</label>
+              <div class="iw">
+                <input type="text" id="p-rent" placeholder="0" autocomplete="off">
+                <span class="unit">원</span>
+              </div>
+              <div class="amt-hint" id="h-p-rent"></div>
+            </div>
+            <div class="ig">
+              <label>&nbsp;</label>
+              <button type="button" class="adv-toggle" id="adv-toggle-btn" onclick="toggleAdvanced()">
+                할인 · 부가세 옵션 <span class="car">▾</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 고급 옵션: 할인율 / 할인가 / 부가세 (기본 숨김) -->
+          <div class="adv-wrap" id="p-advanced">
+            <div class="ig">
+              <label>
+                <input type="checkbox" id="chk-disc" onchange="toggleDisc(this)" style="accent-color:var(--navy);margin-right:5px;">
+                할인율 <span style="font-size:10px;color:#a0aec0;">(선택)</span>
+              </label>
+              <div class="iw">
+                <input type="number" id="p-disc" value="0" min="0" max="100" step="0.1" disabled style="background:#f0f0f0;color:#aaa;">
+                <span class="unit">%</span>
+              </div>
+            </div>
+            <div class="ig">
+              <label>할인가</label>
+              <div class="iw">
+                <input type="text" id="p-dprice-input" placeholder="-" disabled style="background:#f0f0f0;color:#aaa;" autocomplete="off">
+                <span class="unit">원</span>
+              </div>
+              <div class="amt-hint" id="h-p-dprice"></div>
+            </div>
+            <div class="ig" style="grid-column: span 2;">
+              <label>부가세
+                <span style="margin-left:8px;">
+                  <label style="font-size:11px;font-weight:600;color:var(--accent);cursor:pointer;">
+                    <input type="radio" name="p-vat-mode" value="pct" checked onchange="switchVatMode('pct')"> % 입력
+                  </label>
+                  &nbsp;
+                  <label style="font-size:11px;font-weight:600;color:var(--accent);cursor:pointer;">
+                    <input type="radio" name="p-vat-mode" value="amt" onchange="switchVatMode('amt')"> 금액 입력
+                  </label>
+                </span>
+              </label>
+              <div id="vat-pct-wrap" class="iw">
+                <input type="number" id="p-vat-pct" value="0" min="0" max="100" step="0.1" placeholder="0">
+                <span class="unit">%</span>
+              </div>
+              <div id="vat-amt-wrap" class="iw" style="display:none;">
+                <input type="text" id="p-vat-amt" placeholder="0" autocomplete="off">
+                <span class="unit">원</span>
+              </div>
+              <div class="amt-hint" id="h-p-vat-amt"></div>
+            </div>
+          </div>
+
+          <!-- 자동계산 요약 -->
+          <div class="calc-summary">
+            <div class="cs-item"><span class="cs-lbl">총공급금액</span><span class="cs-val" id="p-total-disp">-</span></div>
+            <div class="cs-div"></div>
+            <div class="cs-item"><span class="cs-lbl">취등록세 4.6%</span><span class="cs-val" id="p-acqtax-disp">-</span></div>
+          </div>
+
+          <!-- ▪ 섹션2: 수익분석 -->
+          <div class="input-sec-lbl">▪ &nbsp; 수 익 분 석</div>
+
+          <div class="resp-grid" style="grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px 18px;">
+            <div class="ig">
+              <label>대출금액 (자동)</label>
+              <div class="calc-display" id="p-loan-disp">-</div>
+            </div>
+            <div class="ig">
+              <label>대출비율</label>
+              <div class="iw">
+                <input type="number" id="p-lratio" value="50" min="0" max="100" step="0.1">
+                <span class="unit">%</span>
+              </div>
+            </div>
+            <div class="ig">
+              <label>이율</label>
+              <div class="iw">
+                <input type="number" id="p-rate" value="4.5" min="0" max="30" step="0.1">
+                <span class="unit">%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ▪ 섹션3: 납부일정표 -->
+          <div class="input-sec-lbl" style="display:flex;align-items:center;gap:10px;">
+            <label style="display:flex;align-items:center;gap:6px;cursor:pointer;">
+              <input type="checkbox" id="chk-pay" checked onchange="togglePay(this)" style="accent-color:var(--navy);">
+              ▪ &nbsp; 납 부 일 정 표
+            </label>
+            <span style="font-size:10px;color:#a0aec0;font-weight:400;letter-spacing:0;">(체크 해제시 프린트 미출력)</span>
+          </div>
+
+          <div id="pay-inputs-wrap" class="resp-grid" style="grid-column:1/-1; display:grid; grid-template-columns:repeat(2,1fr); gap:12px 18px;">
+            <div class="ig">
+              <label>계산 기준</label>
+              <div class="radio-group">
+                <label><input type="radio" name="p-basis" value="ori" checked> 원분양가 기준</label>
+                <label><input type="radio" name="p-basis" value="disc"> 할인가 기준</label>
+              </div>
+            </div>
+            <div class="ig">
+              <label>중도금 횟수</label>
+              <div class="radio-group">
+                <label><input type="radio" name="p-mid-cnt" value="1" checked> 1회</label>
+                <label><input type="radio" name="p-mid-cnt" value="2"> 2회</label>
+              </div>
+            </div>
+            <div class="ig">
+              <label>계약금 비율</label>
+              <div class="iw">
+                <input type="number" id="p-dn-pct" value="10" min="0" max="100" step="0.1">
+                <span class="unit">%</span>
+              </div>
+            </div>
+            <div class="ig" id="mid-inputs">
+              <label>중도금 비율</label>
+              <div class="iw">
+                <input type="number" id="p-mid1-pct" value="40" min="0" max="100" step="0.1">
+                <span class="unit">%</span>
+              </div>
+            </div>
+            <!-- 중도금 2차 비율 (2회 선택 시에만 노출) -->
+            <div class="ig" id="mid2-wrap" style="display:none; grid-column: 1 / -1;">
+              <label>중도금 2차 비율</label>
+              <div class="iw">
+                <input type="number" id="p-mid2-pct" value="0" min="0" max="100" step="0.1">
+                <span class="unit">%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn-calc" onclick="calculatePresale()">계 산 하 기</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- OUTPUT CARD -->
+    <div class="card">
+      <div class="out-bar no-print">
+        <span class="out-bar-title">분 양 견 적 서</span>
+        <div class="out-bar-actions">
+          <span class="print-tip">💡 Chrome 인쇄 → <strong>머리글/바닥글 해제</strong> 권장</span>
+          <button class="btn-print" onclick="window.print()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 6 2 18 2 18 9"/>
+              <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+              <rect x="6" y="14" width="12" height="8"/>
+            </svg>
+            인쇄하기
+          </button>
+        </div>
+      </div>
+
+      <!-- 평면도 탭 -->
+      <div class="fptab-bar no-print">
+        <button class="fptab-btn active" onclick="switchFpTab('none', this)">📄&nbsp; 평면도 없음</button>
+        <button class="fptab-btn"        onclick="switchFpTab('show', this)">🗺️&nbsp; 평면도 있음</button>
+      </div>
+
+      <div class="est-pane">
+        <div id="ph-presale" class="ph">
+          <div class="ph-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#90b8f8" stroke-width="1.5">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+            </svg>
+          </div>
+          <p>분양 정보를 입력하고 <strong>계산하기</strong>를 눌러주세요</p>
+        </div>
+        <div id="res-presale" style="display:none;"></div>
+
+        <!-- 평면도 영역 -->
+        <div id="fp-area" style="display:none;">
+          <div class="fp-section">
+            <div class="fp-head">▪ &nbsp; 평 &nbsp; 면 &nbsp; 도</div>
+            <div class="fp-body" id="fp-body-inner">
+              <label id="fp-upload-label" style="cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:10px;">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#90b8f8" stroke-width="1.2">
+                  <rect x="3" y="3" width="18" height="18" rx="2"/>
+                  <path d="M3 9h18M3 15h18M9 3v18M15 3v18"/>
+                </svg>
+                <span style="color:#a0aec0; font-size:13px;">클릭하여 평면도 이미지 선택</span>
+                <span style="color:#c8d3e8; font-size:11px;">JPG, PNG 지원</span>
+                <input type="file" id="fp-file-input" accept="image/*" style="display:none;" onchange="loadFloorPlan(this)">
+              </label>
+              <img id="fp-img" style="display:none; max-width:100%; max-height:300px; object-fit:contain;" alt="평면도">
+              <button id="fp-reset-btn" onclick="resetFloorPlan()" style="display:none; margin-top:8px; background:none; border:1px solid #dde3f0; border-radius:6px; padding:5px 14px; font-size:11px; color:#7a8aab; cursor:pointer;">이미지 변경</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /mode-presale -->
+
+</div><!-- /container -->
+
+<script>
+'use strict';
+
+/* ===========================
+   공통 유틸
+=========================== */
+const $    = id => document.getElementById(id);
+const fmt  = n => (isNaN(n) || n === null) ? '-' : Math.round(n).toLocaleString('ko-KR');
+const fmtD = n => (isNaN(n) || n === null) ? '-' : n.toFixed(2);
+const rawN = id => parseFloat($(id).value.replace(/,/g, '')) || 0;
+
+/* ===========================
+   한국어 금액 변환 (억/만 단위)
+=========================== */
+function toKorAmt(n) {
+  if (!n || isNaN(n) || n <= 0) return '';
+  const uk  = Math.floor(n / 100000000);       // 억
+  const man = Math.floor((n % 100000000) / 10000); // 만
+  const rem = Math.floor(n % 10000);            // 원 단위
+
+  let parts = [];
+  if (uk  > 0) parts.push(uk.toLocaleString('ko-KR') + '억');
+  if (man > 0) parts.push(man.toLocaleString('ko-KR') + '만');
+  if (rem > 0 && uk === 0) parts.push(rem.toLocaleString('ko-KR'));
+  return parts.join(' ') + ' 원';
+}
+
+/* ===========================
+   힌트 업데이트
+=========================== */
+function updateHint(inputId, hintId) {
+  const val = parseFloat($(inputId).value.replace(/,/g, '')) || 0;
+  const hint = $(hintId);
+  if (hint) hint.textContent = toKorAmt(val);
+}
+
+
+/* ===========================
+   금액 자동 콤마 - 분양 (부가세 금액 포함)
+=========================== */
+['p-oprice', 'p-deposit', 'p-rent', 'p-vat-amt'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('input', function () {
+    const v = this.value.replace(/\D/g, '');
+    this.value = v ? Number(v).toLocaleString('ko-KR') : '';
+    updateHint(id, 'h-' + id);
+    updatePresaleCalc();
+  });
+});
+
+// 할인가 직접 입력 시 콤마 포맷 + 힌트 + 상호계산
+$('p-dprice-input').addEventListener('input', function () {
+  const v = this.value.replace(/\D/g, '');
+  this.value = v ? Number(v).toLocaleString('ko-KR') : '';
+  updateHint('p-dprice-input', 'h-p-dprice');
+  updatePresaleCalc('price');
+});
+
+/* ===========================
+   m²↔평 자동 변환 (1평 = 3.30579 m²)
+=========================== */
+const PY = 3.30579;
+
+function bindAreaSync(m2Id, pyId) {
+  const m2El = $(m2Id), pyEl = $(pyId);
+  if (!m2El || !pyEl) return;
+  m2El.addEventListener('input', () => {
+    const v = parseFloat(m2El.value);
+    pyEl.value = isNaN(v) || v === 0 ? '' : (v / PY).toFixed(2);
+  });
+  pyEl.addEventListener('input', () => {
+    const v = parseFloat(pyEl.value);
+    m2El.value = isNaN(v) || v === 0 ? '' : (v * PY).toFixed(2);
+  });
+}
+
+bindAreaSync('p-supply-m2', 'p-supply-py');
+bindAreaSync('p-priv-m2',   'p-priv-py');
+
+/* ===========================
+   Enter 키
+=========================== */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter') calculatePresale();
+});
+
+/* ===========================
+   평면도 탭 전환
+=========================== */
+function switchFpTab(type, btn) {
+  document.querySelectorAll('.fptab-btn').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  $('fp-area').style.display = type === 'show' ? 'block' : 'none';
+}
+
+/* ===========================
+   분양 - 실시간 자동계산 표시
+   (할인율 ↔ 할인가 상호계산 / 총공급금액 / 취등록세)
+=========================== */
+let _discLastEdited = 'rate'; // 'rate' | 'price'
+
+/* ===========================
+   고급 옵션(할인/부가세) 토글
+=========================== */
+function toggleAdvanced() {
+  const wrap = $('p-advanced');
+  const btn  = $('adv-toggle-btn');
+  const isOpen = wrap.classList.toggle('open');
+  btn.classList.toggle('open', isOpen);
+}
+
+function updatePresaleCalc(source) {
+  if (source) _discLastEdited = source;
+
+  const oprice = rawN('p-oprice');
+  let disc   = parseFloat($('p-disc').value) || 0;
+  let dprice = rawN('p-dprice-input');
+
+  if (oprice > 0 && $('chk-disc').checked) {
+    if (_discLastEdited === 'rate') {
+      dprice = oprice * (1 - disc / 100);
+      const dv = dprice > 0 ? Math.round(dprice) : 0;
+      $('p-dprice-input').value = dv ? Number(dv).toLocaleString('ko-KR') : '';
+      const dHint = $('h-p-dprice');
+      if (dHint) dHint.textContent = toKorAmt(dv);
+    } else {
+      if (dprice > 0) {
+        disc = (1 - dprice / oprice) * 100;
+        disc = Math.max(0, Math.min(100, disc));
+        $('p-disc').value = disc.toFixed(2);
+      } else {
+        disc = 0;
+        dprice = oprice;
+        $('p-disc').value = '0';
+      }
+    }
+  } else {
+    dprice = oprice;
+    disc   = 0;
+  }
+
+  const vatMode = document.querySelector('input[name="p-vat-mode"]:checked');
+  const mode = vatMode ? vatMode.value : 'pct';
+  let vatPct = 0;
+  let vatAmt = 0;
+
+  if (mode === 'pct') {
+    vatPct = parseFloat($('p-vat-pct').value) || 0;
+    vatAmt = dprice * vatPct / 100;
+  } else {
+    vatAmt = rawN('p-vat-amt');
+    vatPct = dprice > 0 ? vatAmt / dprice * 100 : 0;
+  }
+
+  const total  = dprice + vatAmt;
+  const acqtax = total * 0.046;
+  const lratio = parseFloat($('p-lratio').value) || 0;
+  const loanAmt = total * lratio / 100;
+
+  $('p-total-disp').textContent   = oprice > 0 ? fmt(total)  + ' 원' : '-';
+  $('p-acqtax-disp').textContent  = oprice > 0 ? fmt(acqtax) + ' 원' : '-';
+  $('p-loan-disp').textContent    = (oprice > 0 && lratio > 0) ? fmt(loanAmt) + ' 원' : '-';
+}
+
+// 자동계산 트리거 등록
+$('p-oprice').addEventListener('input', () => updatePresaleCalc());
+$('p-disc').addEventListener('input', () => updatePresaleCalc('rate'));
+$('p-vat-pct').addEventListener('input', () => updatePresaleCalc());
+$('p-lratio').addEventListener('input', () => updatePresaleCalc());
+document.querySelectorAll('input[name="p-vat-mode"]').forEach(r =>
+  r.addEventListener('change', () => updatePresaleCalc())
+);
+
+/* ===========================
+   중도금 횟수 변경
+=========================== */
+document.querySelectorAll('input[name="p-mid-cnt"]').forEach(r => {
+  r.addEventListener('change', function () {
+    $('mid2-wrap').style.display = this.value === '2' ? '' : 'none';
+  });
+});
+
+function calculatePresale() {
+  const loc      = $('p-loc').value.trim()  || '-';
+  const room     = $('p-room').value.trim() || '-';
+  const biz      = $('p-biz').value.trim()  || '-';
+  const floor    = parseFloat($('p-floor').value) || 0;
+  const supplyM2 = parseFloat($('p-supply-m2').value) || 0;
+  const supplyPy = parseFloat($('p-supply-py').value) || 0;
+  const privM2   = parseFloat($('p-priv-m2').value)   || 0;
+  const privPy   = parseFloat($('p-priv-py').value)   || 0;
+  const oprice = rawN('p-oprice');
+  const disc   = parseFloat($('p-disc').value) || 0;
+  const showDisc = $('chk-disc') ? $('chk-disc').checked : false;
+  const dprice  = showDisc && rawN('p-dprice-input') > 0
+    ? rawN('p-dprice-input')
+    : oprice * (1 - disc / 100);
+
+  const vatMode = document.querySelector('input[name="p-vat-mode"]:checked');
+  const mode = vatMode ? vatMode.value : 'pct';
+  let vatPct = 0;
+  let vatAmt = 0;
+  if (mode === 'pct') {
+    vatPct = parseFloat($('p-vat-pct').value) || 0;
+    vatAmt = dprice * vatPct / 100;
+  } else {
+    vatAmt = rawN('p-vat-amt');
+    vatPct = dprice > 0 ? vatAmt / dprice * 100 : 0;
+  }
+  const dep    = rawN('p-deposit');
+  const rent   = rawN('p-rent');
+  const lratio = parseFloat($('p-lratio').value) || 0;
+  const rate   = parseFloat($('p-rate').value)   || 0;
+
+  const basisEl  = document.querySelector('input[name="p-basis"]:checked');
+  const basis    = basisEl ? basisEl.value : 'ori';
+  const midCntEl = document.querySelector('input[name="p-mid-cnt"]:checked');
+  const midCnt   = midCntEl ? parseInt(midCntEl.value) : 1;
+
+  const dnPct   = parseFloat($('p-dn-pct').value)   || 0;
+  const mid1Pct = parseFloat($('p-mid1-pct').value) || 0;
+  const mid2Pct = midCnt === 2 ? (parseFloat($('p-mid2-pct').value) || 0) : 0;
+
+  /* ---- 핵심 계산 ---- */
+  const total   = dprice + vatAmt;
+  const acqtax  = total * 0.046;
+
+  const loan = total * lratio / 100;
+  const intA = loan * rate / 100;
+  const intM = intA / 12;
+
+  const invL = total - loan - dep;
+  const invN = total - dep;
+  const pmL  = rent - intM;
+  const pmN  = rent;
+  const paL  = pmL * 12;
+  const paN  = pmN * 12;
+  const yL   = invL > 0 ? paL / invL * 100 : 0;
+  const yN   = invN > 0 ? paN / invN * 100 : 0;
+
+  /* ---- 납부일정 기준 ---- */
+  const basisPrice = basis === 'ori' ? oprice : dprice;
+  const basisVat   = basisPrice * vatPct / 100;
+  const balPct     = Math.max(0, 100 - dnPct - mid1Pct - mid2Pct);
+
+  const showPay = $('chk-pay') ? $('chk-pay').checked : true;
+
+  renderPresale({
+    loc, room, biz, floor, supplyM2, supplyPy, privM2, privPy,
+    oprice, disc, dprice, vatPct, vatAmt, total, acqtax,
+    dep, rent, lratio, rate,
+    loan, intA, intM,
+    invL, invN, pmL, pmN, paL, paN, yL, yN,
+    basis, basisPrice, basisVat,
+    dnPct, mid1Pct, mid2Pct, midCnt, balPct,
+    showPay, showDisc
+  });
+}
+
+/* ══════════════════════════════════════════
+   상가분양견적서 렌더링
+══════════════════════════════════════════ */
+function renderPresale(d) {
+  const bL = Math.min(Math.max(d.yL, 0), 20) / 20 * 100;
+  const bN = Math.min(Math.max(d.yN, 0), 20) / 20 * 100;
+
+  /* ---- 납부일정 행 계산 ---- */
+  function makePayRow(label, pct) {
+    const amt   = d.basisPrice * pct / 100;
+    const vat   = d.basisVat   * pct / 100;
+    const total = amt + vat;
+    return { label, pct, amt, vat, total };
+  }
+
+  const rows = [];
+  rows.push(makePayRow('계약금', d.dnPct));
+  if (d.midCnt === 1) {
+    rows.push(makePayRow('중도금', d.mid1Pct));
+  } else {
+    rows.push(makePayRow('중도금 1차', d.mid1Pct));
+    rows.push(makePayRow('중도금 2차', d.mid2Pct));
+  }
+  rows.push(makePayRow('잔금', d.balPct));
+
+  const sumAmt   = rows.reduce((s, r) => s + r.amt,   0);
+  const sumVat   = rows.reduce((s, r) => s + r.vat,   0);
+  const sumTotal = rows.reduce((s, r) => s + r.total, 0);
+  const sumPct   = rows.reduce((s, r) => s + r.pct,   0);
+
+  const payRowsHtml = rows.map(r => `
+    <tr>
+      <td class="p-lbl">${r.label}</td>
+      <td class="p-pct">${r.pct.toFixed(1)}%</td>
+      <td class="p-num">${fmt(r.amt)}</td>
+      <td class="p-num">${d.vatPct > 0 ? fmt(r.vat) : '-'}</td>
+      <td class="p-num">${fmt(r.total)}</td>
+    </tr>`).join('');
+
+  const vatLabel = d.vatPct > 0 ? `부가세 (${d.vatPct}%)` : '부가세';
+  const basisLabel = d.basis === 'ori' ? '원분양가 기준' : '할인가 기준';
+
+  const today = new Date();
+  const todayStr = `${today.getFullYear()}. ${String(today.getMonth()+1).padStart(2,'0')}. ${String(today.getDate()).padStart(2,'0')}.`;
+
+  const logoSvg = (goldStroke, navyStroke, size) => `
+    <svg width="${size}" height="${size}" viewBox="0 0 64 64" fill="none">
+      <circle cx="32" cy="32" r="29" stroke="${goldStroke}" stroke-width="1.6"/>
+      <path d="M13 24 L32 11 L51 24" stroke="${goldStroke}" stroke-width="3.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M21 46 V25 M43 46 V25 M21 35.5 H43" stroke="${navyStroke}" stroke-width="4.2" stroke-linecap="round"/>
+    </svg>`;
+
+  const supplyTxt = d.supplyM2 > 0 ? d.supplyM2.toFixed(2) + ' m² / ' + d.supplyPy.toFixed(2) + ' 평' : (d.supplyPy > 0 ? (d.supplyPy * 3.30579).toFixed(2) + ' m² / ' + d.supplyPy.toFixed(2) + ' 평' : '-');
+  const privTxt   = d.privM2 > 0 ? d.privM2.toFixed(2) + ' m² / ' + d.privPy.toFixed(2) + ' 평' : (d.privPy > 0 ? (d.privPy * 3.30579).toFixed(2) + ' m² / ' + d.privPy.toFixed(2) + ' 평' : '-');
+
+  const html = `
+  <div class="est-doc">
+    <div class="est-banner">
+      <div class="est-banner-top">
+        <div class="est-brand">
+          ${logoSvg('#e6cd8e', '#c9a24a', 30)}
+          <div>
+            <span class="kr">하이탑부동산</span>
+            <span class="en">Haitop Realty</span>
+          </div>
+        </div>
+        <div class="est-date">작성일자 <b>${todayStr}</b></div>
+      </div>
+      <h2>수 익 률 &nbsp; 상 가 &nbsp; 분 양 &nbsp; 견 적 서</h2>
+      <div class="sub">C O M M E R C I A L &nbsp; R E A L &nbsp; E S T A T E &nbsp; P R E S A L E &nbsp; E S T I M A T E</div>
+    </div>
+
+    <div class="info-card">
+      <div class="info-loc"><div class="i-label">위치 (빌딩명)</div><div class="i-value">${d.loc}</div></div>
+      <div class="info-grid">
+        <div class="info-cell"><div class="i-label">업&nbsp;&nbsp;종</div><div class="i-value">${d.biz}</div></div>
+        <div class="info-cell"><div class="i-label">호&nbsp;&nbsp;실</div><div class="i-value">${d.room}</div></div>
+        <div class="info-cell"><div class="i-label">층&nbsp;&nbsp;수</div><div class="i-value">${d.floor > 0 ? d.floor + ' 층' : '-'}</div></div>
+        <div class="info-cell"><div class="i-label">공급면적</div><div class="i-value">${supplyTxt}</div></div>
+        <div class="info-cell"><div class="i-label">전용면적</div><div class="i-value">${privTxt}</div></div>
+      </div>
+    </div>
+
+    <table class="est-tbl">
+      <colgroup>
+        <col style="width:30%">
+        <col style="width:35%">
+        <col style="width:35%">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>항목</th>
+          <th>대출 (O)</th>
+          <th>대출 (X)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="sec"><td colspan="3">▪ &nbsp; 분 &nbsp; 양 &nbsp; 조 &nbsp; 건</td></tr>
+
+        <tr class="emph-row">
+          <td class="lbl">원분양가</td>
+          <td class="c-both emph-num" colspan="2">${fmt(d.oprice)} 원</td>
+        </tr>
+        ${d.showDisc ? `<tr class="alt">
+          <td class="lbl">할인율</td>
+          <td class="c-both" colspan="2"
+            style="text-align:center; color:var(--navy-mid); font-weight:600;">${d.disc > 0 ? d.disc + ' %' : '-'}</td>
+        </tr>
+        <tr class="emph-row">
+          <td class="lbl">할인가</td>
+          <td class="c-both emph-num" colspan="2">${fmt(d.dprice)} 원</td>
+        </tr>` : ''}
+        <tr class="alt">
+          <td class="lbl">${vatLabel}</td>
+          <td class="c-both" colspan="2"
+            style="text-align:right; color:var(--navy-mid); font-weight:600;">${d.vatPct > 0 ? fmt(d.vatAmt) + ' 원' : '-'}</td>
+        </tr>
+        <tr class="emph-row">
+          <td class="lbl">총공급금액</td>
+          <td class="c-both emph-num" colspan="2">${fmt(d.total)} 원</td>
+        </tr>
+
+        <tr>
+          <td class="lbl">대출금액</td>
+          <td class="c-cost">${fmt(d.loan)} 원</td>
+          <td class="dash">-</td>
+        </tr>
+        <tr class="alt">
+          <td class="lbl">대출비율</td>
+          <td class="c-cost">${d.lratio} %</td>
+          <td class="dash">-</td>
+        </tr>
+        <tr>
+          <td class="lbl">이율</td>
+          <td class="c-cost">${d.rate} %</td>
+          <td class="dash">-</td>
+        </tr>
+        <tr class="alt">
+          <td class="lbl">이자 (연)</td>
+          <td class="c-cost">${fmt(d.intA)} 원</td>
+          <td class="dash">-</td>
+        </tr>
+        <tr>
+          <td class="lbl">월이자</td>
+          <td class="c-cost">${fmt(d.intM)} 원</td>
+          <td class="dash">-</td>
+        </tr>
+
+        <tr class="emph-row">
+          <td class="lbl">보증금</td>
+          <td class="c-both emph-num" colspan="2">${fmt(d.dep)} 원</td>
+        </tr>
+        <tr class="emph-row alt">
+          <td class="lbl">월임대료</td>
+          <td class="c-both emph-num" colspan="2">${fmt(d.rent)} 원</td>
+        </tr>
+
+        <tr class="sec"><td colspan="3">▪ &nbsp; 수 &nbsp; 익 &nbsp; 분 &nbsp; 석</td></tr>
+
+        <tr class="inv">
+          <td class="lbl">실투자금</td>
+          <td class="c-loan">${fmt(d.invL)} 원</td>
+          <td class="c-no">${fmt(d.invN)} 원</td>
+        </tr>
+        <tr class="inv">
+          <td class="lbl">월수익금</td>
+          <td class="c-loan${d.pmL < 0 ? ' neg' : ''}">${fmt(d.pmL)} 원</td>
+          <td class="c-no${d.pmN < 0 ? ' neg' : ''}">${fmt(d.pmN)} 원</td>
+        </tr>
+        <tr class="inv">
+          <td class="lbl">년수익금</td>
+          <td class="c-loan${d.paL < 0 ? ' neg' : ''}">${fmt(d.paL)} 원</td>
+          <td class="c-no${d.paN < 0 ? ' neg' : ''}">${fmt(d.paN)} 원</td>
+        </tr>
+
+        <tr class="yld">
+          <td class="lbl">수 익 률</td>
+          <td>
+            <div class="yc">
+              <div class="ytrack"><div class="yfill r1" style="width:${bL}%"></div></div>
+              <span class="ynum loan-o">${fmtD(d.yL)}%</span>
+            </div>
+          </td>
+          <td>
+            <div class="yc">
+              <div class="ytrack"><div class="yfill r2" style="width:${bN}%"></div></div>
+              <span class="ynum loan-x">${fmtD(d.yN)}%</span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 납부일정표 -->
+    ${d.showPay ? `<table class="pay-tbl">
+      <thead>
+        <tr class="pay-sec-head">
+          <td colspan="5">
+            ▪ &nbsp; 납 &nbsp; 부 &nbsp; 일 &nbsp; 정 &nbsp; 표
+            <span style="font-size:10px; color:rgba(255,255,255,0.6); font-weight:400;
+                         letter-spacing:1px; margin-left:10px;">(${basisLabel})</span>
+          </td>
+        </tr>
+        <tr>
+          <th style="width:18%">구분</th>
+          <th style="width:11%">비율</th>
+          <th style="width:24%">분양가</th>
+          <th style="width:24%">부가세</th>
+          <th style="width:23%">합계</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${payRowsHtml}
+        <tr class="p-sum">
+          <td class="p-lbl">합 계</td>
+          <td class="p-pct">${sumPct.toFixed(1)}%</td>
+          <td class="p-num">${fmt(sumAmt)}</td>
+          <td class="p-num">${d.vatPct > 0 ? fmt(sumVat) : '-'}</td>
+          <td class="p-num">${fmt(sumTotal)}</td>
+        </tr>
+      </tbody>
+    </table>` : ''}
+
+    <div class="ref-note">
+      ※ <strong>취등록세 (4.6%)</strong> : ${fmt(d.acqtax)} 원 &nbsp;— 부가세 발생 여부 및 건물/토지 비율에 따라 변동될 수 있습니다.
+    </div>
+
+    <div class="est-foot">
+      <div class="ef-left">
+        ${logoSvg('#c9a24a', '#12244a', 26)}
+        <div>
+          <div class="fc">하이탑부동산공인중개사사무소</div>
+          <div class="fp">
+            대표: 주현희 &nbsp;|&nbsp; 경기도 파주시 책향기로 830, 1층<br>
+            사업자등록번호 305-48-62183 &nbsp;|&nbsp; 중개사무소 등록번호 41480-2016-00026<br>
+            newpajucity@naver.com
+          </div>
+        </div>
+      </div>
+      <div class="ef-right">
+        <div class="ef-tel"><span>TEL</span>031-949-8969</div>
+        <div class="ef-fax">FAX 031-944-1108</div>
+      </div>
+    </div>
+    <div class="est-base"></div>
+  </div>`;
+
+  $('ph-presale').style.display = 'none';
+  const r = $('res-presale');
+  r.innerHTML = html;
+  r.style.display = 'block';
+}
+/* ===========================
+   부가세 모드 전환
+=========================== */
+function switchVatMode(mode) {
+  if (mode === 'pct') {
+    $('vat-pct-wrap').style.display = '';
+    $('vat-amt-wrap').style.display = 'none';
+  } else {
+    $('vat-pct-wrap').style.display = 'none';
+    $('vat-amt-wrap').style.display = '';
+  }
+  updatePresaleCalc();
+}
+
+/* ===========================
+   할인율 체크박스 토글
+=========================== */
+function toggleDisc(chk) {
+  const inpRate  = $('p-disc');
+  const inpPrice = $('p-dprice-input');
+  const enabled  = chk.checked;
+  [inpRate, inpPrice].forEach(inp => {
+    inp.disabled = !enabled;
+    inp.style.background = enabled ? '' : '#f0f0f0';
+    inp.style.color       = enabled ? '' : '#aaa';
+  });
+  if (!enabled) { inpRate.value = '0'; inpPrice.value = ''; }
+  _discLastEdited = 'rate';
+  updatePresaleCalc();
+}
+
+/* ===========================
+   납부일정표 체크박스 토글
+=========================== */
+function togglePay(chk) {
+  $('pay-inputs-wrap').style.display = chk.checked ? '' : 'none';
+}
+
+/* ===========================
+   평면도 이미지 로드
+=========================== */
+function loadFloorPlan(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const img = $('fp-img');
+    img.src = e.target.result;
+    img.style.display = 'block';
+    $('fp-upload-label').style.display = 'none';
+    $('fp-reset-btn').style.display = 'inline-block';
+  };
+  reader.readAsDataURL(file);
+}
+
+function resetFloorPlan() {
+  $('fp-img').style.display = 'none';
+  $('fp-img').src = '';
+  $('fp-upload-label').style.display = 'flex';
+  $('fp-reset-btn').style.display = 'none';
+  $('fp-file-input').value = '';
+}
+</script>
+
+</body>
+</html>
